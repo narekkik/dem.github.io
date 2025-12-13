@@ -2,29 +2,136 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Мой блог</title>
-    <link type="text/css" rel="stylesheet" href="style.css" />
+    <title>Мой блог — Праздник 2026</title>
+    <style>
+        body {
+            background: #2c3e50;
+            margin: 0;
+            padding: 20px;
+            font-family: 'Pudelinka', sans-serif;
+            color: white;
+            line-height: 1.6;
+        }
+
+        .frame {
+            position: relative;
+            border: 20px solid transparent;
+            padding: 20px;
+            max-width: 900px;
+            margin: 0 auto;
+            box-sizing: border-box;
+            background: url('https://i.imgur.com/9zGkXQl.jpg') no-repeat center center;
+            background-size: cover;
+            border-radius: 15px;
+            box-shadow: 0 0 30px rgba(0,0,0,0.5);
+        }
+
+        .content {
+            background: rgba(255,255,255,0.95);
+            padding: 25px;
+            border-radius: 10px;
+            color: #333;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        h1, h2 {
+            color: #d35400;
+            border-bottom: 2px solid #e74c3c;
+            padding-bottom: 5px;
+            margin-top: 30px;
+        }
+
+        blockquote.q {
+            font-style: italic;
+            font-size: 1.1em;
+            padding: 15px 20px;
+            background: #f8f9fa;
+            border-left: 4px solid #e74c3c;
+            margin: 20px 0;
+        }
+
+        img, video {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin: 15px 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        a {
+            color: #2980b9;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        a:hover {
+            text-decoration: underline;
+            color: #e74c3c;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 0.9em;
+            color: #7f8c8d;
+        }
+
+        .kolyadka {
+            background: #fffbe6;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 25px 0;
+            text-align: center;
+            font-size: 1.1em;
+            font-weight: bold;
+            color: #2c3e50;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+    </style>
 </head>
 <body>
-<blockquote class="q">Путешествие в тысячу миль начинается с одного шага (Лао Цзы)</blockquote>
+    <div class="frame">
+        <div class="content">
 
-<h2>1 декабря, 2025</h2>
-<img src="Icons/free-icon-new-year-balloons-19034402(1).png" alt="Новый год">
-<p>Поздравление с Наступающим 2026 годом читайте <a href="Congratulations2026.html">здесь</a>.</p>
+            <!-- КОЛЯДКА -->
+            <div class="kolyadka">
+                <h2>КОЛЯДКА</h2>
+                <p>Сегодня ночью звёзды светят ярче,<br>
+                На Рождество мы все дарим подарки!<br>
+                Пусть радость в доме будет вечно,<br>
+                И ангелы хранят всех нас, как сказки!</p>
+            </div>
 
-<h2>15 октября, 2025</h2>
-<p>
-Я сделала Новогодние кроссворды для сайта <a href="https://justmargarret.github.io/just-yourmargarret2/" title="Блог моего друга">Сайт моего друга</a>.
-</p>
+            <blockquote class="q">Путешествие в тысячу миль начинается с одного шага (Лао Цзы)</blockquote>
 
-<h2>1 сентября, 2025</h2>
-<blockquote>Путешествие в тысячу миль начинается с одного шага (Лао Цзы)</blockquote>
-<p>
-Оставляю в прошлом скучную неинтересную локальную файловую систему ради Всемирной паутины.
-</p>
+            <h2>1 декабря, 2025</h2>
+            <!-- Замените src на путь к вашему видео или GIF -->
+            <video autoplay muted loop playsinline style="width:100%; border-radius:10px;">
+                <source src="video.mp4" type="video/mp4">
+                Ваш браузер не поддерживает видео.
+            </video>
+            <p>Поздравление с Наступающим 2026 годом читайте <a href="Congratulations2026.html">здесь</a>.</p>
 
-<p>Иконки: 
-<a href="https://www.flaticon.com/ru/free-icons/2026" title="2026 иконки">2026 иконки от Freepik - Flaticon</a>
-</p>
+            <h2>15 октября, 2025</h2>
+            <p>
+                Я сделала Новогодние кроссворды для сайта <a href="https://justmargarret.github.io/just-yourmargarret2/" title="Блог моего друга">Сайт моего друга</a>.
+            </p>
+
+            <h2>1 сентября, 2025</h2>
+            <blockquote>Путешествие в тысячу миль начинается с одного шага (Лао Цзы)</blockquote>
+            <p>
+                Оставляю в прошлом скучную неинтересную локальную файловую систему ради Всемирной паутины.
+            </p>
+
+            <p>Иконки: 
+                <a href="https://www.flaticon.com/ru/free-icons/2026" title="2026 иконки">2026 иконки от Freepik - Flaticon</a>
+            </p>
+
+        </div>
+    </div>
+
+    <footer>
+        © 2025 Мой Блог | Создано с любовью и ожиданием 2026 года 🎄
+    </footer>
 </body>
 </html>
