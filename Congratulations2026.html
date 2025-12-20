@@ -2,22 +2,213 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Поздравление!</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Новогодние кроссворды 🎄</title>
     <link rel="stylesheet" type="text/css" href="style.css" />
+    <style>
+        /* Общие стили — адаптированы под вашу тему */
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 30px;
+            background: linear-gradient(135deg, #e0f7fa, #f8bbd0);
+            color: #333;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 35px;
+            border-radius: 25px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+        }
+
+        h1 {
+            text-align: center;
+            color: #c2185b;
+            font-size: 2.4em;
+            font-family: 'Pudelinka', cursive;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            color: #d32f2f;
+            font-family: 'Pudelinka', cursive;
+            margin-top: 30px;
+        }
+
+        p, .quote {
+            font-size: 1.1em;
+            margin: 16px 0;
+        }
+
+        .quote {
+            font-style: italic;
+            color: #5d4037;
+            text-align: center;
+            padding: 15px;
+            background: #fffde7;
+            border-left: 4px solid #ffd54f;
+            border-radius: 0 10px 10px 0;
+        }
+
+        a.back {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #0277bd;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        a.back:hover { text-decoration: underline; }
+
+        /* Переключатель языков */
+        .lang-switch {
+            text-align: center;
+            margin: 30px 0;
+        }
+        .lang-btn {
+            margin: 0 10px;
+            padding: 10px 24px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 30px;
+            background: #4caf50;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Pudelinka', cursive;
+        }
+        .lang-btn:hover {
+            background: #388e3c;
+            transform: scale(1.05);
+        }
+        .lang-btn.active {
+            background: #1b5e20;
+            font-weight: bold;
+        }
+
+        /* Кроссворды */
+        .crossword {
+            display: none;
+            margin-top: 25px;
+            padding: 25px;
+            border-radius: 20px;
+            background: #f9f9f9;
+            box-shadow: inset 0 0 8px rgba(0,0,0,0.05);
+        }
+        .crossword.active {
+            display: block;
+        }
+
+        table {
+            margin: 25px auto;
+            border-collapse: collapse;
+        }
+        td {
+            width: 50px;
+            height: 50px;
+            border: 2px solid #333;
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.2em;
+            background: white;
+            vertical-align: middle;
+        }
+        td.black {
+            background: #333;
+        }
+
+        .clues {
+            margin-top: 25px;
+        }
+        .clues h3 {
+            font-family: 'Pudelinka', cursive;
+            color: #5d4037;
+        }
+        .clues ol {
+            padding-left: 25px;
+            font-size: 1.05em;
+        }
+    </style>
 </head>
 <body>
-    <p><a href="index.html">← Назад</a></p>
+
+<div class="container">
+    <p><a href="index.html" class="back">← Назад</a></p>
+
+    <h1>🎄 Новогодние кроссворды 2026</h1>
 
     <p>Приближается один из любимых праздников в России — Новый год. В воздухе витает ощущение чуда: дома украшают ёлки, на окнах появляются снежинки из бумаги, а в магазинах звучат знакомые мелодии. Этот праздник объединяет поколения — и дети, и взрослые с нетерпением ждут боя курантов, волшебства и исполнения заветных желаний.</p>
-    
+
     <p>В преддверии праздника особенно приятно провести время за увлекательными занятиями всей семьёй. Например, разгадывание кроссвордов — отличный способ потренировать память, расширить словарный запас и весело провести вечер.</p>
-    
-    <p>
-        • <a href="crossvords.html">Русский кроссворд</a> — тематика: ёлка, подарки, Дед Мороз, снеговик…<br>
+
+    <div class="lang-switch">
+        <button class="lang-btn active" onclick="showLang('ru')">🇷🇺 Русский</button>
+        <button class="lang-btn" onclick="showLang('en')">🇬🇧 English</button>
+    </div>
+
+    <!-- Русская версия -->
+    <div id="ru" class="crossword active">
+        <h2>Кроссворд: «Новогодние символы»</h2>
+        <table>
+            <tr><td></td><td></td><td class="black"></td><td></td></tr>
+            <tr><td class="black"></td><td></td><td></td><td></td></tr>
+            <tr><td></td><td class="black"></td><td class="black"></td><td></td></tr>
+        </table>
+        <div class="clues">
+            <h3>По горизонтали:</h3>
+            <ol>
+                <li>Дед, который приносит подарки (8 букв)</li>
+                <li>Зимнее дерево в доме (4 буквы)</li>
+                <li>Блестящее украшение на ёлке (7 букв)</li>
+            </ol>
+            <h3>По вертикали:</h3>
+            <ol>
+                <li>Что бьют в полночь? (6 букв)</li>
+                <li>Слово, которым желают добра в Новый год (9 букв)</li>
+            </ol>
+        </div>
+    </div>
+
+    <!-- Английская версия -->
+    <div id="en" class="crossword">
+        <h2>Crossword: “New Year Symbols”</h2>
+        <table>
+            <tr><td></td><td></td><td class="black"></td><td></td></tr>
+            <tr><td class="black"></td><td></td><td></td><td></td></tr>
+            <tr><td></td><td class="black"></td><td class="black"></td><td></td></tr>
+        </table>
+        <div class="clues">
+            <h3>Across:</h3>
+            <ol>
+                <li>Grandfather who brings gifts (8 letters)</li>
+                <li>Winter tree indoors (4 letters)</li>
+                <li>Sparkly tree decoration (7 letters)</li>
+            </ol>
+            <h3>Down:</h3>
+            <ol>
+                <li>What do people hit at midnight? (6 letters)</li>
+                <li>A word wishing happiness (9 letters)</li>
+            </ol>
+        </div>
+    </div>
+
+    <p class="quote">
+        Разгадывайте, угадывайте, улыбайтесь — и пусть Новый год принесёт вам радость, вдохновение и успехи в учёбе и работе!
     </p>
 
-    <p>Попробуйте разгадать оба — и сравните, какой покажется интереснее!</p>
+</div>
 
-    <p class="quote">Разгадывайте, угадывайте, улыбайтесь — и пусть Новый год принесёт вам радость, вдохновение и успехи в учёбе и работе!</p>
+<script>
+    function showLang(lang) {
+        document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+        document.querySelectorAll('.crossword').forEach(el => el.classList.remove('active'));
+        document.querySelector(`.lang-btn[onclick="showLang('${lang}')"]`).classList.add('active');
+        document.getElementById(lang).classList.add('active');
+    }
+</script>
+
 </body>
 </html>
