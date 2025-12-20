@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -6,34 +7,42 @@
     <title>Мой блог</title>
     <link type="text/css" rel="stylesheet" href="style.css" />
 
-    <!-- Подключение шрифта Pudelinka -->
     <style>
+        /* Шрифт Pudelinka */
         @font-face {
             font-family: 'Pudelinka';
             src: url('Pudelinka.ttf') format('truetype');
         }
 
-        /* Общий фон — мягкий новогодний градиент */
+        /* Фон с ёлками (base64 SVG) */
         body {
+            margin: 0;
+            padding: 0;
             font-family: Arial, sans-serif;
             line-height: 1.6;
-            margin: 0;
-            padding: 40px 20px;
-            background: linear-gradient(135deg, #e6f4ff 0%, #f0f8f0 50%, #fff9e6 100%);
-            background-attachment: fixed;
             color: #222;
             min-height: 100vh;
-            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='5' cy='5' r='2' fill='%23d42a2a33'/%3E%3C/svg%3E");
+            background:
+                linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.85)),
+                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'%3E%3Cpath fill='%23d42a2a10' d='M40,180 L50,140 L30,140 Z M100,180 L110,130 L90,130 Z M160,180 L170,150 L150,150 Z M70,190 L80,160 L60,160 Z M130,190 L140,155 L120,155 Z'/%3E%3C/svg%3E"),
+                linear-gradient(135deg, #f0f9ff 0%, #fff8e1 100%);
+            background-size: 120px 120px, cover;
+            background-attachment: fixed, scroll;
+            background-position: center center;
+            background-repeat: repeat, no-repeat;
         }
 
         .container {
             max-width: 800px;
-            margin: 0 auto;
-            background: rgba(255, 255, 255, 0.85);
+            margin: 40px auto;
             padding: 30px;
+            background: rgba(255, 255, 255, 0.94);
             border-radius: 20px;
             box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
-            backdrop-filter: blur(4px);
+            position: relative;
+            z-index: 2;
+            backdrop-filter: blur(2px);
+            border: 1px solid #eee;
         }
 
         blockquote.q {
@@ -49,29 +58,11 @@
             text-align: center;
             margin: 30px 0;
             padding: 25px;
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(255, 250, 240, 0.95);
             border-radius: 18px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
             position: relative;
-            overflow: hidden;
-        }
-
-        .new-year-section::before {
-            content: "🎄";
-            position: absolute;
-            top: 10px;
-            left: 15px;
-            font-size: 24px;
-            opacity: 0.6;
-        }
-
-        .new-year-section::after {
-            content: "✨";
-            position: absolute;
-            bottom: 10px;
-            right: 15px;
-            font-size: 22px;
-            opacity: 0.6;
+            border: 2px dashed #e8c9c9;
         }
 
         .new-year-section h2 {
@@ -87,31 +78,6 @@
             line-height: 1.5;
             color: #333;
             margin: 0 0 25px;
-        }
-
-        .video-container {
-            margin: 20px auto;
-            max-width: 600px;
-            cursor: pointer;
-        }
-
-        .video-container img {
-            width: 100%;
-            border-radius: 12px;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .video-container img:hover {
-            transform: scale(1.02);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-        }
-
-        .video-caption {
-            font-family: 'Pudelinka', cursive;
-            font-size: 1.1em;
-            color: #555;
-            margin-top: 12px;
         }
 
         .visit-counter {
@@ -130,29 +96,34 @@
             margin-top: 40px;
         }
 
-        p, a {
-            margin: 12px 0;
+        .video-container {
+            margin: 20px auto;
+            max-width: 600px;
+            cursor: pointer;
         }
 
-        .icon-2026 {
-            width: 32px;
-            height: 32px;
-            vertical-align: middle;
-            margin-right: 8px;
+        .video-container img {
+            width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .video-container img:hover {
+            transform: scale(1.02);
         }
 
         footer {
             text-align: center;
-            margin-top: 40px;
-            font-size: 0.9em;
+            margin-top: 30px;
+            font-size: 0.85em;
             color: #777;
         }
 
         @media (max-width: 600px) {
-            body { padding: 20px 10px; }
-            .container { padding: 20px; }
+            body { padding: 0 10px; }
+            .container { margin: 20px auto; padding: 20px; }
             .new-year-section h2 { font-size: 1.9em; }
-            .new-year-section p { font-size: 1.2em; }
         }
     </style>
 </head>
@@ -162,39 +133,38 @@
 
 <blockquote class="q">Путешествие в тысячу миль начинается с одного шага (Лао Цзы)</blockquote>
 
-<!-- Новая секция: Новый год 2026 с колядкой и видео -->
+<!-- Новая секция: Новый год 2026 -->
 <div class="new-year-section">
     <h2>С Новым годом 2026!</h2>
-
     <p>
         Под ёлкой светят огоньки,<br>
         В окне мороз рисует сны.<br>
         Звезда ведёт путей вершины —<br>
         Новый год приходит к нам!
     </p>
-
     <div class="video-container">
         <img src="https://i.imgur.com/9WYx7Zb.jpg" alt="Нажмите, чтобы посмотреть видео" id="video-trigger">
-        <div class="video-caption">👉 Нажмите на картинку, чтобы открыть праздничное видео</div>
+        <div class="video-caption" style="font-family: 'Pudelinka', cursive; font-size: 1.1em; color: #555; margin-top: 10px;">
+            👉 Нажмите на картинку, чтобы открыть праздничное видео
+        </div>
     </div>
 </div>
 
-<!-- Счётчик посещений -->
+<!-- Счётчик -->
 <p class="visit-counter">Посещение — 2</p>
 
-<!-- Новая запись от сегодняшней даты -->
+<!-- Запись от сегодняшней даты -->
 <h2>20 декабря, 2025</h2>
 <p>
     Сегодня суббота, и я добавила счётчик посещений на свой сайт. Спасибо, что зашли!
 </p>
 
 <h2>1 декабря, 2025</h2>
-<img src="https://cdn-icons-png.flaticon.com/512/11002/11002388.png" alt="2026 Иконка" class="icon-2026" loading="lazy">
 <p>Поздравление с Наступающим 2026 годом читайте <a href="Congratulations2026.html">здесь</a>.</p>
 
 <h2>15 октября, 2025</h2>
 <p>
-    Я сделала Новогодние кроссворды для сайта <a href="http://адрес-сайта-друга" title="Блог моего друга">Сайт моего друга</a>.
+    Я сделала Новогодние кроссворды для сайта <a href="http://адрес-сайта-друга">Сайт моего друга</a>.
 </p>
 
 <h2>1 сентября, 2025</h2>
@@ -204,10 +174,7 @@
 </p>
 
 <footer>
-    <a href="https://www.flaticon.com/ru/free-icons/2026" title="2026 иконки">
-        <img src="https://cdn-icons-png.flaticon.com/128/11002/11002388.png" width="16" height="16" style="vertical-align: middle; margin-right: 4px;">
-        Иконки от Flaticon (2026)
-    </a>
+    &copy; 2025 Мой блог. С Новым годом!
 </footer>
 
 </div> <!-- .container -->
