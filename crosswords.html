@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Новогодние кроссворды 🎄</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #c3e6cb, #a1c4fd);
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+        }
+        h1 {
+            text-align: center;
+            color: #d32f2f;
+            font-size: 2.2em;
+            font-family: 'Pudelinka', cursive;
+        }
+        .lang-switch {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .lang-btn {
+            margin: 0 10px;
+            padding: 8px 20px;
+            font-size: 1.1em;
+            border: none;
+            border-radius: 25px;
+            background: #4caf50;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .lang-btn:hover {
+            background: #388e3c;
+            transform: scale(1.05);
+        }
+        .lang-btn.active {
+            background: #1b5e20;
+            font-weight: bold;
+        }
+        .crossword {
+            display: none;
+            margin-top: 30px;
+            padding: 20px;
+            border-radius: 15px;
+            background: #f8f9fa;
+        }
+        .crossword.active {
+            display: block;
+        }
+        .crossword h2 {
+            color: #e91e63;
+            font-family: 'Pudelinka', cursive;
+        }
+        table {
+            margin: 20px auto;
+            border-collapse: collapse;
+        }
+        td {
+            width: 40px;
+            height: 40px;
+            border: 2px solid #333;
+            text-align: center;
+            font-weight: bold;
+            background: #fff;
+        }
+        td.black {
+            background: #333;
+        }
+        .clues {
+            margin-top: 20px;
+        }
+        .clues ol {
+            padding-left: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>🎄 Новогодние кроссворды 2026 🎄</h1>
+
+    <div class="lang-switch">
+        <button class="lang-btn active" onclick="showLang('ru')">🇷🇺 Русский</button>
+        <button class="lang-btn" onclick="showLang('en')">🇬🇧 English</button>
+    </div>
+
+    <!-- Русская версия -->
+    <div id="ru" class="crossword active">
+        <h2>Кроссворд: «Новогодние символы»</h2>
+        <table>
+            <tr><td>A</td><td>B</td><td class="black"></td><td>D</td></tr>
+            <tr><td class="black"></td><td>E</td><td>F</td><td>G</td></tr>
+            <tr><td>H</td><td class="black"></td><td class="black"></td><td>I</td></tr>
+        </table>
+        <div class="clues">
+            <h3>По горизонтали:</h3>
+            <ol>
+                <li>Дед, который приносит подарки (5 букв)</li>
+                <li>Зимнее дерево в доме (3 буквы)</li>
+                <li>Блестящее украшение на ёлке (6 букв)</li>
+            </ol>
+            <h3>По вертикали:</h3>
+            <ol>
+                <li>Что бьют в полночь? (5 букв)</li>
+                <li>Слово, которым желают добра в Новый год (7 букв)</li>
+            </ol>
+        </div>
+    </div>
+
+    <!-- Английская версия -->
+    <div id="en" class="crossword">
+        <h2>Crossword: “New Year Symbols”</h2>
+        <table>
+            <tr><td>S</td><td>N</td><td class="black"></td><td>O</td></tr>
+            <tr><td class="black"></td><td>A</td><td>P</td><td>W</td></tr>
+            <tr><td>T</td><td class="black"></td><td class="black"></td><td>!</td></tr>
+        </table>
+        <div class="clues">
+            <h3>Across:</h3>
+            <ol>
+                <li>Grandfather who brings gifts (3 letters)</li>
+                <li>Winter tree indoors (3 letters)</li>
+                <li>Sparkly tree decoration (6 letters)</li>
+            </ol>
+            <h3>Down:</h3>
+            <ol>
+                <li>What do people hit at midnight? (5 letters)</li>
+                <li>A word wishing happiness (5 letters)</li>
+            </ol>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    function showLang(lang) {
+        // Убираем active у всех кнопок и кроссвордов
+        document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+        document.querySelectorAll('.crossword').forEach(el => el.classList.remove('active'));
+        // Добавляем active текущему
+        document.querySelector(`.lang-btn[onclick="showLang('${lang}')"]`).classList.add('active');
+        document.getElementById(lang).classList.add('active');
+    }
+</script>
+
+</body>
+</html>
