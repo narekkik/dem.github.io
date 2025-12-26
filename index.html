@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Мой блог — С Новым 2026 годом!</title>
-    <!-- ✅ Исправлен: убран пробел в конце URL -->
+    <!-- ✅ Подключение шрифта Pudelinka — без пробела -->
     <link href="https://fonts.googleapis.com/css2?family=Pudelinka&display=swap" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="style.css" />
     <style>
@@ -73,7 +73,7 @@
             max-width: 600px;
         }
 
-        /* ✅ Исправлен: убран пробел в src */
+        /* ✅ Картинка без пробела в src */
         #video-trigger {
             width: 100%;
             border-radius: 12px;
@@ -195,7 +195,7 @@
         }
 
         @media print {
-            .snowflakes, .firework-*, .video-container, .visit-tag, footer {
+            .snowflakes, .firework-*, .heart, .video-container, .visit-tag, footer {
                 display: none !important;
             }
             body {
@@ -225,7 +225,7 @@
     </p>
 
     <div class="video-container">
-        <!-- ✅ Исправлен: убран пробел в src -->
+        <!-- ✅ Изображение без пробела -->
         <img src="https://i.imgur.com/9WYx7Zb.jpg" alt="Нажмите, чтобы посмотреть видео" id="video-trigger">
         <span class="video-caption">👉 Нажмите на картинку, чтобы открыть праздничное видео</span>
     </div>
@@ -250,7 +250,7 @@
 <div class="snowflakes" id="snowflakes"></div>
 
 <footer>
-    <!-- ✅ Исправлен: убран пробел в href -->
+    <!-- ✅ Ссылка без пробела -->
     <a href="https://www.flaticon.com/ru/free-icons/2026" title="2026 иконки">2026 иконки от Freepik — Flaticon</a>
 </footer>
 
@@ -284,20 +284,62 @@ function createSnowflake() {
 for (let i = 0; i < 25; i++) createSnowflake();
 setInterval(createSnowflake, 700);
 
-// ——— ЯРКИЙ КРУПНЫЙ САЛЮТ ———
+// ——— СЕРДЕЧКИ 💗 ———
+function createHeart(x, y) {
+    const heart = document.createElement('div');
+    const hearts = ['💗', '💖', '💘', '💝', '❤️'];
+    const colors = ['#ff6b81', '#ff8fab', '#ff5252', '#ff4081', '#e91e63'];
+    const size = 16 + Math.random() * 14;
+    const color = colors[Math.floor(Math.random() * colors.length)];
+
+    heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+    heart.style.cssText = `
+        position: fixed;
+        left: ${x - size/2}px;
+        top: ${y}px;
+        font-size: ${size}px;
+        color: ${color};
+        opacity: ${0.7 + Math.random() * 0.3};
+        pointer-events: none;
+        z-index: 995;
+        text-shadow: 0 0 8px ${color}, 0 0 16px ${color};
+    `;
+    document.body.appendChild(heart);
+
+    const duration = 2.5 + Math.random() * 1.5;
+    heart.animate([
+        { 
+            transform: 'translate(0, 0) rotate(0deg)',
+            opacity: 1
+        },
+        { 
+            transform: `translate(${(Math.random() - 0.5) * 60}px, -${120 + Math.random() * 80}px) rotate(${(Math.random() > 0.5 ? 1 : -1) * 20}deg)`,
+            opacity: 0
+        }
+    ], {
+        duration: duration * 1000,
+        easing: 'cubic-bezier(0.2, 0.8, 0.3, 1)',
+        fill: 'forwards'
+    });
+
+    setTimeout(() => {
+        if (heart.parentNode) heart.remove();
+    }, duration * 1000);
+}
+
+// ——— ЯРКИЙ КРУПНЫЙ САЛЮТ + СЕРДЕЧКИ ———
 const fireworkColors = [
-    ['#FF0000', '#FF5722', '#FF9800'],     // оранжево-красный
-    ['#00BCD4', '#2196F3', '#3F51B5'],     // сине-бирюзовый
-    ['#E91E63', '#FF4081', '#FF80AB'],     // розово-фуксия
-    ['#4CAF50', '#8BC34A', '#CDDC39'],     // зелёный
-    ['#FFEB3B', '#FFC107', '#FF9800'],     // золотой
-    ['#9C27B0', '#E040FB', '#FF4081'],     // фиолетово-неон
-    ['#00E5FF', '#1DE9B6', '#69F0AE'],     // неон-бирюза
-    ['#FF1744', '#FF4081', '#FFD54F']      // неон-розово-жёлтый
+    ['#FF0000', '#FF5722', '#FF9800'],
+    ['#00BCD4', '#2196F3', '#3F51B5'],
+    ['#E91E63', '#FF4081', '#FF80AB'],
+    ['#4CAF50', '#8BC34A', '#CDDC39'],
+    ['#FFEB3B', '#FFC107', '#FF9800'],
+    ['#9C27B0', '#E040FB', '#FF4081'],
+    ['#00E5FF', '#1DE9B6', '#69F0AE'],
+    ['#FF1744', '#FF4081', '#FFD54F']
 ];
 
 function launchFirework(x, y) {
-    // 🚀 Ракета (немного крупнее)
     const rocket = document.createElement('div');
     rocket.style.cssText = `
         position: fixed; left: ${x-3}px; bottom: 0;
@@ -312,11 +354,10 @@ function launchFirework(x, y) {
 
     setTimeout(() => {
         rocket.remove();
-
         const burstX = x;
         const burstY = y;
 
-        // 💥 ДВОЙНАЯ ВСПЫШКА: белая + цветная
+        // 💥 Двойная вспышка
         ['rgba(255,255,255,0.5)', 'rgba(255,100,0,0.3)'].forEach((color, i) => {
             const flash = document.createElement('div');
             flash.style.cssText = `
@@ -330,18 +371,28 @@ function launchFirework(x, y) {
             setTimeout(() => flash.remove(), 400 + i*100);
         });
 
-        // 🌟 Основные искры (80 шт, крупные)
+        // 💗 12–20 сердечек
+        const heartCount = 12 + Math.floor(Math.random() * 9);
+        for (let i = 0; i < heartCount; i++) {
+            const angle = Math.random() * Math.PI * 2;
+            const radius = 40 + Math.random() * 100;
+            const hx = burstX + Math.cos(angle) * radius;
+            const hy = burstY + Math.sin(angle) * radius - 20;
+            setTimeout(() => createHeart(hx, hy), Math.random() * 300);
+        }
+
+        // 🌟 80 искр
         const palette = fireworkColors[Math.floor(Math.random() * fireworkColors.length)];
         for (let i = 0; i < 80; i++) {
             const spark = document.createElement('div');
             const angle = Math.random() * Math.PI * 2;
-            const speed = 80 + Math.random() * 220; // до 300px!
+            const speed = 80 + Math.random() * 220;
             const tx = Math.cos(angle) * speed;
-            const ty = Math.sin(angle) * speed + 100; // гравитация
+            const ty = Math.sin(angle) * speed + 100;
 
             const c1 = palette[Math.floor(Math.random() * palette.length)];
             const c2 = palette[Math.floor(Math.random() * palette.length)];
-            const size = 4 + Math.random() * 5; // 4–9px
+            const size = 4 + Math.random() * 5;
 
             spark.style.cssText = `
                 position: fixed;
@@ -357,7 +408,6 @@ function launchFirework(x, y) {
             spark.style.setProperty('--tx', tx + 'px');
             spark.style.setProperty('--ty', ty + 'px');
 
-            // ✨ Мерцание у 30% искр
             if (Math.random() < 0.3) {
                 spark.animate([
                     { opacity: 1, filter: 'brightness(1)' },
@@ -374,7 +424,6 @@ function launchFirework(x, y) {
             document.body.appendChild(spark);
             setTimeout(() => spark.remove(), 1400);
 
-            // 💫 Дополнительно: 1–2 "спутника" для ярких искр
             if (Math.random() < 0.25) {
                 for (let j = 0; j < 1 + Math.floor(Math.random() * 2); j++) {
                     const sat = document.createElement('div');
@@ -395,7 +444,7 @@ function launchFirework(x, y) {
             }
         }
 
-        // 🌫 Лёгкий дым (только для крупных салютов)
+        // 🌫 Дым
         const smoke = document.createElement('div');
         smoke.style.cssText = `
             position: fixed;
@@ -451,7 +500,6 @@ const modal = document.getElementById('videoModal');
 const trigger = document.getElementById('video-trigger');
 const closeBtn = document.getElementById('closeModal');
 
-// ✅ YouTube-видео: "New Year Fireworks Compilation" — публичное, рабочее
 const videoUrl = 'https://www.youtube.com/embed/5XeF4uU0XbM?autoplay=1&mute=1&start=5&end=35';
 
 trigger.addEventListener('click', () => {
