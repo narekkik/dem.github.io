@@ -5,6 +5,96 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Мой блог — С Новым 2026 годом!</title>
     <link type="text/css" rel="stylesheet" href="style.css" />
+    <style>
+        /* ——— МОДАЛЬНОЕ ВИДЕО ——— */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.85);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        .modal.active {
+            display: flex;
+            opacity: 1;
+        }
+        .modal-content {
+            position: relative;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+            max-width: 90%;
+            max-height: 90%;
+            animation: modalPop 0.4s ease-out;
+        }
+        @keyframes modalPop {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        .close-btn {
+            position: absolute;
+            top: 12px;
+            right: 16px;
+            font-size: 28px;
+            font-weight: bold;
+            color: white;
+            background: rgba(0,0,0,0.4);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            transition: background 0.3s;
+        }
+        .close-btn:hover {
+            background: rgba(255,0,0,0.6);
+        }
+        .video-wrapper {
+            width: 100%;
+            height: 0;
+            padding-bottom: 56.25%; /* 16:9 */
+            position: relative;
+        }
+        .video-wrapper video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+        }
+
+        /* Каптция под картинкой — чуть красивее */
+        .video-caption {
+            display: block;
+            text-align: center;
+            margin-top: 8px;
+            font-style: italic;
+            color: #555;
+        }
+
+        /* Стиль для картинки (плавная трансформация при наведении) */
+        #video-trigger {
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-radius: 8px;
+        }
+        #video-trigger:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+        }
+    </style>
 </head>
 <body>
 
@@ -54,13 +144,25 @@
     <a href="https://www.flaticon.com/ru/free-icons/2026" title="2026 иконки">2026 иконки от Freepik — Flaticon</a>
 </footer>
 
-<!-- Скрипт снежинок -->
+<!-- Модальное окно для видео -->
+<div class="modal" id="videoModal">
+    <div class="modal-content">
+        <div class="close-btn" id="closeModal">&times;</div>
+        <div class="video-wrapper">
+            <video controls autoplay>
+                <source src="https://example.com/video.mp4" type="video/mp4">
+                Ваш браузер не поддерживает видео.
+            </video>
+        </div>
+    </div>
+</div>
+
+<!-- Скрипты -->
 <script>
-    // Генерация снежинок
+    // Снежинки (без изменений)
     const snowflakesContainer = document.getElementById('snowflakes');
     const snowflakeCount = 30;
     const snowflakes = ['❄', '❅', '❆'];
-
     for (let i = 0; i < snowflakeCount; i++) {
         const snowflake = document.createElement('div');
         snowflake.classList.add('snowflake');
@@ -73,9 +175,37 @@
         snowflakesContainer.appendChild(snowflake);
     }
 
-    // Клик по изображению → открывает видео
-    document.getElementById('video-trigger').addEventListener('click', function() {
-        window.open('https://example.com/video.mp4', '_blank');
+    // ——— МОДАЛЬНОЕ ВИДЕО ———
+    const modal = document.getElementById('videoModal');
+    const trigger = document.getElementById('video-trigger');
+    const closeBtn = document.getElementById('closeModal');
+    const video = modal.querySelector('video');
+
+    // Открыть модалку
+    trigger.addEventListener('click', () => {
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden'; // отключить скролл
+        // Видео начнётся автоматически (autoplay + controls)
+    });
+
+    // Закрыть модалку
+    function closeModal() {
+        modal.classList.remove('active');
+        document.body.style.overflow = ''; // вернуть скролл
+        video.pause(); // остановить видео при закрытии
+        video.currentTime = 0; // перемотать в начало
+    }
+
+    closeBtn.addEventListener('click', closeModal);
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) closeModal(); // клик по затемнению
+    });
+
+    // Закрыть по Esc
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.classList.contains('active')) {
+            closeModal();
+        }
     });
 </script>
 
