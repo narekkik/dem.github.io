@@ -6,12 +6,12 @@
     <title>Новогодние кроссворды 🎄</title>
     <link href="https://fonts.googleapis.com/css2?family=Pudelinka&display=swap" rel="stylesheet">
     <style>
+        /* ——— ОСНОВНОЙ СТИЛЬ — как раньше — */
         body {
             font-family: Arial, sans-serif;
-            line-height: 1.6;
+            background: linear-gradient(135deg, #c3e6cb, #a1c4fd);
             margin: 0;
             padding: 15px;
-            background: linear-gradient(135deg, #c3e6cb, #a1c4fd);
             color: #333;
             position: relative;
             overflow-x: hidden;
@@ -26,80 +26,112 @@
             position: relative;
             z-index: 10;
         }
+
+        /* Кнопка "Назад" */
         .back-btn {
             display: inline-flex;
             align-items: center;
             text-decoration: none;
-            color: #0277bd;
+            color: #4caf50;
             font-weight: bold;
             gap: 6px;
             margin-bottom: 15px;
         }
-        .back-btn:hover { color: #01579b; text-decoration: underline; }
+        .back-btn:hover { color: #2e7d32; text-decoration: underline; }
 
+        /* Печать: скрыть ненужное */
         @media print {
             .back-btn, .lang-switch, .controls, .message, .clues h3, .clues-col:nth-child(2) {
                 display: none !important;
             }
-            body { background: white; padding: 0; }
-            .container { box-shadow: none; border-radius: 0; padding: 20px; }
-            .crossword-grid { gap: 0; }
-            .cell { border: 1px solid black; background: white !important; }
-            .cell input { visibility: hidden; }
-            .cell::before { content: attr(data-print); visibility: visible; font-size: 12px; }
+            body {
+                background: white;
+                padding: 0;
+            }
+            .container {
+                box-shadow: none;
+                border-radius: 0;
+                padding: 20px;
+            }
+            .crossword-grid {
+                gap: 0;
+            }
+            .cell {
+                border: 1px solid black;
+                background: white !important;
+            }
+            .cell input {
+                visibility: hidden;
+            }
+            .cell::before {
+                content: attr(data-print);
+                visibility: visible;
+                font-size: 12px;
+            }
         }
 
+        /* ——— остальные стили (без изменений) — */
         h1 { text-align: center; color: #d32f2f; font-size: 2.2em; font-family: 'Pudelinka', cursive; margin-bottom: 10px; }
-        h2 { color: #e91e63; font-family: 'Pudelinka', cursive; text-align: center; margin-top: 20px; }
-
         .lang-switch { text-align: center; margin: 20px 0; }
-        .lang-btn {
-            margin: 0 8px; padding: 10px 22px; font-size: 1.1em; border: none;
-            border-radius: 25px; background: #4caf50; color: white;
-            cursor: pointer; transition: all 0.3s; font-family: 'Pudelinka', cursive;
-        }
+        .lang-btn { margin: 0 8px; padding: 10px 22px; font-size: 1.1em; border: none; border-radius: 25px; background: #4caf50; color: white; cursor: pointer; transition: all 0.3s; }
         .lang-btn:hover { background: #388e3c; transform: scale(1.05); }
         .lang-btn.active { background: #1b5e20; font-weight: bold; }
-
         .crossword { display: none; margin-top: 25px; padding: 20px; border-radius: 15px; background: #f8f9fa; }
         .crossword.active { display: block; }
+        .crossword h2 { color: #e91e63; font-family: 'Pudelinka', cursive; text-align: center; }
 
         .crossword-grid {
-            display: grid; grid-template-columns: repeat(7, 50px);
-            gap: 1px; justify-content: center; margin: 20px auto;
+            display: grid;
+            grid-template-columns: repeat(7, 50px);
+            gap: 1px;
+            justify-content: center;
+            margin: 20px auto;
         }
         .cell {
-            width: 50px; height: 50px; box-sizing: border-box;
-            display: flex; align-items: center; justify-content: center;
-            background: white; border: 1px solid #333; position: relative;
-            font-size: 1.4em; font-weight: bold;
+            width: 50px;
+            height: 50px;
+            box-sizing: border-box;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: white;
+            border: 1px solid #333;
+            position: relative;
+            font-size: 1.4em;
+            font-weight: bold;
         }
         .cell.black { background: #333; }
         .cell.number {
-            position: absolute; top: 2px; left: 3px;
-            font-size: 0.6em; color: #666;
+            position: absolute;
+            top: 2px;
+            left: 3px;
+            font-size: 0.6em;
+            color: #666;
         }
         .cell input {
-            width: 100%; height: 100%; border: none; background: transparent;
-            text-align: center; font-size: 1.3em; font-weight: bold;
-            text-transform: uppercase; outline: none; padding: 0; margin: 0; line-height: 1;
+            width: 100%;
+            height: 100%;
+            border: none;
+            background: transparent;
+            text-align: center;
+            font-size: 1.3em;
+            font-weight: bold;
+            text-transform: uppercase;
+            outline: none;
+            padding: 0;
+            margin: 0;
+            line-height: 1;
             font-family: Arial, sans-serif;
         }
         .cell input:focus { background-color: #e3f2fd; }
 
         .clues { display: flex; flex-wrap: wrap; gap: 20px; margin-top: 20px; }
         .clues-col { flex: 1; min-width: 250px; }
-        .clues h3 {
-            color: #2196f3; margin-bottom: 10px;
-            border-bottom: 2px solid #2196f3; padding-bottom: 5px;
-        }
-        .clues ol { padding-left: 20px; margin-top: 5px; font-size: 1.05em; }
+        .clues h3 { color: #2196f3; margin-bottom: 10px; border-bottom: 2px solid #2196f3; padding-bottom: 5px; }
+        .clues ol { padding-left: 20px; margin-top: 5px; }
 
         .controls { text-align: center; margin-top: 25px; }
-        .btn {
-            padding: 10px 25px; margin: 0 8px; font-size: 1.1em; border: none;
-            border-radius: 25px; cursor: pointer; transition: all 0.3s;
-        }
+        .btn { padding: 10px 25px; margin: 0 8px; font-size: 1.1em; border: none; border-radius: 25px; cursor: pointer; transition: all 0.3s; }
         .btn-check { background: #2196f3; color: white; }
         .btn-check:hover { background: #0b7dda; }
         .btn-solution { background: #ff9800; color: white; }
@@ -107,28 +139,26 @@
         .btn-print { background: #9c27b0; color: white; }
         .btn-print:hover { background: #7b1fa2; }
 
-        .message {
-            margin-top: 15px; padding: 12px; border-radius: 10px;
-            text-align: center; font-weight: bold; display: none;
-        }
+        .message { margin-top: 15px; padding: 12px; border-radius: 10px; text-align: center; font-weight: bold; display: none; }
         .success { background: #c8e6c9; color: #2e7d32; }
         .error { background: #ffcdd2; color: #c62828; }
 
-        .quote {
-            font-style: italic; color: #5d4037; text-align: center;
-            padding: 15px; background: #fffde7;
-            border-left: 4px solid #ffd54f; border-radius: 0 10px 10px 0;
-            margin: 25px 0; font-size: 1.1em;
-        }
-
+        /* ——— СНЕЖИНКИ — */
         .snowflakes {
-            position: fixed; top: 0; left: 0;
-            width: 100vw; height: 100vh;
-            pointer-events: none; z-index: 1;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 1;
         }
         .snowflake {
-            position: absolute; font-size: 1.5rem; user-select: none;
-            opacity: 0.8; animation: fall linear forwards;
+            position: absolute;
+            font-size: 1.5rem;
+            user-select: none;
+            opacity: 0.8;
+            animation: fall linear forwards;
         }
         @keyframes fall {
             to { transform: translateY(100vh) rotate(360deg); }
@@ -137,26 +167,27 @@
 </head>
 <body>
 
+<!-- ❄️ Снежинки (пустой контейнер — заполним через JS) -->
 <div class="snowflakes" id="snowflakes"></div>
 
 <div class="container">
+    <!-- 🔙 Кнопка "Назад" + 🖨️ Печать -->
     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
-        <a href="/dem.github.io/" class="back-btn">← Назад</a>
+        <a href="./index.html" class="back-btn">← Вернуться на сайт</a>
         <button class="btn btn-print" onclick="window.print()">🖨️ Печать</button>
     </div>
 
-    <h1>🎄 Новогодние кроссворды 2026</h1>
-
-    <p>Приближается один из любимых праздников в России — Новый год. В воздухе витает ощущение чуда: дома украшают ёлки, на окнах появляются снежинки из бумаги, а в магазинах звучат знакомые мелодии. Этот праздник объединяет поколения — и дети, и взрослые с нетерпением ждут боя курантов, волшебства и исполнения заветных желаний.</p>
-
-    <p>В преддверии праздника особенно приятно провести время за увлекательными занятиями всей семьёй. Например, разгадывание кроссвордов — отличный способ потренировать память, расширить словарный запас и весело провести вечер.</p>
+    <h1>🎄 Новогодние кроссворды 2026 🎄</h1>
 
     <div class="lang-switch">
         <button class="lang-btn active" onclick="showLang('ru')">🇷🇺 Русский</button>
         <button class="lang-btn" onclick="showLang('en')">🇬🇧 English</button>
     </div>
 
-    <!-- Русская версия -->
+    <!-- (остальные блоки — ru и en — без изменений) -->
+    <!-- ... здесь идут обе версии кроссворда (см. ниже) ... -->
+    
+    <!-- ========= РУССКАЯ ВЕРСИЯ ========= -->
     <div id="ru" class="crossword active">
         <h2>Кроссворд: «Новогодние символы»</h2>
         <div class="crossword-grid">
@@ -241,7 +272,7 @@
         <div id="message-ru" class="message"></div>
     </div>
 
-    <!-- Английская версия -->
+    <!-- ========= АНГЛИЙСКАЯ ВЕРСИЯ ========= -->
     <div id="en" class="crossword">
         <h2>Crossword: “New Year Symbols”</h2>
         <div class="crossword-grid">
@@ -325,20 +356,19 @@
         </div>
         <div id="message-en" class="message"></div>
     </div>
-
-    <p class="quote">
-        Разгадывайте, угадывайте, улыбайтесь — и пусть Новый год принесёт вам радость, вдохновение и успехи в учёбе и работе!
-    </p>
 </div>
 
+<!-- 🔔 Звук колокольчика (base64, ~1.5 сек) -->
 <audio id="bellSound" preload="auto">
-    <source src="data:audio/mpeg;base64,SUQzBAAAAAABEVRYWFgAAAAtAAADY29tbWVudABCaWdTb3VuZEJhbmsuY29tIC8gTGFTb25vdGhlcXVlLm9yZwBURU5DAAAAHQAAA1N3aXRjaCBQbHVzIMKpIE5DSCBTb2Z0d2FyZQBUSVQyAAAABgAAAzIyMzUAVFNTRQAAAA8AAANMYXZmNTcuODMuMTAwAAAAAAAAAAAAAAD/80DEAAAAA0gAAAAATEFNRTMuMTAwVVVVVVVVVVVVVUxBTUUzLjEwMFVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVU=" type="audio/mpeg">
+    <source src="audio/mpeg;base64,SUQzBAAAAAABEVRYWFgAAAAtAAADY29tbWVudABCaWdTb3VuZEJhbmsuY29tIC8gTGFTb25vdGhlcXVlLm9yZwBURU5DAAAAHQAAA1N3aXRjaCBQbHVzIMKpIE5DSCBTb2Z0d2FyZQBUSVQyAAAABgAAAzIyMzUAVFNTRQAAAA8AAANMYXZmNTcuODMuMTAwAAAAAAAAAAAAAAD/80DEAAAAA0gAAAAATEFNRTMuMTAwVVVVVVVVVVVVVUxBTUUzLjEwMFVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVU=" type="audio/mpeg">
 </audio>
 
 <script>
+    // ——— СНЕЖИНКИ ———
     const snowflakesContainer = document.getElementById('snowflakes');
     const snowflakeCount = 25;
     const symbols = ['❄', '❅', '❆', '✻', '✼'];
+
     for (let i = 0; i < snowflakeCount; i++) {
         const flake = document.createElement('div');
         flake.classList.add('snowflake');
@@ -351,6 +381,7 @@
         snowflakesContainer.appendChild(flake);
     }
 
+    // ——— ОСНОВНОЙ JS ———
     const SOLUTION = {
         ru: [
             ['Ё','Л','К','А','С','.','П'],
@@ -387,12 +418,14 @@
         const cells = getCells(lang);
         const sol = SOLUTION[lang];
         let allCorrect = true;
+
         cells.forEach((input, i) => {
             const row = Math.floor(i / 7);
             const col = i % 7;
             const val = input.value.trim().toUpperCase();
             const expected = sol[row][col];
             input.style.backgroundColor = '';
+
             if (expected !== '.') {
                 if (val === expected) {
                     input.style.backgroundColor = '#c8e6c9';
@@ -402,22 +435,26 @@
                 }
             }
         });
+
         const msg = document.getElementById(`message-${lang}`);
         msg.textContent = allCorrect 
             ? (lang === 'ru' ? '🎉 Поздравляем! Кроссворд решён!' : '🎉 Congratulations! Crossword solved!')
             : (lang === 'ru' ? '❌ Есть ошибки. Попробуйте ещё!' : '❌ Some mistakes. Try again!');
         msg.className = 'message ' + (allCorrect ? 'success' : 'error');
         msg.style.display = 'block';
+
+        // 🔔 Проиграть звук при победе!
         if (allCorrect) {
             const bell = document.getElementById('bellSound');
             bell.currentTime = 0;
-            bell.play().catch(e => console.log("Звук заблокирован:", e));
+            bell.play().catch(e => console.log("Звук заблокирован браузером:", e));
         }
     }
 
     function showSolution(lang) {
         const cells = getCells(lang);
         const sol = SOLUTION[lang];
+
         cells.forEach((input, i) => {
             const row = Math.floor(i / 7);
             const col = i % 7;
@@ -425,6 +462,7 @@
             input.value = letter === '.' ? '' : letter;
             input.style.backgroundColor = letter === '.' ? '' : '#e8f5e9';
         });
+
         const msg = document.getElementById(`message-${lang}`);
         msg.textContent = lang === 'ru' 
             ? '✨ Ответы показаны. Попробуйте решить сами!' 
@@ -433,7 +471,9 @@
         msg.style.display = 'block';
     }
 
+    // Поддержка печати: заполним data-print для @media print
     document.addEventListener('DOMContentLoaded', () => {
+        // Для печати — добавим атрибут с буквой (чтобы показывалась при печати)
         Object.keys(SOLUTION).forEach(lang => {
             const cells = Array.from(document.querySelectorAll(`#${lang} .cell:not(.black)`));
             cells.forEach((cell, i) => {
@@ -445,11 +485,11 @@
                 }
             });
         });
+
+        // Навигация стрелками
         document.querySelectorAll('input').forEach(input => {
             input.addEventListener('keydown', (e) => {
-                const crossword = e.target.closest('.crossword');
-                if (!crossword) return;
-                const allInputs = Array.from(crossword.querySelectorAll('input'));
+                const allInputs = Array.from(e.target.closest('.crossword').querySelectorAll('input'));
                 const idx = allInputs.indexOf(e.target);
                 if (e.key === 'ArrowRight') allInputs[idx + 1]?.focus();
                 else if (e.key === 'ArrowLeft') allInputs[idx - 1]?.focus();
@@ -459,5 +499,6 @@
         });
     });
 </script>
+
 </body>
 </html>
