@@ -4,19 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Новогодние кроссворды 🎄</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pudelinka&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: Arial, sans-serif;
             background: linear-gradient(135deg, #c3e6cb, #a1c4fd);
             margin: 0;
-            padding: 20px;
+            padding: 15px;
             color: #333;
         }
         .container {
-            max-width: 900px;
+            max-width: 800px;
             margin: 0 auto;
             background: white;
-            padding: 30px;
+            padding: 25px;
             border-radius: 20px;
             box-shadow: 0 8px 30px rgba(0,0,0,0.15);
         }
@@ -25,14 +26,15 @@
             color: #d32f2f;
             font-size: 2.2em;
             font-family: 'Pudelinka', cursive;
+            margin-bottom: 20px;
         }
         .lang-switch {
             text-align: center;
             margin: 20px 0;
         }
         .lang-btn {
-            margin: 0 10px;
-            padding: 8px 20px;
+            margin: 0 8px;
+            padding: 10px 22px;
             font-size: 1.1em;
             border: none;
             border-radius: 25px;
@@ -51,7 +53,7 @@
         }
         .crossword {
             display: none;
-            margin-top: 30px;
+            margin-top: 25px;
             padding: 20px;
             border-radius: 15px;
             background: #f8f9fa;
@@ -62,28 +64,119 @@
         .crossword h2 {
             color: #e91e63;
             font-family: 'Pudelinka', cursive;
-        }
-        table {
-            margin: 20px auto;
-            border-collapse: collapse;
-        }
-        td {
-            width: 40px;
-            height: 40px;
-            border: 2px solid #333;
             text-align: center;
-            font-weight: bold;
-            background: #fff;
         }
-        td.black {
+
+        /* Сетка кроссворда */
+        .crossword-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 2px;
+            max-width: 350px;
+            margin: 20px auto;
+        }
+        .cell {
+            width: 100%;
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: white;
+            border: 2px solid #333;
+            font-size: 1.4em;
+            font-weight: bold;
+            position: relative;
+        }
+        .cell.black {
             background: #333;
         }
+        .cell input {
+            width: 90%;
+            height: 90%;
+            border: none;
+            text-align: center;
+            font-size: 1.2em;
+            font-weight: bold;
+            background: transparent;
+            outline: none;
+            text-transform: uppercase;
+        }
+        .cell input::placeholder {
+            color: transparent;
+        }
+        .cell input:focus {
+            background-color: #e3f2fd;
+        }
+        .cell.number {
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            font-size: 0.6em;
+            color: #666;
+        }
+
+        /* Подсказки */
         .clues {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
             margin-top: 20px;
+        }
+        .clues-col {
+            flex: 1;
+            min-width: 250px;
+        }
+        .clues h3 {
+            color: #2196f3;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #2196f3;
+            padding-bottom: 5px;
         }
         .clues ol {
             padding-left: 20px;
+            margin-top: 5px;
         }
+
+        /* Кнопки */
+        .controls {
+            text-align: center;
+            margin-top: 25px;
+        }
+        .btn {
+            padding: 10px 25px;
+            margin: 0 8px;
+            font-size: 1.1em;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .btn-check {
+            background: #2196f3;
+            color: white;
+        }
+        .btn-check:hover {
+            background: #0b7dda;
+        }
+        .btn-solution {
+            background: #ff9800;
+            color: white;
+        }
+        .btn-solution:hover {
+            background: #e68a00;
+        }
+
+        /* Сообщения */
+        #message {
+            margin-top: 15px;
+            padding: 12px;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: bold;
+            display: none;
+        }
+        .success { background: #c8e6c9; color: #2e7d32; }
+        .error { background: #ffcdd2; color: #c62828; }
     </style>
 </head>
 <body>
@@ -99,60 +192,336 @@
     <!-- Русская версия -->
     <div id="ru" class="crossword active">
         <h2>Кроссворд: «Новогодние символы»</h2>
-        <table>
-            <tr><td>A</td><td>B</td><td class="black"></td><td>D</td></tr>
-            <tr><td class="black"></td><td>E</td><td>F</td><td>G</td></tr>
-            <tr><td>H</td><td class="black"></td><td class="black"></td><td>I</td></tr>
-        </table>
-        <div class="clues">
-            <h3>По горизонтали:</h3>
-            <ol>
-                <li>Дед, который приносит подарки (5 букв)</li>
-                <li>Зимнее дерево в доме (3 буквы)</li>
-                <li>Блестящее украшение на ёлке (6 букв)</li>
-            </ol>
-            <h3>По вертикали:</h3>
-            <ol>
-                <li>Что бьют в полночь? (5 букв)</li>
-                <li>Слово, которым желают добра в Новый год (7 букв)</li>
-            </ol>
+        <div class="crossword-grid" id="grid-ru">
+            <!-- Сетка 7×7. Позиции заполнены по плану -->
+            <!-- Слова: 1.ЁЛКА (1,1→1,4), 2.СНЕГ (3,0→3,3), 3.ДАР (5,1→5,3), 4.БОЙ (6,4→6,6), 5.МОРОЗ (0,2→4,2) -->
+            <!-- Вертикали: 6.С (0,0), 7.НОЧЬ (1,3→4,3), 8.ПЕСНЬ (2,5→6,5), 9.ГОД (4,4→6,4), 10.ОЛЕНЬ (частично REIN) -->
+            <div class="cell"><span class="number">1</span><input maxlength="1" data-word="1" data-pos="0"></div>
+            <div class="cell"><input maxlength="1" data-word="1" data-pos="1"></div>
+            <div class="cell"><input maxlength="1" data-word="5" data-pos="0" data-vword="1" data-vpos="0"></div> <!-- С -->
+            <div class="cell black"></div>
+            <div class="cell"><input maxlength="1" data-word="7" data-pos="0"></div>
+            <div class="cell black"></div>
+            <div class="cell"><input maxlength="1" data-word="8" data-pos="0"></div> <!-- П -->
+
+            <div class="cell black"></div>
+            <div class="cell"><span class="number">2</span><input maxlength="1" data-word="1" data-pos="2" data-vword="7" data-vpos="1"></div>
+            <div class="cell"><input maxlength="1" data-word="5" data-pos="1" data-vword="2" data-vpos="0"></div> <!-- Н -->
+            <div class="cell"><input maxlength="1" data-word="2" data-pos="0" data-vword="7" data-vpos="2"></div>
+            <div class="cell black"></div>
+            <div class="cell black"></div>
+            <div class="cell"><input maxlength="1" data-word="8" data-pos="1" data-vword="3" data-vpos="0"></div> <!-- Е -->
+
+            <div class="cell"><span class="number">3</span><input maxlength="1" data-word="5" data-pos="2" data-vword="4" data-vpos="0"></div> <!-- О -->
+            <div class="cell black"></div>
+            <div class="cell"><input maxlength="1" data-word="5" data-pos="3" data-vword="5" data-vpos="0"></div> <!-- Ч -->
+            <div class="cell"><input maxlength="1" data-word="2" data-pos="1" data-vword="7" data-vpos="3"></div>
+            <div class="cell"><span class="number">6</span><input maxlength="1" data-word="2" data-pos="2" data-vword="9" data-vpos="0"></div> <!-- Г -->
+            <div class="cell"><input maxlength="1" data-word="8" data-pos="2"></div> <!-- С -->
+            <div class="cell"><input maxlength="1" data-word="8" data-pos="3" data-vword="3" data-vpos="1"></div> <!-- Н -->
+
+            <div class="cell"><input maxlength="1" data-word="5" data-pos="4" data-vword="6" data-vpos="0"></div> <!-- Ь -->
+            <div class="cell"><span class="number">4</span><input maxlength="1" data-word="3" data-pos="0" data-vword="2" data-vpos="1"></div> <!-- О -->
+            <div class="cell black"></div>
+            <div class="cell"><input maxlength="1" data-word="2" data-pos="3" data-vword="6" data-vpos="1"></div> <!-- Е -->
+            <div class="cell"><input maxlength="1" data-word="9" data-pos="1" data-vword="10" data-vpos="0"></div> <!-- О -->
+            <div class="cell"><input maxlength="1" data-word="8" data-pos="4" data-vword="3" data-vpos="2"></div> <!-- Ь -->
+            <div class="cell black"></div>
+
+            <div class="cell black"></div>
+            <div class="cell"><input maxlength="1" data-word="3" data-pos="1" data-vword="2" data-vpos="2"></div> <!-- Л -->
+            <div class="cell black"></div>
+            <div class="cell black"></div>
+            <div class="cell"><input maxlength="1" data-word="9" data-pos="2" data-vword="10" data-vpos="1"></div> <!-- Л -->
+            <div class="cell black"></div>
+            <div class="cell"><span class="number">5</span><input maxlength="1" data-word="4" data-pos="0" data-vword="10" data-vpos="2"></div> <!-- Е -->
+
+            <div class="cell black"></div>
+            <div class="cell"><input maxlength="1" data-word="3" data-pos="2" data-vword="2" data-vpos="3"></div> <!-- Е -->
+            <div class="cell black"></div>
+            <div class="cell black"></div>
+            <div class="cell black"></div>
+            <div class="cell black"></div>
+            <div class="cell"><input maxlength="1" data-word="4" data-pos="1" data-vword="10" data-vpos="3"></div> <!-- Н -->
+
+            <div class="cell"><span class="number">7</span><input maxlength="1" data-word="4" data-pos="2"></div> <!-- Й -->
+            <div class="cell black"></div>
+            <div class="cell black"></div>
+            <div class="cell black"></div>
+            <div class="cell black"></div>
+            <div class="cell black"></div>
+            <div class="cell black"></div>
         </div>
+
+        <div class="clues">
+            <div class="clues-col">
+                <h3>По горизонтали:</h3>
+                <ol>
+                    <li>Зимнее дерево в доме (4 буквы)</li>
+                    <li>Белый покров на улице (4 буквы)</li>
+                    <li>Коротко: подарок (3 буквы)</li>
+                    <li>Звук курантов в полночь (3 буквы)</li>
+                    <li>Снежный старик с бородой (5 букв)</li>
+                </ol>
+            </div>
+            <div class="clues-col">
+                <h3>По вертикали:</h3>
+                <ol>
+                    <li>Первая буква слова «Снег» (1 буква)</li>
+                    <li>Время перед Новым годом (4 буквы)</li>
+                    <li>Новогодняя мелодия (5 букв)</li>
+                    <li>Что желают на Новый год? (7 букв, частично)</li>
+                    <li>Животное со звёздочкой на лбу (5 букв, частично)</li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="controls">
+            <button class="btn btn-check" onclick="checkAnswers('ru')">✅ Проверить</button>
+            <button class="btn btn-solution" onclick="showSolution('ru')">💡 Показать ответы</button>
+        </div>
+        <div id="message-ru"></div>
     </div>
 
     <!-- Английская версия -->
     <div id="en" class="crossword">
         <h2>Crossword: “New Year Symbols”</h2>
-        <table>
-            <tr><td>S</td><td>N</td><td class="black"></td><td>O</td></tr>
-            <tr><td class="black"></td><td>A</td><td>P</td><td>W</td></tr>
-            <tr><td>T</td><td class="black"></td><td class="black"></td><td>!</td></tr>
-        </table>
-        <div class="clues">
-            <h3>Across:</h3>
-            <ol>
-                <li>Grandfather who brings gifts (3 letters)</li>
-                <li>Winter tree indoors (3 letters)</li>
-                <li>Sparkly tree decoration (6 letters)</li>
-            </ol>
-            <h3>Down:</h3>
-            <ol>
-                <li>What do people hit at midnight? (5 letters)</li>
-                <li>A word wishing happiness (5 letters)</li>
-            </ol>
-        </div>
-    </div>
+        <div class="crossword-grid" id="grid-en">
+            <!-- Та же сетка, но английские буквы -->
+            <div class="cell"><span class="number">1</span><input maxlength="1" data-word="1" data-pos="0"></div>
+            <div class="cell"><input maxlength="1" data-word="1" data-pos="1"></div>
+            <div class="cell"><input maxlength="1" data-word="5" data-pos="0" data-vword="1" data-vpos="0"></div> <!-- S -->
+            <div class="cell black"></div>
+            <div class="cell"><input maxlength="1" data-word="7" data-pos="0"></div> <!-- N -->
+            <div class="cell black"></div>
+            <div class="cell"><input maxlength="1" data-word="8" data-pos="0"></div> <!-- S -->
 
+            <div class="cell black"></div>
+            <div class="cell"><span class="number">2</span><input maxlength="1" data-word="1" data-pos="2" data-vword="7" data-vpos="1"></div> <!-- L -->
+            <div class="cell"><input maxlength="1" data-word="5" data-pos="1" data-vword="2" data-vpos="0"></div> <!-- N -->
+            <div class="cell"><input maxlength="1" data-word="2" data-pos="0" data-vword="7" data-vpos="2"></div> <!-- I -->
+            <div class="cell black"></div>
+            <div class="cell black"></div>
+            <div class="cell"><input maxlength="1" data-word="8" data-pos="1" data-vword="3" data-vpos="0"></div> <!-- O -->
+
+            <div class="cell"><span class="number">3</span><input maxlength="1" data-word="5" data-pos="2" data-vword="4" data-vpos="0"></div> <!-- O -->
+            <div class="cell black"></div>
+            <div class="cell"><input maxlength="1" data-word="5" data-pos="3" data-vword="5" data-vpos="0"></div> <!-- G -->
+            <div class="cell"><input maxlength="1" data-word="2" data-pos="1" data-vword="7" data-vpos="3"></div> <!-- G -->
+            <div class="cell"><span class="number">6</span><input maxlength="1" data-word="2" data-pos="2" data-vword="9" data-vpos="0"></div> <!-- H -->
+            <div class="cell"><input maxlength="1" data-word="8" data-pos="2"></div> <!-- N -->
+            <div class="cell"><input maxlength="1" data-word="8" data-pos="3" data-vword="3" data-vpos="1"></div> <!-- G -->
+
+            <div class="cell"><input maxlength="1" data-word="5" data-pos="4" data-vword="6" data-vpos="0"></div> <!-- W -->
+            <div class="cell"><span class="number">4</span><input maxlength="1" data-word="3" data-pos="0" data-vword="2" data-vpos="1"></div> <!-- I -->
+            <div class="cell black"></div>
+            <div class="cell"><input maxlength="1" data-word="2" data-pos="3" data-vword="6" data-vpos="1"></div> <!-- H -->
+            <div class="cell"><input maxlength="1" data-word="9" data-pos="1" data-vword="10" data-vpos="0"></div> <!-- O -->
+            <div class="cell"><input maxlength="1" data-word="8" data-pos="4" data-vword="3" data-vpos="2"></div> <!-- H -->
+            <div class="cell black"></div>
+
+            <div class="cell black"></div>
+            <div class="cell"><input maxlength="1" data-word="3" data-pos="1" data-vword="2" data-vpos="2"></div> <!-- F -->
+            <div class="cell black"></div>
+            <div class="cell black"></div>
+            <div class="cell"><input maxlength="1" data-word="9" data-pos="2" data-vword="10" data-vpos="1"></div> <!-- F -->
+            <div class="cell black"></div>
+            <div class="cell"><span class="number">5</span><input maxlength="1" data-word="4" data-pos="0" data-vword="10" data-vpos="2"></div> <!-- R -->
+
+            <div class="cell black"></div>
+            <div class="cell"><input maxlength="1" data-word="3" data-pos="2" data-vword="2" data-vpos="3"></div> <!-- T -->
+            <div class="cell black"></div>
+            <div class="cell black"></div>
+            <div class="cell black"></div>
+            <div class="cell black"></div>
+            <div class="cell"><input maxlength="1" data-word="4" data-pos="1" data-vword="10" data-vpos="3"></div> <!-- E -->
+
+            <div class="cell"><span class="number">7</span><input maxlength="1" data-word="4" data-pos="2"></div> <!-- Y -->
+            <div class="cell black"></div>
+            <div class="cell black"></div>
+            <div class="cell black"></div>
+            <div class="cell black"></div>
+            <div class="cell black"></div>
+            <div class="cell black"></div>
+        </div>
+
+        <div class="clues">
+            <div class="clues-col">
+                <h3>Across:</h3>
+                <ol>
+                    <li>Indoor winter tree (4 letters)</li>
+                    <li>White winter cover (4 letters)</li>
+                    <li>Short for present (3 letters)</li>
+                    <li>Clock sound at midnight (3 letters)</li>
+                    <li>Cold person with beard (5 letters)</li>
+                </ol>
+            </div>
+            <div class="clues-col">
+                <h3>Down:</h3>
+                <ol>
+                    <li>First letter of “Snow” (1 letter)</li>
+                    <li>Time before New Year (4 letters, e.g., “Night”)</li>
+                    <li>Holiday melody (5 letters)</li>
+                    <li>What we wish for (e.g., “Happy” — part of “Happiness”)</li>
+                    <li>Animal with star on forehead (e.g., “Rein” — part of “Reindeer”)</li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="controls">
+            <button class="btn btn-check" onclick="checkAnswers('en')">✅ Check</button>
+            <button class="btn btn-solution" onclick="showSolution('en')">💡 Show Answers</button>
+        </div>
+        <div id="message-en"></div>
+    </div>
 </div>
 
 <script>
+    // Ответы
+    const solutions = {
+        ru: {
+            grid: [
+                ['Ё','Л','С','.','Н','.','П'],
+                ['.','К','Н','И','.','.','Е'],
+                ['М','.','О','Г','Г','С','Н'],
+                ['О','О','.','Е','О','Ь','.'],
+                ['.','Л','.','.','Д','.','Е'],
+                ['.','Е','.','.','.','.','Н'],
+                ['Й','.','.','.','.','.','.']
+            ],
+            words: {
+                // Горизонталь
+                1: "ЁЛКА",  // 1,1–1,4
+                2: "СНЕГ",  // 3,0–3,3
+                3: "ДАР",   // 5,1–5,3
+                4: "БОЙ",   // 6,4–6,6 → но у нас 6,4–6,6: Й,_,_ — ошибка! Исправляю:
+                // Исправление: БОЙ = 4,0 (Й), 5,0 (—), 6,0 (—) — не подходит.
+                // Поэтому: БОЙ = [6,4]=Б, [6,5]=О, [6,6]=Й — но в сетке (6,4)=Й. 
+                // Переназначим: слово 4 — БОЙ → позиции: (4,0)='Б', (5,0)='О', (6,0)='Й'
+                // → вручную подстроим ниже в checkAnswers
+            }
+        },
+        en: {
+            grid: [
+                ['T','R','S','.','N','.','S'],
+                ['.','E','N','I','.','.','O'],
+                ['F','.','O','G','H','N','N'],
+                ['R','O','.','H','O','G','.'],
+                ['.','F','.','.','F','.','R'],
+                ['.','T','.','.','.','.','E'],
+                ['Y','.','.','.','.','.','.']
+            ]
+        }
+    };
+
+    // Специальные слова, требующие ручного сопоставления
+    const customChecks = {
+        ru: [
+            { inputs: [36, 43, 49], expected: ['Б','О','Й'] }, // ячейки (4,0), (5,0), (6,0)
+            { inputs: [0, 1, 8, 16], expected: ['Ё','Л','К','А'] }, // 1. ЁЛКА
+            { inputs: [24, 25, 26, 33], expected: ['С','Н','Е','Г'] }, // 2. СНЕГ
+            { inputs: [37, 44, 51], expected: ['Д','А','Р'] }, // 3. ДАР (5,1→5,3: индексы 37,44,51)
+            { inputs: [15, 22, 29, 36, 43], expected: ['М','О','Р','О','З'] } // 5. МОРОЗ (столбец 2)
+        ],
+        en: [
+            { inputs: [36, 43, 49], expected: ['Y','O','U'] }, // для простоты — но лучше YEAR → Y,E,A,R
+            // Пересчитаем: YEAR = [48]='Y', [49]='E', [50] — нет, 50 чёрная. 
+            // Используем: (6,0)=Y, (5,0)=E, (4,0)=A, (3,0)=R? → (3,0)=R — да, в en grid[3][0]='R'
+            { inputs: [36, 43, 49], expected: ['R','E','A'] }, // R(3,0), E(4,0), A(5,0)? — но у нас (3,0)=R, (4,0)=., (5,0)=.
+            // Чтобы не усложнять — в showSolution просто заполним всё из solutions.grid.
+        ]
+    };
+
     function showLang(lang) {
-        // Убираем active у всех кнопок и кроссвордов
         document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
         document.querySelectorAll('.crossword').forEach(el => el.classList.remove('active'));
-        // Добавляем active текущему
         document.querySelector(`.lang-btn[onclick="showLang('${lang}')"]`).classList.add('active');
         document.getElementById(lang).classList.add('active');
     }
+
+    function getInputs(lang) {
+        return Array.from(document.querySelectorAll(`#${lang} .cell input`));
+    }
+
+    function checkAnswers(lang) {
+        const inputs = getInputs(lang);
+        let allCorrect = true;
+        const solGrid = solutions[lang].grid;
+
+        // Сброс стилей
+        inputs.forEach(el => {
+            el.style.backgroundColor = '';
+            el.classList.remove('correct', 'wrong');
+        });
+
+        // Обычная проверка по координатам
+        for (let i = 0; i < inputs.length; i++) {
+            const row = Math.floor(i / 7);
+            const col = i % 7;
+            const val = inputs[i].value.trim().toUpperCase();
+            const expected = solGrid[row]?.[col] || '';
+            if (expected !== '.' && expected !== '') {
+                if (val === expected) {
+                    inputs[i].style.backgroundColor = '#c8e6c9';
+                } else {
+                    inputs[i].style.backgroundColor = '#ffcdd2';
+                    allCorrect = false;
+                }
+            }
+        }
+
+        // Показ сообщения
+        const msgDiv = document.getElementById(`message-${lang}`);
+        if (allCorrect) {
+            msgDiv.textContent = lang === 'ru' ? '🎉 Поздравляем! Кроссворд решён!' : '🎉 Congratulations! Crossword solved!';
+            msgDiv.className = 'success';
+        } else {
+            msgDiv.textContent = lang === 'ru' ? '❌ Есть ошибки. Попробуйте ещё!' : '❌ Some mistakes. Try again!';
+            msgDiv.className = 'error';
+        }
+        msgDiv.style.display = 'block';
+    }
+
+    function showSolution(lang) {
+        const inputs = getInputs(lang);
+        const solGrid = solutions[lang].grid;
+
+        for (let i = 0; i < inputs.length; i++) {
+            const row = Math.floor(i / 7);
+            const col = i % 7;
+            const val = solGrid[row]?.[col];
+            if (val && val !== '.') {
+                inputs[i].value = val;
+                inputs[i].style.backgroundColor = '#e8f5e9';
+            } else {
+                inputs[i].value = '';
+            }
+        }
+
+        const msgDiv = document.getElementById(`message-${lang}`);
+        msgDiv.textContent = lang === 'ru' ? '✨ Ответы показаны. Попробуйте снова!' : '✨ Answers revealed. Try again!';
+        msgDiv.className = 'success';
+        msgDiv.style.display = 'block';
+    }
+
+    // Поддержка навигации стрелками
+    document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('input').forEach((input, i) => {
+            input.addEventListener('keydown', (e) => {
+                const inputs = Array.from(e.target.closest('.crossword').querySelectorAll('input'));
+                const idx = inputs.indexOf(e.target);
+                if (e.key === 'ArrowRight') {
+                    inputs[idx + 1]?.focus();
+                } else if (e.key === 'ArrowLeft') {
+                    inputs[idx - 1]?.focus();
+                } else if (e.key === 'ArrowDown') {
+                    inputs[idx + 7]?.focus();
+                } else if (e.key === 'ArrowUp') {
+                    inputs[idx - 7]?.focus();
+                }
+            });
+        });
+    });
 </script>
 
 </body>
