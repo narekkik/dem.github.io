@@ -4,133 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Мой блог — С Новым 2026 годом!</title>
-    <!-- Подключение шрифта Pudelinka -->
-    <link href="https://fonts.googleapis.com/css2?family=Pudelinka&display=swap" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="style.css" />
+
+    <!-- Подключение шрифта Pudelinka -->
+    
     <style>
-        /* ——— ОСНОВНОЙ СТИЛЬ — с сохранением оригинального фона и шрифтов — */
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 20px;
-            background: linear-gradient(135deg, #e0f7fa, #f8bbd0); /* ← как в оригинале */
-            color: #333;
-            position: relative;
-            overflow-x: hidden;
-        }
-
-        /* Даты (<h2>) — НЕ используют Pudelinka, как в оригинале */
-        h2 {
-            color: #d32f2f; /* или #c2185b — как в ваших стилях */
-            margin: 25px 0 15px;
-            font-size: 1.8em;
-            /* font-family остаётся Arial/sans-serif */
-        }
-
-        /* Цитаты и праздничный заголовок — с Pudelinka */
-        .q,
-        .new-year-section h2 {
-            font-family: 'Pudelinka', cursive;
-            font-style: italic;
-            font-size: 1.4em;
-            text-align: center;
-            color: #5d4037;
-            margin: 25px 0;
-            padding: 15px;
-            background: #fffde7;
-            border-left: 4px solid #ffd54f;
-            border-radius: 0 10px 10px 0;
-        }
-
-        .new-year-section h2 {
-            font-style: normal;
-            font-size: 2.2em;
-            color: #c2185b;
-            margin-bottom: 20px;
-        }
-
-        .visit-tag {
-            text-align: right;
-            font-size: 0.9em;
-            color: #757575;
-            margin-bottom: 20px;
-        }
-
-        .new-year-section {
-            background: white;
-            padding: 30px;
-            border-radius: 25px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
-            margin-bottom: 30px;
-            text-align: center;
-        }
-
-        .new-year-section p {
-            font-size: 1.2em;
-            white-space: pre-line;
-            margin: 20px 0;
-        }
-
-        .video-container {
-            margin: 25px auto;
-            max-width: 600px;
-        }
-
-        #video-trigger {
-            width: 100%;
-            border-radius: 12px;
-            cursor: pointer;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-            transition: transform 0.3s ease;
-        }
-
-        #video-trigger:hover {
-            transform: scale(1.02);
-        }
-
-        .video-caption {
-            display: block;
-            margin-top: 10px;
-            font-size: 1.0em;
-            color: #d32f2f;
-            font-weight: bold;
-        }
-
-        footer {
-            text-align: center;
-            margin-top: 40px;
-            font-size: 0.9em;
-            color: #666;
-        }
-
-        footer a {
-            color: #0277bd;
-            text-decoration: none;
-        }
-        footer a:hover { text-decoration: underline; }
-
-        /* ——— СНЕЖИНКИ ——— */
-        .snowflakes {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            pointer-events: none;
-            z-index: 1;
-        }
-        .snowflake {
-            position: absolute;
-            user-select: none;
-            opacity: 0.7;
-            animation: fall linear forwards;
-        }
-        @keyframes fall {
-            to { transform: translateY(100vh) rotate(360deg); }
-        }
-
-        /* ——— МОДАЛЬНОЕ ОКНО ——— */
+        /* ——— МОДАЛЬНОЕ ОКНО ДЛЯ ВИДЕО (добавлено) ——— */
         .modal {
             display: none;
             position: fixed;
@@ -198,20 +77,6 @@
             height: 100%;
             border: none;
         }
-
-        @media print {
-            .snowflakes, .video-container, .visit-tag, footer {
-                display: none !important;
-            }
-            body {
-                background: white;
-                padding: 10px;
-            }
-            .new-year-section {
-                box-shadow: none;
-                border-radius: 0;
-            }
-        }
     </style>
 </head>
 <body>
@@ -222,12 +87,13 @@
 <div class="visit-tag">посещение-2 — 20 декабря 2025</div>
 
 <!-- Новогодняя секция -->
+<h2>13 декабря 2025</h2>
 <div class="new-year-section">
     <h2>С Новым годом 2026!</h2>
     <p>
-        Под ёлкой светят огоньки,
-        В окне мороз рисует сны.
-        Звезда ведёт путей вершины —
+        Под ёлкой светят огоньки,<br>
+        В окне мороз рисует сны.<br>
+        Звезда ведёт путей вершины —<br>
         Новый год приходит к нам!
     </p>
 
@@ -249,7 +115,7 @@
 </p>
 
 <h2>1 сентября 2025</h2>
-<blockquote class="q">Путешествие в тысячу миль начинается с одного шага (Лао Цзы)</blockquote>
+<blockquote>Путешествие в тысячу миль начинается с одного шага (Лао Цзы)</blockquote>
 <p>
     Оставляю в прошлом скучную неинтересную локальную файловую систему ради Всемирной паутины.
 </p>
@@ -261,7 +127,7 @@
     <a href="https://www.flaticon.com/ru/free-icons/2026" title="2026 иконки">2026 иконки от Freepik — Flaticon</a>
 </footer>
 
-<!-- Модальное окно -->
+<!-- Модальное окно для Rutube-видео (добавлено) -->
 <div class="modal" id="videoModal">
     <div class="modal-content">
         <div class="close-btn" id="closeModal">&times;</div>
@@ -270,43 +136,40 @@
                 id="rutube-player"
                 src="" 
                 frameborder="0" 
-                allow="autoplay; fullscreen; picture-in-picture" 
+                allow="autoplay; fullscreen" 
                 allowfullscreen>
             </iframe>
         </div>
     </div>
 </div>
 
+<!-- Скрипт снежинок (без изменений) -->
 <script>
-    // ——— СНЕЖИНКИ ———
+    // Генерация снежинок
     const snowflakesContainer = document.getElementById('snowflakes');
     const snowflakeCount = 30;
-    const symbols = ['❄', '❅', '❆'];
+    const snowflakes = ['❄', '❅', '❆'];
 
     for (let i = 0; i < snowflakeCount; i++) {
-        const flake = document.createElement('div');
-        flake.classList.add('snowflake');
-        flake.textContent = symbols[Math.floor(Math.random() * symbols.length)];
-        flake.style.left = Math.random() * 100 + 'vw';
-        flake.style.opacity = Math.random() * 0.5 + 0.3;
-        flake.style.fontSize = (Math.random() * 16 + 12) + 'px';
-        flake.style.animationDuration = (Math.random() * 5 + 5) + 's';
-        flake.style.animationDelay = Math.random() * 5 + 's';
-        snowflakesContainer.appendChild(flake);
+        const snowflake = document.createElement('div');
+        snowflake.classList.add('snowflake');
+        snowflake.innerHTML = snowflakes[Math.floor(Math.random() * snowflakes.length)];
+        snowflake.style.left = Math.random() * 100 + 'vw';
+        snowflake.style.opacity = Math.random() * 0.5 + 0.3;
+        snowflake.style.fontSize = (Math.random() * 16 + 12) + 'px';
+        snowflake.style.animationDuration = (Math.random() * 5 + 5) + 's';
+        snowflake.style.animationDelay = Math.random() * 5 + 's';
+        snowflakesContainer.appendChild(snowflake);
     }
 
-    // ——— МОДАЛЬНОЕ ОКНО ———
+    // ——— ОТКРЫТИЕ ВИДЕО В МОДАЛЬНОМ ОКНЕ (вместо window.open) ———
     const modal = document.getElementById('videoModal');
     const trigger = document.getElementById('video-trigger');
     const closeBtn = document.getElementById('closeModal');
     const iframe = document.getElementById('rutube-player');
 
-    // Замените videoId на реальный ID после загрузки видео на Rutube
-    const videoId = '8c4e3f2a1b9d0c7e6f5a4d3c2b1a0f9e';
-    const embedUrl = `https://rutube.ru/play/embed/${videoId}/?autoplay=1`;
-
-    trigger.addEventListener('click', () => {
-        iframe.src = embedUrl;
+    trigger.addEventListener('click', function() {
+        iframe.src = "https://rutube.ru/play/embed/8c4e3f2a1b9d0c7e6f5a4d3c2b1a0f9e/?autoplay=1";
         modal.classList.add('active');
         document.body.style.overflow = 'hidden';
     });
@@ -314,14 +177,14 @@
     function closeModal() {
         modal.classList.remove('active');
         document.body.style.overflow = '';
-        iframe.src = '';
+        iframe.src = ''; // остановка видео
     }
 
     closeBtn.addEventListener('click', closeModal);
-    modal.addEventListener('click', (e) => {
+    modal.addEventListener('click', function(e) {
         if (e.target === modal) closeModal();
     });
-    document.addEventListener('keydown', (e) => {
+    document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape' && modal.classList.contains('active')) {
             closeModal();
         }
