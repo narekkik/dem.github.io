@@ -5,8 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Мой блог — С Новым 2026 годом!</title>
     <link type="text/css" rel="stylesheet" href="style.css" />
+
+    <!-- Подключение шрифта Pudelinka -->
+    
     <style>
-        /* ——— МОДАЛЬНОЕ ВИДЕО ——— */
+        /* ——— МОДАЛЬНОЕ ОКНО ДЛЯ ВИДЕО (добавлено) ——— */
         .modal {
             display: none;
             position: fixed;
@@ -63,36 +66,16 @@
         .video-wrapper {
             width: 100%;
             height: 0;
-            padding-bottom: 56.25%; /* 16:9 */
+            padding-bottom: 56.25%;
             position: relative;
         }
-        .video-wrapper video {
+        .video-wrapper iframe {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: #000;
-        }
-
-        /* Каптция под картинкой — чуть красивее */
-        .video-caption {
-            display: block;
-            text-align: center;
-            margin-top: 8px;
-            font-style: italic;
-            color: #555;
-        }
-
-        /* Стиль для картинки (плавная трансформация при наведении) */
-        #video-trigger {
-            cursor: pointer;
-            transition: transform 0.3s, box-shadow 0.3s;
-            border-radius: 8px;
-        }
-        #video-trigger:hover {
-            transform: scale(1.02);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+            border: none;
         }
     </style>
 </head>
@@ -101,10 +84,10 @@
 <blockquote class="q">Путешествие в тысячу миль начинается с одного шага (Лао Цзы)</blockquote>
 
 <!-- Тег посещения -->
-<div class="visit-tag">посещение-2 — 20.12.2025</div>
+<div class="visit-tag">посещение-2 — 20 декабря 2025</div>
 
-<!-- Новая запись от 13.12.2025 -->
-<h2>13 декабря, 2025</h2>
+<!-- Новогодняя секция -->
+<h2>13 декабря 2025</h2>
 <div class="new-year-section">
     <h2>С Новым годом 2026!</h2>
     <p>
@@ -121,17 +104,17 @@
 </div>
 
 <!-- Остальные записи -->
-<h2>1 декабря, 2025</h2>
+<h2>1 декабря 2025</h2>
 <img src="Icons/newyear2026.png" alt="Новый год" style="max-width:100px; margin:10px 0;">
 <p>Поздравление с Наступающим 2026 годом читайте <a href="Congratulations2026.html">здесь</a>.</p>
 
-<h2>15 октября, 2025</h2>
+<h2>15 октября 2025</h2>
 <p>
     Я сделала Новогодние кроссворды — откройте их прямо здесь:  
     <a href="crosswords.html" target="_blank" title="Новогодние кроссворды 🇷🇺🇬🇧">Сайт моего друга 🎁</a>.
 </p>
 
-<h2>1 сентября, 2025</h2>
+<h2>1 сентября 2025</h2>
 <blockquote>Путешествие в тысячу миль начинается с одного шага (Лао Цзы)</blockquote>
 <p>
     Оставляю в прошлом скучную неинтересную локальную файловую систему ради Всемирной паутины.
@@ -144,25 +127,29 @@
     <a href="https://www.flaticon.com/ru/free-icons/2026" title="2026 иконки">2026 иконки от Freepik — Flaticon</a>
 </footer>
 
-<!-- Модальное окно для видео -->
+<!-- Модальное окно для Rutube-видео (добавлено) -->
 <div class="modal" id="videoModal">
     <div class="modal-content">
         <div class="close-btn" id="closeModal">&times;</div>
         <div class="video-wrapper">
-            <video controls autoplay>
-                <source src="https://example.com/video.mp4" type="video/mp4">
-                Ваш браузер не поддерживает видео.
-            </video>
+            <iframe 
+                id="rutube-player"
+                src="" 
+                frameborder="0" 
+                allow="autoplay; fullscreen" 
+                allowfullscreen>
+            </iframe>
         </div>
     </div>
 </div>
 
-<!-- Скрипты -->
+<!-- Скрипт снежинок (без изменений) -->
 <script>
-    // Снежинки (без изменений)
+    // Генерация снежинок
     const snowflakesContainer = document.getElementById('snowflakes');
     const snowflakeCount = 30;
     const snowflakes = ['❄', '❅', '❆'];
+
     for (let i = 0; i < snowflakeCount; i++) {
         const snowflake = document.createElement('div');
         snowflake.classList.add('snowflake');
@@ -175,34 +162,29 @@
         snowflakesContainer.appendChild(snowflake);
     }
 
-    // ——— МОДАЛЬНОЕ ВИДЕО ———
+    // ——— ОТКРЫТИЕ ВИДЕО В МОДАЛЬНОМ ОКНЕ (вместо window.open) ———
     const modal = document.getElementById('videoModal');
     const trigger = document.getElementById('video-trigger');
     const closeBtn = document.getElementById('closeModal');
-    const video = modal.querySelector('video');
+    const iframe = document.getElementById('rutube-player');
 
-    // Открыть модалку
-    trigger.addEventListener('click', () => {
+    trigger.addEventListener('click', function() {
+        iframe.src = "https://rutube.ru/play/embed/8c4e3f2a1b9d0c7e6f5a4d3c2b1a0f9e/?autoplay=1";
         modal.classList.add('active');
-        document.body.style.overflow = 'hidden'; // отключить скролл
-        // Видео начнётся автоматически (autoplay + controls)
+        document.body.style.overflow = 'hidden';
     });
 
-    // Закрыть модалку
     function closeModal() {
         modal.classList.remove('active');
-        document.body.style.overflow = ''; // вернуть скролл
-        video.pause(); // остановить видео при закрытии
-        video.currentTime = 0; // перемотать в начало
+        document.body.style.overflow = '';
+        iframe.src = ''; // остановка видео
     }
 
     closeBtn.addEventListener('click', closeModal);
-    modal.addEventListener('click', (e) => {
-        if (e.target === modal) closeModal(); // клик по затемнению
+    modal.addEventListener('click', function(e) {
+        if (e.target === modal) closeModal();
     });
-
-    // Закрыть по Esc
-    document.addEventListener('keydown', (e) => {
+    document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape' && modal.classList.contains('active')) {
             closeModal();
         }
