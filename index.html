@@ -180,16 +180,17 @@
         .video-wrapper {
             width: 100%;
             height: 0;
-            padding-bottom: 56.25%;
+            padding-bottom: 56.25%; /* Соотношение 16:9 */
             position: relative;
         }
-        .video-wrapper iframe {
+        .video-wrapper video {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            border: none;
+            object-fit: contain;
+            background: black;
         }
 
         @media print {
@@ -209,12 +210,7 @@
 </head>
 <body>
 
-<!-- ✅ Текущая дата сразу после <body> -->
-<p style="text-align: center; font-size: 1.1em; color: #2c3e50; margin-bottom: 20px;">
-    <strong>Сегодня: понедельник, 19 января 2026 г.</strong>
-</p>
-
-<!-- ✅ Ссылка на почту -->
+<!-- ✅ Ссылка на почту в самом начале -->
 <p style="text-align: center; margin-bottom: 20px;">
     <a href="mailto:narekghazaryan2008@icloud.com" style="font-size: 1.2em; color: #0277bd; text-decoration: none;">✉️ Напишите мне</a>
 </p>
@@ -238,32 +234,10 @@
     </div>
 </div>
 
-<!-- ✅ Пост от 19 января 2026: Решение шифров Цезаря -->
-<article>
-    <h2>19 января 2026</h2>
-    <p><strong>Решение задания по криптографии: Шифр Цезаря</strong></p>
-    <h3>1. Определение ключей шифра Цезаря</h3>
-    <ul>
-        <li><strong>а)</strong> АПЕЛЬСИН → САЦЬНВЩЮ → <strong>k = 17</strong></li>
-        <li><strong>б)</strong> АБРИКОС → ЫЬЛГЕЙМ → <strong>k = 27</strong></li>
-    </ul>
-
-    <h3>2. Расшифровка сообщений (ключ неизвестен, 0 &lt; k &lt; 32)</h3>
-    <ul>
-        <li><strong>а)</strong> ФХНЗКЧ → <strong>ПРИВЕТ</strong> (при <code>k = 5</code>)</li>
-        <li><strong>б)</strong> ЦЩЕБФ → <strong>ВЕСНА</strong> (при <code>k = 20</code>)</li>
-    </ul>
-
-    <h3>3. Шифрование фамилии</h3>
-    <p>Фамилия: <strong>КАЗАРЯН</strong><br>
-       Ключ: <code>k = 10</code><br>
-       Результат: <strong>ФКСКЪЙЧ</strong></p>
-</article>
-
-<!-- Предыдущие записи -->
+<!-- ✅ Пост от сегодняшней даты: 14 января 2026 -->
 <h2>14 января 2026</h2>
-<a href="mailto:narekghazaryan2008@icloud.com">Напишите мне</a>
-<p>
+    <a href="mailto:narekghazaryan2008@icloud.com">Напишите мне</a>
+    <p>
     Сегодня я изучила, как устроено доменное имя моего сайта. Домен состоит из нескольких уровней иерархии:
 </p>
 <ul>
@@ -311,11 +285,14 @@
     <a href="https://www.flaticon.com/ru/free-icons/2026" title="2026 иконки">2026 иконки от Freepik — Flaticon</a>
 </footer>
 
+<!-- Модальное окно для локального видео -->
 <div class="modal" id="videoModal">
     <div class="modal-content">
         <div class="close-btn" id="closeModal">&times;</div>
         <div class="video-wrapper">
-            <iframe id="rutube-player" src="" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+            <video id="local-video" controls playsinline>
+                Ваш браузер не поддерживает воспроизведение видео.
+            </video>
         </div>
     </div>
 </div>
@@ -556,11 +533,14 @@ setInterval(launchTripleFireworks, 5000 + Math.random() * 2000);
 const modal = document.getElementById('videoModal');
 const trigger = document.getElementById('video-trigger');
 const closeBtn = document.getElementById('closeModal');
+const videoElement = document.getElementById('local-video');
 
-const videoUrl = 'https://www.youtube.com/embed/5XeF4uU0XbM?autoplay=1&mute=1&start=5&end=35';
+// Укажите путь к вашему видеофайлу
+const videoUrl = '2deca9b0-3c67-411f-ae8c-f0f1f23da0a5.mp4';
 
 trigger.addEventListener('click', () => {
-    document.getElementById('rutube-player').src = videoUrl;
+    videoElement.src = videoUrl;
+    videoElement.play().catch(e => console.warn("Автовоспроизведение заблокировано:", e));
     modal.classList.add('active');
     document.body.style.overflow = 'hidden';
 });
@@ -568,7 +548,9 @@ trigger.addEventListener('click', () => {
 function closeModal() {
     modal.classList.remove('active');
     document.body.style.overflow = '';
-    document.getElementById('rutube-player').src = '';
+    videoElement.pause();
+    videoElement.currentTime = 0;
+    videoElement.src = '';
 }
 
 closeBtn.onclick = closeModal;
