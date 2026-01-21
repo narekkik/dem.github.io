@@ -1,7 +1,7 @@
-<style>
+
         @font-face {
-            font-family: 'Pudelinka';
-            src: url('Pudelinka.ttf') format('truetype');
+            font-family: "Pudelinka";
+            src: url("Fonts/Pudelinka.ttf") format("truetype");
         }
 
         /* Общие стили */
@@ -144,9 +144,10 @@
             font-size: 1.8em;
         }
 
-        p, a {
+        p.quote {
             font-size: 1.1em;
             color: #444;
+                  font-family: "Pudelinka";
         }
 
         a {
@@ -169,4 +170,4 @@
         footer a {
             color: #555;
         }
-    </style>
+  
