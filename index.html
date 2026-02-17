@@ -1,4 +1,4 @@
-Вот готовый HTML-файл. Я перевел логику Python на JavaScript (так как браузеры понимают только JS) и вставил её в новый блок `<article>` в начале списка записей.
+Вот исправленный и готовый к использованию HTML-код. Я вставил указанный вами текст и дату (24.05.2024) в блок предсказаний.
 
 ```html
 <!DOCTYPE html>
@@ -101,7 +101,7 @@
   <div class="snowflakes" id="snowflakes"></div>
 
   <footer>
-    <a href="https://www.flaticon.com/ru/free-icons/2026  " title="2026 иконки">2026 иконки от Freepik — Flaticon</a>
+    <a href="https://www.flaticon.com/ru/free-icons/2026    " title="2026 иконки">2026 иконки от Freepik — Flaticon</a>
   </footer>
 
   <!-- 🔥 Модальное окно с анимацией камина -->
@@ -109,7 +109,7 @@
     <div class="modal-content fireplace-modal">
       <div class="close-btn" id="closeFireplace">&times;</div>
       <video autoplay muted loop playsinline id="fireplace-video">
-        <source src="https://cdn.pixabay.com/video/2023/12/05/168793-836823201_large.mp4  " type="video/mp4">
+        <source src="https://cdn.pixabay.com/video/2023/12/05/168793-836823201_large.mp4    " type="video/mp4">
         Ваш браузер не поддерживает видео.
       </video>
     </div>
@@ -132,48 +132,43 @@
   <p>В нашем примере <code>n = 15</code> используется только для наглядности и обучения.</p>
 
 реальное значение n -=12345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890
-1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890
-1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890
-1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890
-1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890
-1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890
-1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567...... (но это не 700!)
+123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890
+123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890
+123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890
+123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890
+123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890
+123456789012345678901234567890123456789...... (но это не 700!)
   
 </article>
   
 
   <script>
     // ——— ЛОГИКА ПРЕДСКАЗАНИЙ (AI) ———
-    // Данные из вашего запроса
-    const predictions = [
-        { label: "running shoe", confidence: 99.45 },
-        { label: "shoe store", confidence: 0.27 },
-        { label: "clogs", confidence: 0.15 }
-    ];
+    // Вставляем данные из вашего запроса
+    const todayDate = "24.05.2024";
+    const predictionText = `
+      <p style="color: #555; margin-bottom: 10px;"><strong>Дата анализа:</strong> ${todayDate}</p>
+      <h3>Топ-3 предсказания:</h3>
+      <ul style="list-style: none; padding: 0;">
+        <li style="margin-bottom: 5px; font-size: 1.1em;">
+            <span style="color: #333; font-weight: bold;">1. running shoe:</span> 
+            <span style="color: #27ae60; font-weight: bold;">99.45%</span>
+        </li>
+        <li style="margin-bottom: 5px; font-size: 1.1em;">
+            <span style="color: #333; font-weight: bold;">2. shoe store:</span> 
+            <span style="color: #7f8c8d; font-weight: bold;">0.27%</span>
+        </li>
+        <li style="margin-bottom: 5px; font-size: 1.1em;">
+            <span style="color: #333; font-weight: bold;">3. clogs:</span> 
+            <span style="color: #7f8c8d; font-weight: bold;">0.15%</span>
+        </li>
+      </ul>
+    `;
 
-    // Получаем сегодняшнюю дату
-    const now = new Date();
-    const dateOptions = { day: '2-digit', month: '2-digit', year: 'numeric' };
-    const today = now.toLocaleDateString('ru-RU', dateOptions);
-
-    // Формируем HTML для вывода
+    // Вставляем текст в блок
     const outputDiv = document.getElementById('ai-prediction-output');
     if (outputDiv) {
-        let html = `<p style="color: #555; margin-bottom: 10px;"><strong>Дата анализа:</strong> ${today}</p>`;
-        html += `<h3>Топ-3 предсказания:</h3>`;
-        html += `<ul style="list-style: none; padding: 0;">`;
-        
-        predictions.forEach((pred, index) => {
-            // Добавляем цвет для уверенности (опционально)
-            let color = pred.confidence > 50 ? '#27ae60' : '#7f8c8d';
-            html += `<li style="margin-bottom: 5px; font-size: 1.1em;">
-                        <span style="color: #333; font-weight: bold;">${index + 1}. ${pred.label}:</span> 
-                        <span style="color: ${color}; font-weight: bold;">${pred.confidence}%</span>
-                     </li>`;
-        });
-        
-        html += `</ul>`;
-        outputDiv.innerHTML = html;
+        outputDiv.innerHTML = predictionText;
     }
 
     // ——— СНЕЖИНКИ ———
