@@ -1,31 +1,54 @@
-Вот исправленный и готовый к использованию HTML-код. Я вставил указанный вами текст и дату (24.05.2024) в блок предсказаний.
-
-```html
 <!DOCTYPE html>
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-
   <title>Мой блог — С Новым 2026 годом!</title>
-
   <link type="text/css" rel="stylesheet" href="style.css" />
-
 </head>
 <body>
-  <p class="quote"> 21 01 2026 </p>
-
+  <p class="quote">21.02.2026</p>
 
   <h2>21 Февраля, 2026</h2>
-        <div class="chat-log">
-            <p><strong>Ответ модели:</strong></p>
-            <p><strong>Вопрос пользователя:</strong> Сколько ждать мой заказ?</p>
-            <p><strong>Найден FAQ-вопрос:</strong> Как быстро доставляется заказ? (sim=0.706)</p>
-            <p><strong>Ответ бот-FAQ:</strong> Наш стандартный срок доставки — 3–5 рабочих дней.</p>
-        </div> 
   
+  <!-- ✅ БЛОК: Ответ модели + Новый FAQ + Оценка бота -->
+  <article class="bot-analysis" style="background: #f8f9fa; border-left: 4px solid #0277bd; padding: 15px 20px; margin: 20px 0; border-radius: 0 8px 8px 0;">
+    <h3 style="margin-top: 0; color: #1a237e;">🤖 Анализ работы чат-бота</h3>
+    
+    <p><strong>📅 Дата:</strong> 21.02.2026</p>
+    
+    <div class="chat-log" style="background: white; padding: 12px; border-radius: 6px; margin: 10px 0;">
+      <p><strong>❓ Вопрос пользователя:</strong> Сколько ждать мой заказ?</p>
+      <p><strong>🔍 Найден FAQ-вопрос:</strong> Как быстро доставляется заказ? <em>(sim=0.706)</em></p>
+      <p><strong>💬 Ответ бот-FAQ:</strong> Наш стандартный срок доставки — 3–5 рабочих дней.</p>
+    </div>
+
+    <p><strong>✅ Ответ модели:</strong><br>
+    Ваш заказ прибудет в течение <strong>3–5 рабочих дней</strong> — это наш стандартный срок доставки. Точная дата может зависеть от вашего региона и наличия товара на складе.</p>
+
+    <hr style="margin: 15px 0; border: none; border-top: 1px dashed #ccc;">
+
+    <p><strong>➕ Новый вопрос для FAQ:</strong> <em>«Как оплатить заказ?»</em></p>
+    <div style="background: #e3f2fd; padding: 10px 15px; border-radius: 6px; margin: 8px 0;">
+      <strong>Рекомендуемый ответ:</strong>
+      <ul style="margin: 5px 0 0 20px; padding: 0;">
+        <li>Банковские карты (Visa, Mastercard, МИР)</li>
+        <li>Электронные кошельки (ЮMoney, Qiwi)</li>
+        <li>Оплата при получении (наложенный платёж)</li>
+        <li>Безналичный расчёт для юр. лиц</li>
+      </ul>
+    </div>
+
+    <p><strong>📊 Оценка работы бота:</strong> <span style="color: #2e7d32; font-weight: bold;">✅ Справился хорошо</span></p>
+    <p style="font-size: 0.95em; color: #555;">
+      Бот корректно сопоставил вопрос пользователя с FAQ (sim=0.706) и дал релевантный ответ. 
+      <br><strong>💡 Рекомендации:</strong> добавить синонимы («сколько ждать», «когда придёт») для повышения точности.
+    </p>
+  </article>
+  <!-- ✅ КОНЕЦ БЛОКА АНАЛИЗА -->
+
   <!-- ✅ Текущая дата -->
   <p style="text-align: center; font-size: 1.1em; color: #2c3e50; margin-bottom: 20px;">
-    <strong>Сегодня: вторник, 20 января 2026 г.</strong>
+    <strong>Сегодня: суббота, 21 февраля 2026 г.</strong>
   </p>
 
   <!-- ✅ Ссылка на почту -->
@@ -40,9 +63,9 @@
   <div class="new-year-section">
     <h2>С Новым годом 2026!</h2>
     <p>
-      Под ёлкой светят огоньки,
-      В окне мороз рисует сны.
-      Звезда ведёт путей вершины —
+      Под ёлкой светят огоньки,<br>
+      В окне мороз рисует сны.<br>
+      Звезда ведёт путей вершины —<br>
       Новый год приходит к нам!
     </p>
     <div class="video-container">
@@ -57,7 +80,6 @@
   <article>
     <h2>Результаты анализа нейросети</h2>
     <div id="ai-prediction-output">
-        <!-- Сюда JavaScript вставит данные -->
         Загрузка данных...
     </div>
   </article>
@@ -108,7 +130,7 @@
   <div class="snowflakes" id="snowflakes"></div>
 
   <footer>
-    <a href="https://www.flaticon.com/ru/free-icons/2026    " title="2026 иконки">2026 иконки от Freepik — Flaticon</a>
+    <a href="https://www.flaticon.com/ru/free-icons/2026" title="2026 иконки">2026 иконки от Freepik — Flaticon</a>
   </footer>
 
   <!-- 🔥 Модальное окно с анимацией камина -->
@@ -116,43 +138,28 @@
     <div class="modal-content fireplace-modal">
       <div class="close-btn" id="closeFireplace">&times;</div>
       <video autoplay muted loop playsinline id="fireplace-video">
-        <source src="https://cdn.pixabay.com/video/2023/12/05/168793-836823201_large.mp4    " type="video/mp4">
+        <source src="https://cdn.pixabay.com/video/2023/12/05/168793-836823201_large.mp4" type="video/mp4">
         Ваш браузер не поддерживает видео.
       </video>
     </div>
   </div>
   
-<article>
-  <h2>Криптография RSA — учебный пример</h2>
-  
-  <p><strong>Дата:</strong> 20 января 2026 г.</p>
-
-  <h3>Ключи (на основе p = 3, q = 5):</h3>
-  <ul>
-    <li><strong>Открытый ключ:</strong> <code>(n = 15, e = 3)</code></li>
-    <li><strong>Закрытый ключ:</strong> <code>(n = 15, d = 3)</code></li>
-  </ul>
-
-  <h3>⚠️ Важно: реальное значение <code>n</code></h3>
-  <p>В настоящих криптографических системах (например, при защите HTTPS, электронной почты или цифровых подписей) число <code>n</code> — это произведение двух <em>очень больших</em> простых чисел.</p>
-  <p><strong>Реальное <code>n</code> содержит не менее 600 десятичных цифр</strong> (2048 бит и более), что делает его практически невозможным для факторизации современными компьютерами.</p>
-  <p>В нашем примере <code>n = 15</code> используется только для наглядности и обучения.</p>
-
-реальное значение n -=12345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890
-123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890
-123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890
-123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890
-123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890
-123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890
-123456789012345678901234567890123456789...... (но это не 700!)
-  
-</article>
-  
+  <article>
+    <h2>Криптография RSA — учебный пример</h2>
+    <p><strong>Дата:</strong> 20 января 2026 г.</p>
+    <h3>Ключи (на основе p = 3, q = 5):</h3>
+    <ul>
+      <li><strong>Открытый ключ:</strong> <code>(n = 15, e = 3)</code></li>
+      <li><strong>Закрытый ключ:</strong> <code>(n = 15, d = 3)</code></li>
+    </ul>
+    <h3>⚠️ Важно: реальное значение <code>n</code></h3>
+    <p>В настоящих криптографических системах число <code>n</code> — это произведение двух <em>очень больших</em> простых чисел.</p>
+    <p><strong>Реальное <code>n</code> содержит не менее 600 десятичных цифр</strong> (2048 бит и более).</p>
+  </article>
 
   <script>
     // ——— ЛОГИКА ПРЕДСКАЗАНИЙ (AI) ———
-    // Вставляем данные из вашего запроса
-    const todayDate = "24.05.2024";
+    const todayDate = "21.02.2026";
     const predictionText = `
       <p style="color: #555; margin-bottom: 10px;"><strong>Дата анализа:</strong> ${todayDate}</p>
       <h3>Топ-3 предсказания:</h3>
@@ -171,8 +178,6 @@
         </li>
       </ul>
     `;
-
-    // Вставляем текст в блок
     const outputDiv = document.getElementById('ai-prediction-output');
     if (outputDiv) {
         outputDiv.innerHTML = predictionText;
@@ -215,21 +220,15 @@
         easing: 'cubic-bezier(0.2, 0.8, 0.3, 1)',
         fill: 'forwards'
       });
-      setTimeout(() => {
-        if (heart.parentNode) heart.remove();
-      }, duration * 1000);
+      setTimeout(() => { if (heart.parentNode) heart.remove(); }, duration * 1000);
     }
 
     // ——— САЛЮТ ———
     const fireworkColors = [
-      ['#FF0000', '#FF5722', '#FF9800'],
-      ['#00BCD4', '#2196F3', '#3F51B5'],
-      ['#E91E63', '#FF4081', '#FF80AB'],
-      ['#4CAF50', '#8BC34A', '#CDDC39'],
-      ['#FFEB3B', '#FFC107', '#FF9800'],
-      ['#9C27B0', '#E040FB', '#FF4081'],
-      ['#00E5FF', '#1DE9B6', '#69F0AE'],
-      ['#FF1744', '#FF4081', '#FFD54F']
+      ['#FF0000', '#FF5722', '#FF9800'], ['#00BCD4', '#2196F3', '#3F51B5'],
+      ['#E91E63', '#FF4081', '#FF80AB'], ['#4CAF50', '#8BC34A', '#CDDC39'],
+      ['#FFEB3B', '#FFC107', '#FF9800'], ['#9C27B0', '#E040FB', '#FF4081'],
+      ['#00E5FF', '#1DE9B6', '#69F0AE'], ['#FF1744', '#FF4081', '#FFD54F']
     ];
 
     function launchFirework(x, y) {
@@ -238,9 +237,7 @@
       document.body.appendChild(rocket);
       setTimeout(() => {
         rocket.remove();
-        const burstX = x;
-        const burstY = y;
-
+        const burstX = x, burstY = y;
         ['rgba(255,255,255,0.5)', 'rgba(255,100,0,0.3)'].forEach((color, i) => {
           const flash = document.createElement('div');
           flash.style.cssText = `position: fixed; left: 0; top: 0; width: 100%; height: 100%; background: radial-gradient(circle at ${burstX}px ${burstY}px, ${color}, transparent 65%); pointer-events: none; z-index: 994; opacity: 1;`;
@@ -248,7 +245,6 @@
           flash.animate({ opacity: [1, 0] }, { duration: 300 + i*100, easing: 'ease-out' });
           setTimeout(() => flash.remove(), 400 + i*100);
         });
-
         const heartCount = 12 + Math.floor(Math.random() * 9);
         for (let i = 0; i < heartCount; i++) {
           const angle = Math.random() * Math.PI * 2;
@@ -257,7 +253,6 @@
           const hy = burstY + Math.sin(angle) * radius - 20;
           setTimeout(() => createHeart(hx, hy), Math.random() * 300);
         }
-
         const palette = fireworkColors[Math.floor(Math.random() * fireworkColors.length)];
         for (let i = 0; i < 80; i++) {
           const spark = document.createElement('div');
@@ -271,56 +266,24 @@
           spark.style.cssText = `position: fixed; left: ${burstX - size/2}px; top: ${burstY - size/2}px; width: ${size}px; height: ${size}px; background: linear-gradient(135deg, ${c1}, ${c2}); border-radius: 50%; box-shadow: 0 0 ${12 + Math.random() * 18}px ${c1}; pointer-events: none; z-index: 997; animation: sparkFly 1.3s cubic-bezier(0.1, 0.8, 0.2, 1) forwards;`;
           spark.style.setProperty('--tx', tx + 'px');
           spark.style.setProperty('--ty', ty + 'px');
-          if (Math.random() < 0.3) {
-            spark.animate([
-              { opacity: 1, filter: 'brightness(1)' },
-              { opacity: 0.4, filter: 'brightness(0.4)' },
-              { opacity: 1.2, filter: 'brightness(1.4)' }
-            ], {
-              duration: 400 + Math.random() * 400,
-              iterations: 3,
-              direction: 'alternate',
-              easing: 'ease-in-out'
-            });
-          }
           document.body.appendChild(spark);
           setTimeout(() => spark.remove(), 1400);
-          if (Math.random() < 0.25) {
-            for (let j = 0; j < 1 + Math.floor(Math.random() * 2); j++) {
-              const sat = document.createElement('div');
-              const r = 8 + Math.random() * 12;
-              const a = angle + (Math.random() - 0.5) * Math.PI / 2;
-              sat.style.cssText = `position: absolute; left: ${Math.cos(a) * r}px; top: ${Math.sin(a) * r}px; width: ${2 + Math.random() * 2}px; height: ${2 + Math.random() * 2}px; background: ${c1}; border-radius: 50%; opacity: 0.7;`;
-              spark.appendChild(sat);
-            }
-          }
         }
-
         const smoke = document.createElement('div');
         smoke.style.cssText = `position: fixed; left: ${burstX - 40}px; top: ${burstY - 40}px; width: 80px; height: 80px; background: radial-gradient(circle, rgba(220,220,220,0.15), transparent 90%); border-radius: 50%; pointer-events: none; z-index: 993;`;
         document.body.appendChild(smoke);
         smoke.animate([
           { transform: 'scale(1) translate(0,0)', opacity: 0.9 },
           { transform: 'scale(3.5) translate(0,20px)', opacity: 0 }
-        ], {
-          duration: 2400,
-          easing: 'ease-out'
-        });
+        ], { duration: 2400, easing: 'ease-out' });
         setTimeout(() => smoke.remove(), 2400);
       }, 1000);
     }
 
     const style = document.createElement('style');
     style.textContent = `
-      @keyframes rocketLaunch {
-        0% { transform: translateY(0) scale(1); opacity: 1; }
-        100% { transform: translateY(-350px) scale(0.7); opacity: 0.6; }
-      }
-      @keyframes sparkFly {
-        0% { transform: translate(0,0) scale(1); opacity: 1; }
-        90% { opacity: 0.8; }
-        100% { transform: translate(var(--tx), var(--ty)) scale(0); opacity: 0; }
-      }
+      @keyframes rocketLaunch { 0% { transform: translateY(0) scale(1); opacity: 1; } 100% { transform: translateY(-350px) scale(0.7); opacity: 0.6; } }
+      @keyframes sparkFly { 0% { transform: translate(0,0) scale(1); opacity: 1; } 100% { transform: translate(var(--tx), var(--ty)) scale(0); opacity: 0; } }
     `;
     document.head.appendChild(style);
 
@@ -336,21 +299,17 @@
     const fireplaceModal = document.getElementById('fireplaceModal');
     const fireplaceTrigger = document.getElementById('fireplace-trigger');
     const closeFireplace = document.getElementById('closeFireplace');
-
     fireplaceTrigger.addEventListener('click', () => {
       fireplaceModal.classList.add('active');
       document.body.style.overflow = 'hidden';
     });
-
     function closeFireplaceModal() {
       fireplaceModal.classList.remove('active');
       document.body.style.overflow = '';
     }
-
     closeFireplace.onclick = closeFireplaceModal;
     fireplaceModal.onclick = e => e.target === fireplaceModal && closeFireplaceModal();
     document.onkeydown = e => e.key === 'Escape' && fireplaceModal.classList.contains('active') && closeFireplaceModal();
   </script>
 </body>
 </html>
-```
