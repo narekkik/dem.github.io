@@ -4,6 +4,100 @@
   <meta charset="UTF-8">
   <title>Мой блог — С Новым 2026 годом!</title>
   <link type="text/css" rel="stylesheet" href="style.css" />
+  <style>
+    /* ✅ Стили для блока прогноза */
+    .regression-prediction {
+      background: linear-gradient(135deg, #e3f2fd 0%, #f3e5f5 100%);
+      border-radius: 12px;
+      padding: 20px;
+      margin: 25px 0;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    .regression-prediction h2 {
+      color: #1a237e;
+      margin-top: 0;
+    }
+    .regression-prediction input[type="number"] {
+      flex: 1;
+      min-width: 120px;
+      padding: 10px;
+      font-size: 16px;
+      border: 2px solid #ddd;
+      border-radius: 6px;
+      transition: border-color 0.3s;
+    }
+    .regression-prediction input[type="number"]:focus {
+      outline: none;
+      border-color: #0277bd;
+    }
+    .regression-prediction button {
+      background: #0277bd;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .regression-prediction button:hover {
+      background: #01579b;
+    }
+    .prediction-result {
+      display: none;
+      background: #e8f5e9;
+      padding: 15px;
+      border-radius: 8px;
+      margin-bottom: 15px;
+      text-align: center;
+      border-left: 4px solid #4caf50;
+      animation: slideIn 0.3s ease-out;
+    }
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .prediction-score {
+      font-size: 2em;
+      color: #2e7d32;
+      font-weight: bold;
+      display: block;
+      margin: 10px 0;
+    }
+    .prediction-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .prediction-table thead {
+      background: #0277bd;
+      color: white;
+    }
+    .prediction-table th,
+    .prediction-table td {
+      padding: 12px;
+      text-align: center;
+      border-bottom: 1px solid #eee;
+    }
+    .prediction-table tbody tr:hover {
+      background: #f5f5f5;
+    }
+    .prediction-table td:last-child {
+      color: #0277bd;
+      font-weight: bold;
+    }
+    .formula-badge {
+      display: inline-block;
+      background: #fff9c4;
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-family: monospace;
+      font-size: 0.9em;
+      color: #5d4037;
+    }
+  </style>
 </head>
 <body>
   <p class="quote">21.02.2026</p>
@@ -84,6 +178,54 @@
     </div>
   </article>
 
+  <!-- ✅ БЛОК: Прогноз точности по часам практики (Линейная регрессия) -->
+  <article class="regression-prediction">
+    <h2>📊 Прогноз точности анализа</h2>
+    <p style="color: #555; margin-bottom: 15px;">
+      <strong>Модель:</strong> Линейная регрессия &nbsp;|&nbsp; 
+      <strong>Формула:</strong> <span class="formula-badge">Точность = 4.533 × Часы + 53.792</span>
+      <br><small style="color: #666;">R² = 0.9893 — отличное качество модели!</small>
+    </p>
+
+    <!-- Форма ввода -->
+    <div style="background: white; padding: 15px; border-radius: 8px; margin-bottom: 15px;">
+      <label for="studyHours" style="font-weight: bold; color: #333; display: block; margin-bottom: 8px;">
+        ⏱️ Сколько часов вы занимались?
+      </label>
+      <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+        <input type="number" id="studyHours" min="0" max="24" step="0.1" placeholder="Например: 5">
+        <button type="button" onclick="calculatePrediction()">Рассчитать прогноз</button>
+      </div>
+    </div>
+
+    <!-- Результат прогноза -->
+    <div id="predictionResult" class="prediction-result">
+      <p style="margin: 0; font-size: 1.1em;">
+        Студент занимался <strong id="resultHours">5</strong> часов<br>
+        <span class="prediction-score" id="resultScore">76.46</span>
+        прогнозируемая точность (баллы)
+      </p>
+    </div>
+
+    <!-- Таблица примеров -->
+    <h3 style="color: #1a237e; margin: 20px 0 10px;">📋 Примеры прогнозов:</h3>
+    <table class="prediction-table">
+      <thead>
+        <tr>
+          <th>Часы подготовки</th>
+          <th>Прогноз баллов</th>
+        </tr>
+      </thead>
+      <tbody id="predictionTable">
+        <!-- Заполняется JavaScript -->
+      </tbody>
+    </table>
+
+    <p style="font-size: 0.9em; color: #777; margin-top: 15px; text-align: center;">
+      💡 <em>Модель обучена на реальных данных. Результаты носят рекомендательный характер.</em>
+    </p>
+  </article>
+
   <!-- ✅ Пост от 19 января 2026 -->
   <article>
     <h2>19 января 2026</h2>
@@ -156,32 +298,28 @@
     <p>В настоящих криптографических системах число <code>n</code> — это произведение двух <em>очень больших</em> простых чисел.</p>
     <p><strong>Реальное <code>n</code> содержит не менее 600 десятичных цифр</strong> (2048 бит и более).</p>
   </article>
-   <div class="bot-result-card">
-        <div class="card-header">
-            <span>Результат работы нейросети</span>
-            <span class="date-badge">25 Февраля 2024</span>
-        </div>
-        
-        <div class="card-body">
-            <!-- Вопрос пользователя -->
-            <div class="user-query">
-                <span class="label">Вопрос пользователя:</span>
-                <p class="question-text">Сколько ждать мой заказ?</p>
-            </div>
-
-            <!-- Ответ бота -->
-            <div class="bot-response">
-                <span class="label">Найден FAQ-вопрос:</span>
-                <div class="matched-info">
-                    "Как быстро доставляется заказ?" 
-                    <span class="similarity-score">(sim=0.706)</span>
-                </div>
-                
-                <span class="label" style="margin-top: 10px;">Ответ бот-FAQ:</span>
-                <p class="answer-text">Наш стандартный срок доставки — 3–5 рабочих дней.</p>
-            </div>
-        </div>
+  
+  <div class="bot-result-card">
+    <div class="card-header">
+      <span>Результат работы нейросети</span>
+      <span class="date-badge">25 Февраля 2024</span>
     </div>
+    <div class="card-body">
+      <div class="user-query">
+        <span class="label">Вопрос пользователя:</span>
+        <p class="question-text">Сколько ждать мой заказ?</p>
+      </div>
+      <div class="bot-response">
+        <span class="label">Найден FAQ-вопрос:</span>
+        <div class="matched-info">
+          "Как быстро доставляется заказ?" 
+          <span class="similarity-score">(sim=0.706)</span>
+        </div>
+        <span class="label" style="margin-top: 10px;">Ответ бот-FAQ:</span>
+        <p class="answer-text">Наш стандартный срок доставки — 3–5 рабочих дней.</p>
+      </div>
+    </div>
+  </div>
 
   <script>
     // ——— ЛОГИКА ПРЕДСКАЗАНИЙ (AI) ———
@@ -207,6 +345,59 @@
     const outputDiv = document.getElementById('ai-prediction-output');
     if (outputDiv) {
         outputDiv.innerHTML = predictionText;
+    }
+
+    // ——— ЛОГИКА ЛИНЕЙНОЙ РЕГРЕССИИ ———
+    // Коэффициенты модели, обученной на task_regression2.csv
+    const REGRESSION_COEF = 4.532874;      // Наклон (slope)
+    const REGRESSION_INTERCEPT = 53.791861; // Свободный член (intercept)
+    const R_SQUARED = 0.9893;               // Качество модели
+
+    // Функция расчёта прогноза: Точность = coef × Часы + intercept
+    function predictAccuracy(hours) {
+      return REGRESSION_COEF * hours + REGRESSION_INTERCEPT;
+    }
+
+    // Расчёт и отображение прогноза для пользователя
+    function calculatePrediction() {
+      const hoursInput = document.getElementById('studyHours');
+      const hours = parseFloat(hoursInput.value);
+      
+      if (isNaN(hours) || hours < 0 || hours > 24) {
+        alert('🔔 Пожалуйста, введите корректное число часов (0–24)');
+        hoursInput.focus();
+        return;
+      }
+      
+      const score = predictAccuracy(hours);
+      
+      // Обновление результата
+      document.getElementById('resultHours').textContent = hours;
+      document.getElementById('resultScore').textContent = score.toFixed(2);
+      document.getElementById('predictionResult').style.display = 'block';
+      
+      // Плавная прокрутка к результату
+      document.getElementById('predictionResult').scrollIntoView({ 
+        behavior: 'smooth', 
+        block: 'center' 
+      });
+    }
+
+    // Заполнение таблицы примеров
+    function fillPredictionTable() {
+      const examples = [1, 3, 5, 7, 10];
+      const tbody = document.getElementById('predictionTable');
+      tbody.innerHTML = '';
+      
+      examples.forEach(hours => {
+        const score = predictAccuracy(hours);
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td>${hours}</td>
+          <td>${score.toFixed(2)}</td>
+        `;
+        tbody.appendChild(row);
+      });
     }
 
     // ——— СНЕЖИНКИ ———
@@ -336,6 +527,20 @@
     closeFireplace.onclick = closeFireplaceModal;
     fireplaceModal.onclick = e => e.target === fireplaceModal && closeFireplaceModal();
     document.onkeydown = e => e.key === 'Escape' && fireplaceModal.classList.contains('active') && closeFireplaceModal();
+
+    // ——— ИНИЦИАЛИЗАЦИЯ ———
+    document.addEventListener('DOMContentLoaded', () => {
+      fillPredictionTable();
+      
+      // Авто-расчёт при нажатии Enter в поле ввода
+      const hoursInput = document.getElementById('studyHours');
+      if (hoursInput) {
+        hoursInput.addEventListener('keypress', (e) => {
+          if (e.key === 'Enter') calculatePrediction();
+        });
+      }
+    });
   </script>
 </body>
 </html>
+
