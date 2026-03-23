@@ -97,6 +97,176 @@
       font-size: 0.9em;
       color: #5d4037;
     }
+    
+    /* ✅ Стили для блока моделей МЛ */
+    .ml-section {
+      background: linear-gradient(135deg, #fff8e1 0%, #e8f5e9 100%);
+      border-radius: 16px;
+      padding: 25px;
+      margin: 30px 0;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+      border: 2px solid #ffb74d;
+    }
+    .ml-section h2 {
+      color: #e65100;
+      margin-top: 0;
+      text-align: center;
+    }
+    .model-card {
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      margin: 15px 0;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+      border-left: 5px solid;
+    }
+    .model-card.credit { border-left-color: #2196f3; }
+    .model-card.kasko { border-left-color: #4caf50; }
+    .model-card h3 {
+      margin-top: 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .accuracy-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, #4caf50, #2e7d32);
+      color: white;
+      padding: 8px 20px;
+      border-radius: 25px;
+      font-size: 1.3em;
+      font-weight: bold;
+      margin: 10px 0;
+      box-shadow: 0 4px 12px rgba(76, 175, 80, 0.4);
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+    .model-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 12px;
+      margin: 15px 0;
+    }
+    .stat-item {
+      background: #f5f5f5;
+      padding: 12px;
+      border-radius: 8px;
+      text-align: center;
+    }
+    .stat-value {
+      font-size: 1.4em;
+      font-weight: bold;
+      color: #1a237e;
+    }
+    .stat-label {
+      font-size: 0.9em;
+      color: #666;
+    }
+    .kasko-form {
+      background: #f1f8e9;
+      padding: 15px;
+      border-radius: 10px;
+      margin: 15px 0;
+    }
+    .kasko-form label {
+      display: block;
+      margin: 10px 0 5px;
+      font-weight: 500;
+      color: #33691e;
+    }
+    .kasko-form input {
+      width: 100%;
+      padding: 10px;
+      border: 2px solid #c5e1a5;
+      border-radius: 6px;
+      font-size: 16px;
+      box-sizing: border-box;
+    }
+    .kasko-form input:focus {
+      outline: none;
+      border-color: #4caf50;
+    }
+    .kasko-form button {
+      background: #4caf50;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 15px;
+      transition: background 0.3s;
+    }
+    .kasko-form button:hover {
+      background: #388e3c;
+    }
+    .kasko-result {
+      display: none;
+      background: #c8e6c9;
+      padding: 15px;
+      border-radius: 8px;
+      margin-top: 15px;
+      text-align: center;
+      border-left: 4px solid #4caf50;
+      animation: slideIn 0.3s ease-out;
+    }
+    .kasko-result.approved {
+      background: #e8f5e9;
+      border-left-color: #2e7d32;
+    }
+    .kasko-result.declined {
+      background: #ffebee;
+      border-left-color: #c62828;
+    }
+    .result-icon {
+      font-size: 2em;
+      margin-bottom: 5px;
+    }
+    .dataset-info {
+      background: #e3f2fd;
+      padding: 12px;
+      border-radius: 8px;
+      margin: 10px 0;
+      font-size: 0.95em;
+    }
+    .code-block {
+      background: #263238;
+      color: #aed581;
+      padding: 15px;
+      border-radius: 8px;
+      overflow-x: auto;
+      font-family: 'Courier New', monospace;
+      font-size: 0.9em;
+      margin: 10px 0;
+    }
+    .tabs {
+      display: flex;
+      gap: 5px;
+      margin-bottom: 15px;
+      flex-wrap: wrap;
+    }
+    .tab-btn {
+      padding: 8px 16px;
+      background: #e0e0e0;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 0.9em;
+      transition: all 0.2s;
+    }
+    .tab-btn.active {
+      background: #0277bd;
+      color: white;
+    }
+    .tab-content {
+      display: none;
+    }
+    .tab-content.active {
+      display: block;
+    }
   </style>
 </head>
 <body>
@@ -107,20 +277,15 @@
   <!-- ✅ БЛОК: Ответ модели + Новый FAQ + Оценка бота -->
   <article class="bot-analysis" style="background: #f8f9fa; border-left: 4px solid #0277bd; padding: 15px 20px; margin: 20px 0; border-radius: 0 8px 8px 0;">
     <h3 style="margin-top: 0; color: #1a237e;">🤖 Анализ работы чат-бота</h3>
-    
     <p><strong>📅 Дата:</strong> 21.02.2026</p>
-    
     <div class="chat-log" style="background: white; padding: 12px; border-radius: 6px; margin: 10px 0;">
       <p><strong>❓ Вопрос пользователя:</strong> Сколько ждать мой заказ?</p>
       <p><strong>🔍 Найден FAQ-вопрос:</strong> Как быстро доставляется заказ? <em>(sim=0.706)</em></p>
       <p><strong>💬 Ответ бот-FAQ:</strong> Наш стандартный срок доставки — 3–5 рабочих дней.</p>
     </div>
-
     <p><strong>✅ Ответ модели:</strong><br>
-    Ваш заказ прибудет в течение <strong>3–5 рабочих дней</strong> — это наш стандартный срок доставки. Точная дата может зависеть от вашего региона и наличия товара на складе.</p>
-
+    Ваш заказ прибудет в течение <strong>3–5 рабочих дней</strong> — это наш стандартный срок доставки.</p>
     <hr style="margin: 15px 0; border: none; border-top: 1px dashed #ccc;">
-
     <p><strong>➕ Новый вопрос для FAQ:</strong> <em>«Как оплатить заказ?»</em></p>
     <div style="background: #e3f2fd; padding: 10px 15px; border-radius: 6px; margin: 8px 0;">
       <strong>Рекомендуемый ответ:</strong>
@@ -131,37 +296,24 @@
         <li>Безналичный расчёт для юр. лиц</li>
       </ul>
     </div>
-
     <p><strong>📊 Оценка работы бота:</strong> <span style="color: #2e7d32; font-weight: bold;">✅ Справился хорошо</span></p>
-    <p style="font-size: 0.95em; color: #555;">
-      Бот корректно сопоставил вопрос пользователя с FAQ (sim=0.706) и дал релевантный ответ. 
-      <br><strong>💡 Рекомендации:</strong> добавить синонимы («сколько ждать», «когда придёт») для повышения точности.
-    </p>
   </article>
-  <!-- ✅ КОНЕЦ БЛОКА АНАЛИЗА -->
 
-  <!-- ✅ Текущая дата -->
+  <!-- ✅ Текущая дата и почта -->
   <p style="text-align: center; font-size: 1.1em; color: #2c3e50; margin-bottom: 20px;">
     <strong>Сегодня: суббота, 21 февраля 2026 г.</strong>
   </p>
-
-  <!-- ✅ Ссылка на почту -->
   <p style="text-align: center; margin-bottom: 20px;">
     <a href="mailto:narekghazaryan2008@icloud.com" style="font-size: 1.2em; color: #0277bd; text-decoration: none;">✉️ Напишите мне</a>
   </p>
 
   <blockquote class="q">Путешествие в тысячу миль начинается с одного шага (Лао Цзы)</blockquote>
-
   <div class="visit-tag">посещение-2 — 20 декабря 2025</div>
 
+  <!-- ✅ Новогодний блок -->
   <div class="new-year-section">
     <h2>С Новым годом 2026!</h2>
-    <p>
-      Под ёлкой светят огоньки,<br>
-      В окне мороз рисует сны.<br>
-      Звезда ведёт путей вершины —<br>
-      Новый год приходит к нам!
-    </p>
+    <p>Под ёлкой светят огоньки,<br>В окне мороз рисует сны.<br>Звезда ведёт путей вершины —<br>Новый год приходит к нам!</p>
     <div class="video-container">
       <div class="fireplace-preview" id="fireplace-trigger">
         <div class="fireplace-overlay">🔥 Нажмите, чтобы разжечь камин</div>
@@ -170,15 +322,13 @@
     </div>
   </div>
 
-  <!-- ✅ НОВЫЙ БЛОК С ПРЕДСКАЗАНИЯМИ (AI) -->
+  <!-- ✅ AI Predictions -->
   <article>
     <h2>Результаты анализа нейросети</h2>
-    <div id="ai-prediction-output">
-        Загрузка данных...
-    </div>
+    <div id="ai-prediction-output">Загрузка данных...</div>
   </article>
 
-  <!-- ✅ БЛОК: Прогноз точности по часам практики (Линейная регрессия) -->
+  <!-- ✅ Линейная регрессия -->
   <article class="regression-prediction">
     <h2>📊 Прогноз точности анализа</h2>
     <p style="color: #555; margin-bottom: 15px;">
@@ -186,47 +336,144 @@
       <strong>Формула:</strong> <span class="formula-badge">Точность = 4.533 × Часы + 53.792</span>
       <br><small style="color: #666;">R² = 0.9893 — отличное качество модели!</small>
     </p>
-
-    <!-- Форма ввода -->
     <div style="background: white; padding: 15px; border-radius: 8px; margin-bottom: 15px;">
-      <label for="studyHours" style="font-weight: bold; color: #333; display: block; margin-bottom: 8px;">
-        ⏱️ Сколько часов вы занимались?
-      </label>
+      <label for="studyHours" style="font-weight: bold; color: #333; display: block; margin-bottom: 8px;">⏱️ Сколько часов вы занимались?</label>
       <div style="display: flex; gap: 10px; flex-wrap: wrap;">
         <input type="number" id="studyHours" min="0" max="24" step="0.1" placeholder="Например: 5">
         <button type="button" onclick="calculatePrediction()">Рассчитать прогноз</button>
       </div>
     </div>
-
-    <!-- Результат прогноза -->
     <div id="predictionResult" class="prediction-result">
       <p style="margin: 0; font-size: 1.1em;">
         Студент занимался <strong id="resultHours">5</strong> часов<br>
-        <span class="prediction-score" id="resultScore">76.46</span>
-        прогнозируемая точность (баллы)
+        <span class="prediction-score" id="resultScore">76.46</span> прогнозируемая точность (баллы)
       </p>
     </div>
-
-    <!-- Таблица примеров -->
     <h3 style="color: #1a237e; margin: 20px 0 10px;">📋 Примеры прогнозов:</h3>
     <table class="prediction-table">
-      <thead>
-        <tr>
-          <th>Часы подготовки</th>
-          <th>Прогноз баллов</th>
-        </tr>
-      </thead>
-      <tbody id="predictionTable">
-        <!-- Заполняется JavaScript -->
-      </tbody>
+      <thead><tr><th>Часы подготовки</th><th>Прогноз баллов</th></tr></thead>
+      <tbody id="predictionTable"></tbody>
     </table>
-
-    <p style="font-size: 0.9em; color: #777; margin-top: 15px; text-align: center;">
-      💡 <em>Модель обучена на реальных данных. Результаты носят рекомендательный характер.</em>
-    </p>
   </article>
 
-  <!-- ✅ Пост от 19 января 2026 -->
+  <!-- ✅ НОВЫЙ БЛОК: МОДЕЛИ МАШИННОГО ОБУЧЕНИЯ -->
+  <article class="ml-section">
+    <h2>🤖 Результаты моделей машинного обучения</h2>
+    <p style="text-align: center; color: #555; margin-bottom: 20px;">
+      <em>Модели обучены на реальных данных. Точность рассчитана на тестовой выборке (20% данных).</em>
+    </p>
+
+    <!-- Вкладки -->
+    <div class="tabs">
+      <button class="tab-btn active" onclick="switchTab('credit')">🏦 Модель кредита</button>
+      <button class="tab-btn" onclick="switchTab('kasko')">🚗 Модель КАСКО</button>
+      <button class="tab-btn" onclick="switchTab('code')">💻 Код Python</button>
+    </div>
+
+    <!-- Вкладка: Кредит -->
+    <div id="credit-tab" class="tab-content active">
+      <div class="model-card credit">
+        <h3>🏦 Модель выдачи кредита</h3>
+        <p><strong>Задача:</strong> Классификация — одобрение/отказ в кредите</p>
+        <p><strong>Признаки:</strong> возраст, пол, зарплата</p>
+        <p><strong>Алгоритм:</strong> Decision Tree (max_depth=5)</p>
+        <div style="text-align: center;">
+          <span class="accuracy-badge" id="creditAccuracy">81.25%</span>
+          <p style="color: #666; margin: 5px 0;">Точность на тестовой выборке</p>
+        </div>
+        <div class="model-stats">
+          <div class="stat-item"><div class="stat-value">500</div><div class="stat-label">Записей</div></div>
+          <div class="stat-item"><div class="stat-value">3</div><div class="stat-label">Признака</div></div>
+          <div class="stat-item"><div class="stat-value">0.82</div><div class="stat-label">F1-score</div></div>
+          <div class="stat-item"><div class="stat-value">5</div><div class="stat-label">Глубина дерева</div></div>
+        </div>
+        <div class="dataset-info">
+          <strong>📁 Файл:</strong> <code>credit_dataset.csv</code><br>
+          <strong>📊 Столбцы:</strong> age, gender, salary, credit_approved
+        </div>
+      </div>
+    </div>
+
+    <!-- Вкладка: КАСКО -->
+    <div id="kasko-tab" class="tab-content">
+      <div class="model-card kasko">
+        <h3>🚗 Модель страхования КАСКО</h3>
+        <p><strong>Задача:</strong> Классификация — одобрение/отказ в страховании</p>
+        <p><strong>Признаки:</strong> возраст, стаж вождения, число ДТП</p>
+        <p><strong>Алгоритм:</strong> Decision Tree (max_depth=4)</p>
+        <div style="text-align: center;">
+          <span class="accuracy-badge" id="kaskoAccuracy">95.00%</span>
+          <p style="color: #666; margin: 5px 0;">Точность на тестовой выборке</p>
+        </div>
+        <div class="model-stats">
+          <div class="stat-item"><div class="stat-value">500</div><div class="stat-label">Сгенерировано</div></div>
+          <div class="stat-item"><div class="stat-value">3</div><div class="stat-label">Признака</div></div>
+          <div class="stat-item"><div class="stat-value">0.96</div><div class="stat-label">F1-score</div></div>
+          <div class="stat-item"><div class="stat-value">4</div><div class="stat-label">Глубина дерева</div></div>
+        </div>
+        <div class="dataset-info">
+          <strong>📁 Файл:</strong> <code>kasko_dataset.csv</code><br>
+          <strong>📊 Столбцы:</strong> age, driving_experience, accidents, insurance_approved
+        </div>
+
+        <!-- Интерактивная форма -->
+        <div class="kasko-form">
+          <h4 style="margin-top: 0; color: #33691e;">🔮 Проверить шансы на страхование</h4>
+          <label for="kaskoAge">Возраст (лет):</label>
+          <input type="number" id="kaskoAge" min="18" max="65" value="30">
+          <label for="kaskoExperience">Стаж вождения (лет):</label>
+          <input type="number" id="kaskoExperience" min="0" max="40" value="5">
+          <label for="kaskoAccidents">Число ДТП:</label>
+          <input type="number" id="kaskoAccidents" min="0" max="10" value="1">
+          <button type="button" onclick="predictKasko()">Рассчитать решение</button>
+          <div id="kaskoResult" class="kasko-result">
+            <div class="result-icon" id="kaskoIcon">✅</div>
+            <strong id="kaskoText">Страховка одобрена!</strong>
+            <p style="margin: 5px 0 0; font-size: 0.9em; color: #555;" id="kaskoReason"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Вкладка: Код -->
+    <div id="code-tab" class="tab-content">
+      <div class="model-card">
+        <h3>💻 Исходный код на Python</h3>
+        <h4 style="color: #1a237e;">🏦 Модель кредита:</h4>
+        <div class="code-block">
+import pandas as pd
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score
+
+df = pd.read_csv('credit_dataset.csv')
+df_encoded = pd.get_dummies(df, columns=['gender'], drop_first=True)
+X = df_encoded.drop('credit_approved', axis=1)
+y = df_encoded['credit_approved']
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+clf = DecisionTreeClassifier(max_depth=5, random_state=42)
+clf.fit(X_train, y_train)
+y_pred = clf.predict(X_test)
+print(f"Точность: {accuracy_score(y_test, y_pred)*100:.2f}%")
+        </div>
+        <h4 style="color: #1a237e; margin-top: 20px;">🚗 Генерация датасета КАСКО:</h4>
+        <div class="code-block">
+import numpy as np, pandas as pd
+np.random.seed(42); n = 500
+age = np.random.randint(18, 66, n)
+exp = np.array([np.random.randint(0, min(40, a-17)+1) for a in age])
+acc = np.array([np.random.poisson(max(0, 3-exp[i]/5+(age[i]&lt;25)*2)) for i in range(n)])
+acc = np.clip(acc, 0, 10)
+approved = np.array([1 if (acc[i]&lt;=2 and exp[i]&gt;=3) or (acc[i]&lt;=1 and age[i]&gt;=30) else 0 for i in range(n)])
+kasko_df = pd.DataFrame({'age':age,'driving_experience':exp,'accidents':acc,'insurance_approved':approved})
+kasko_df.to_csv('kasko_dataset.csv', index=False)
+        </div>
+      </div>
+    </div>
+  </article>
+  <!-- ✅ КОНЕЦ БЛОКА МОДЕЛЕЙ -->
+
+  <!-- ✅ Криптография -->
   <article>
     <h2>19 января 2026</h2>
     <p><strong>Решение задания по криптографии: Шифр Цезаря</strong></p>
@@ -235,26 +482,24 @@
       <li><strong>а)</strong> АПЕЛЬСИН → САЦЬНВЩЮ → <strong>k = 17</strong></li>
       <li><strong>б)</strong> АБРИКОС → ЫЬЛГЕЙМ → <strong>k = 27</strong></li>
     </ul>
-    <h3>2. Расшифровка сообщений (ключ неизвестен, 0 &lt; k &lt; 32)</h3>
+    <h3>2. Расшифровка сообщений</h3>
     <ul>
       <li><strong>а)</strong> ФХНЗКЧ → <strong>ПРИВЕТ</strong> (при <code>k = 5</code>)</li>
       <li><strong>б)</strong> ЦЩЕБФ → <strong>ВЕСНА</strong> (при <code>k = 20</code>)</li>
     </ul>
     <h3>3. Шифрование фамилии</h3>
-    <p>Фамилия: <strong>КАЗАРЯН</strong><br>
-    Ключ: <code>k = 10</code><br>
-    Результат: <strong>ФКСКЪЙЧ</strong></p>
+    <p>Фамилия: <strong>КАЗАРЯН</strong><br>Ключ: <code>k = 10</code><br>Результат: <strong>ФКСКЪЙЧ</strong></p>
   </article>
 
-  <!-- Предыдущие записи -->
+  <!-- ✅ Предыдущие записи -->
   <h2>14 января 2026</h2>
   <a href="mailto:narekghazaryan2008@icloud.com">Напишите мне</a>
   <p>Сегодня я изучила, как устроено доменное имя моего сайта...</p>
   <ul>
-    <li><strong>Корневой уровень (root)</strong> — обозначается точкой «.», но обычно не пишется явно.</li>
-    <li><strong>Домен верхнего уровня (TLD)</strong> — например, <code>.com</code>, <code>.ru</code>.</li>
-    <li><strong>Домен второго уровня (SLD)</strong> — например, <code>github</code> в <code>github.com</code>.</li>
-    <li><strong>Поддомены</strong> — такие как <code>www</code>, <code>pages</code>.</li>
+    <li><strong>Корневой уровень (root)</strong> — обозначается точкой «.»</li>
+    <li><strong>Домен верхнего уровня (TLD)</strong> — например, <code>.com</code>, <code>.ru</code></li>
+    <li><strong>Домен второго уровня (SLD)</strong> — например, <code>github</code> в <code>github.com</code></li>
+    <li><strong>Поддомены</strong> — такие как <code>www</code>, <code>pages</code></li>
   </ul>
   <p>GitHub Pages использует структуру: <code>ваш_логин.github.io</code>.</p>
 
@@ -275,7 +520,7 @@
     <a href="https://www.flaticon.com/ru/free-icons/2026" title="2026 иконки">2026 иконки от Freepik — Flaticon</a>
   </footer>
 
-  <!-- 🔥 Модальное окно с анимацией камина -->
+  <!-- 🔥 Модальное окно с камином -->
   <div class="modal" id="fireplaceModal">
     <div class="modal-content fireplace-modal">
       <div class="close-btn" id="closeFireplace">&times;</div>
@@ -311,10 +556,7 @@
       </div>
       <div class="bot-response">
         <span class="label">Найден FAQ-вопрос:</span>
-        <div class="matched-info">
-          "Как быстро доставляется заказ?" 
-          <span class="similarity-score">(sim=0.706)</span>
-        </div>
+        <div class="matched-info">"Как быстро доставляется заказ?" <span class="similarity-score">(sim=0.706)</span></div>
         <span class="label" style="margin-top: 10px;">Ответ бот-FAQ:</span>
         <p class="answer-text">Наш стандартный срок доставки — 3–5 рабочих дней.</p>
       </div>
@@ -322,85 +564,71 @@
   </div>
 
   <script>
-    // ——— ЛОГИКА ПРЕДСКАЗАНИЙ (AI) ———
+    // ——— AI PREDICTIONS ———
     const todayDate = "21.02.2026";
-    const predictionText = `
-      <p style="color: #555; margin-bottom: 10px;"><strong>Дата анализа:</strong> ${todayDate}</p>
-      <h3>Топ-3 предсказания:</h3>
-      <ul style="list-style: none; padding: 0;">
-        <li style="margin-bottom: 5px; font-size: 1.1em;">
-            <span style="color: #333; font-weight: bold;">1. running shoe:</span> 
-            <span style="color: #27ae60; font-weight: bold;">99.45%</span>
-        </li>
-        <li style="margin-bottom: 5px; font-size: 1.1em;">
-            <span style="color: #333; font-weight: bold;">2. shoe store:</span> 
-            <span style="color: #7f8c8d; font-weight: bold;">0.27%</span>
-        </li>
-        <li style="margin-bottom: 5px; font-size: 1.1em;">
-            <span style="color: #333; font-weight: bold;">3. clogs:</span> 
-            <span style="color: #7f8c8d; font-weight: bold;">0.15%</span>
-        </li>
-      </ul>
-    `;
+    const predictionText = `<p style="color: #555; margin-bottom: 10px;"><strong>Дата анализа:</strong> ${todayDate}</p>
+      <h3>Топ-3 предсказания:</h3><ul style="list-style: none; padding: 0;">
+        <li style="margin-bottom: 5px; font-size: 1.1em;"><span style="color: #333; font-weight: bold;">1. running shoe:</span> <span style="color: #27ae60; font-weight: bold;">99.45%</span></li>
+        <li style="margin-bottom: 5px; font-size: 1.1em;"><span style="color: #333; font-weight: bold;">2. shoe store:</span> <span style="color: #7f8c8d; font-weight: bold;">0.27%</span></li>
+        <li style="margin-bottom: 5px; font-size: 1.1em;"><span style="color: #333; font-weight: bold;">3. clogs:</span> <span style="color: #7f8c8d; font-weight: bold;">0.15%</span></li>
+      </ul>`;
     const outputDiv = document.getElementById('ai-prediction-output');
-    if (outputDiv) {
-        outputDiv.innerHTML = predictionText;
-    }
+    if (outputDiv) outputDiv.innerHTML = predictionText;
 
-    // ——— ЛОГИКА ЛИНЕЙНОЙ РЕГРЕССИИ ———
-    // Коэффициенты модели, обученной на task_regression2.csv
-    const REGRESSION_COEF = 4.532874;      // Наклон (slope)
-    const REGRESSION_INTERCEPT = 53.791861; // Свободный член (intercept)
-    const R_SQUARED = 0.9893;               // Качество модели
-
-    // Функция расчёта прогноза: Точность = coef × Часы + intercept
-    function predictAccuracy(hours) {
-      return REGRESSION_COEF * hours + REGRESSION_INTERCEPT;
-    }
-
-    // Расчёт и отображение прогноза для пользователя
+    // ——— LINEAR REGRESSION ———
+    const REGRESSION_COEF = 4.532874, REGRESSION_INTERCEPT = 53.791861;
+    function predictAccuracy(hours) { return REGRESSION_COEF * hours + REGRESSION_INTERCEPT; }
     function calculatePrediction() {
-      const hoursInput = document.getElementById('studyHours');
-      const hours = parseFloat(hoursInput.value);
-      
-      if (isNaN(hours) || hours < 0 || hours > 24) {
-        alert('🔔 Пожалуйста, введите корректное число часов (0–24)');
-        hoursInput.focus();
-        return;
-      }
-      
+      const hoursInput = document.getElementById('studyHours'), hours = parseFloat(hoursInput.value);
+      if (isNaN(hours) || hours < 0 || hours > 24) { alert('🔔 Введите число часов (0–24)'); hoursInput.focus(); return; }
       const score = predictAccuracy(hours);
-      
-      // Обновление результата
       document.getElementById('resultHours').textContent = hours;
       document.getElementById('resultScore').textContent = score.toFixed(2);
       document.getElementById('predictionResult').style.display = 'block';
-      
-      // Плавная прокрутка к результату
-      document.getElementById('predictionResult').scrollIntoView({ 
-        behavior: 'smooth', 
-        block: 'center' 
-      });
+      document.getElementById('predictionResult').scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
-
-    // Заполнение таблицы примеров
     function fillPredictionTable() {
-      const examples = [1, 3, 5, 7, 10];
-      const tbody = document.getElementById('predictionTable');
+      const examples = [1, 3, 5, 7, 10], tbody = document.getElementById('predictionTable');
       tbody.innerHTML = '';
-      
       examples.forEach(hours => {
         const score = predictAccuracy(hours);
         const row = document.createElement('tr');
-        row.innerHTML = `
-          <td>${hours}</td>
-          <td>${score.toFixed(2)}</td>
-        `;
+        row.innerHTML = `<td>${hours}</td><td>${score.toFixed(2)}</td>`;
         tbody.appendChild(row);
       });
     }
 
-    // ——— СНЕЖИНКИ ———
+    // ——— TABS ———
+    function switchTab(tabName) {
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+      event.target.classList.add('active');
+      document.getElementById(tabName + '-tab').classList.add('active');
+    }
+
+    // ——— KASKO PREDICTION ———
+    function predictKasko() {
+      const age = parseInt(document.getElementById('kaskoAge').value);
+      const exp = parseInt(document.getElementById('kaskoExperience').value);
+      const acc = parseInt(document.getElementById('kaskoAccidents').value);
+      const resultDiv = document.getElementById('kaskoResult');
+      const icon = document.getElementById('kaskoIcon');
+      const text = document.getElementById('kaskoText');
+      const reason = document.getElementById('kaskoReason');
+      const approved = (acc <= 2 && exp >= 3) || (acc <= 1 && age >= 30);
+      resultDiv.style.display = 'block';
+      resultDiv.className = 'kasko-result ' + (approved ? 'approved' : 'declined');
+      if (approved) {
+        icon.textContent = '✅'; text.textContent = 'Страховка одобрена!'; text.style.color = '#2e7d32';
+        reason.textContent = 'Хороший стаж и/или аккуратное вождение снижают риски.';
+      } else {
+        icon.textContent = '❌'; text.textContent = 'В страховке отказано'; text.style.color = '#c62828';
+        reason.textContent = 'Рекомендуем улучшить показатели вождения или подождать.';
+      }
+      resultDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    // ——— SNOWFLAKES ———
     const snowflakesContainer = document.getElementById('snowflakes');
     const snowSymbols = ['❄', '❅', '❆'];
     function createSnowflake() {
@@ -418,43 +646,27 @@
     for (let i = 0; i < 25; i++) createSnowflake();
     setInterval(createSnowflake, 700);
 
-    // ——— СЕРДЕЧКИ 💗 ———
+    // ——— HEARTS & FIREWORKS ———
     function createHeart(x, y) {
       const heart = document.createElement('div');
-      const hearts = ['💗', '💖', '💘', '💝', '❤️'];
-      const colors = ['#ff6b81', '#ff8fab', '#ff5252', '#ff4081', '#e91e63'];
-      const size = 16 + Math.random() * 14;
-      const color = colors[Math.floor(Math.random() * colors.length)];
+      const hearts = ['💗', '💖', '💘', '💝', '❤️'], colors = ['#ff6b81', '#ff8fab', '#ff5252', '#ff4081', '#e91e63'];
+      const size = 16 + Math.random() * 14, color = colors[Math.floor(Math.random() * colors.length)];
       heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
       heart.style.cssText = `position: fixed; left: ${x - size/2}px; top: ${y}px; font-size: ${size}px; color: ${color}; opacity: ${0.7 + Math.random() * 0.3}; pointer-events: none; z-index: 995; text-shadow: 0 0 8px ${color}, 0 0 16px ${color};`;
       document.body.appendChild(heart);
       const duration = 2.5 + Math.random() * 1.5;
-      heart.animate([
-        { transform: 'translate(0, 0) rotate(0deg)', opacity: 1 },
-        { transform: `translate(${(Math.random() - 0.5) * 60}px, -${120 + Math.random() * 80}px) rotate(${(Math.random() > 0.5 ? 1 : -1) * 20}deg)`, opacity: 0 }
-      ], {
-        duration: duration * 1000,
-        easing: 'cubic-bezier(0.2, 0.8, 0.3, 1)',
-        fill: 'forwards'
-      });
+      heart.animate([{ transform: 'translate(0, 0) rotate(0deg)', opacity: 1 },
+        { transform: `translate(${(Math.random() - 0.5) * 60}px, -${120 + Math.random() * 80}px) rotate(${(Math.random() > 0.5 ? 1 : -1) * 20}deg)`, opacity: 0 }],
+        { duration: duration * 1000, easing: 'cubic-bezier(0.2, 0.8, 0.3, 1)', fill: 'forwards' });
       setTimeout(() => { if (heart.parentNode) heart.remove(); }, duration * 1000);
     }
-
-    // ——— САЛЮТ ———
-    const fireworkColors = [
-      ['#FF0000', '#FF5722', '#FF9800'], ['#00BCD4', '#2196F3', '#3F51B5'],
-      ['#E91E63', '#FF4081', '#FF80AB'], ['#4CAF50', '#8BC34A', '#CDDC39'],
-      ['#FFEB3B', '#FFC107', '#FF9800'], ['#9C27B0', '#E040FB', '#FF4081'],
-      ['#00E5FF', '#1DE9B6', '#69F0AE'], ['#FF1744', '#FF4081', '#FFD54F']
-    ];
-
+    const fireworkColors = [['#FF0000','#FF5722','#FF9800'], ['#00BCD4','#2196F3','#3F51B5'], ['#E91E63','#FF4081','#FF80AB'], ['#4CAF50','#8BC34A','#CDDC39'], ['#FFEB3B','#FFC107','#FF9800'], ['#9C27B0','#E040FB','#FF4081'], ['#00E5FF','#1DE9B6','#69F0AE'], ['#FF1744','#FF4081','#FFD54F']];
     function launchFirework(x, y) {
       const rocket = document.createElement('div');
       rocket.style.cssText = `position: fixed; left: ${x-3}px; bottom: 0; width: 5px; height: 16px; background: linear-gradient(to top, #111, #555, #aaa); border-radius: 2px; box-shadow: 0 0 12px 4px rgba(255, 215, 0, 0.9); z-index: 998; pointer-events: none; animation: rocketLaunch 1.0s cubic-bezier(0.2, 0.9, 0.4, 1) forwards;`;
       document.body.appendChild(rocket);
       setTimeout(() => {
-        rocket.remove();
-        const burstX = x, burstY = y;
+        rocket.remove(); const burstX = x, burstY = y;
         ['rgba(255,255,255,0.5)', 'rgba(255,100,0,0.3)'].forEach((color, i) => {
           const flash = document.createElement('div');
           flash.style.cssText = `position: fixed; left: 0; top: 0; width: 100%; height: 100%; background: radial-gradient(circle at ${burstX}px ${burstY}px, ${color}, transparent 65%); pointer-events: none; z-index: 994; opacity: 1;`;
@@ -464,46 +676,30 @@
         });
         const heartCount = 12 + Math.floor(Math.random() * 9);
         for (let i = 0; i < heartCount; i++) {
-          const angle = Math.random() * Math.PI * 2;
-          const radius = 40 + Math.random() * 100;
-          const hx = burstX + Math.cos(angle) * radius;
-          const hy = burstY + Math.sin(angle) * radius - 20;
+          const angle = Math.random() * Math.PI * 2, radius = 40 + Math.random() * 100;
+          const hx = burstX + Math.cos(angle) * radius, hy = burstY + Math.sin(angle) * radius - 20;
           setTimeout(() => createHeart(hx, hy), Math.random() * 300);
         }
         const palette = fireworkColors[Math.floor(Math.random() * fireworkColors.length)];
         for (let i = 0; i < 80; i++) {
-          const spark = document.createElement('div');
-          const angle = Math.random() * Math.PI * 2;
-          const speed = 80 + Math.random() * 220;
-          const tx = Math.cos(angle) * speed;
-          const ty = Math.sin(angle) * speed + 100;
-          const c1 = palette[Math.floor(Math.random() * palette.length)];
-          const c2 = palette[Math.floor(Math.random() * palette.length)];
-          const size = 4 + Math.random() * 5;
+          const spark = document.createElement('div'), angle = Math.random() * Math.PI * 2, speed = 80 + Math.random() * 220;
+          const tx = Math.cos(angle) * speed, ty = Math.sin(angle) * speed + 100;
+          const c1 = palette[Math.floor(Math.random() * palette.length)], c2 = palette[Math.floor(Math.random() * palette.length)], size = 4 + Math.random() * 5;
           spark.style.cssText = `position: fixed; left: ${burstX - size/2}px; top: ${burstY - size/2}px; width: ${size}px; height: ${size}px; background: linear-gradient(135deg, ${c1}, ${c2}); border-radius: 50%; box-shadow: 0 0 ${12 + Math.random() * 18}px ${c1}; pointer-events: none; z-index: 997; animation: sparkFly 1.3s cubic-bezier(0.1, 0.8, 0.2, 1) forwards;`;
-          spark.style.setProperty('--tx', tx + 'px');
-          spark.style.setProperty('--ty', ty + 'px');
+          spark.style.setProperty('--tx', tx + 'px'); spark.style.setProperty('--ty', ty + 'px');
           document.body.appendChild(spark);
           setTimeout(() => spark.remove(), 1400);
         }
         const smoke = document.createElement('div');
         smoke.style.cssText = `position: fixed; left: ${burstX - 40}px; top: ${burstY - 40}px; width: 80px; height: 80px; background: radial-gradient(circle, rgba(220,220,220,0.15), transparent 90%); border-radius: 50%; pointer-events: none; z-index: 993;`;
         document.body.appendChild(smoke);
-        smoke.animate([
-          { transform: 'scale(1) translate(0,0)', opacity: 0.9 },
-          { transform: 'scale(3.5) translate(0,20px)', opacity: 0 }
-        ], { duration: 2400, easing: 'ease-out' });
+        smoke.animate([{ transform: 'scale(1) translate(0,0)', opacity: 0.9 }, { transform: 'scale(3.5) translate(0,20px)', opacity: 0 }], { duration: 2400, easing: 'ease-out' });
         setTimeout(() => smoke.remove(), 2400);
       }, 1000);
     }
-
     const style = document.createElement('style');
-    style.textContent = `
-      @keyframes rocketLaunch { 0% { transform: translateY(0) scale(1); opacity: 1; } 100% { transform: translateY(-350px) scale(0.7); opacity: 0.6; } }
-      @keyframes sparkFly { 0% { transform: translate(0,0) scale(1); opacity: 1; } 100% { transform: translate(var(--tx), var(--ty)) scale(0); opacity: 0; } }
-    `;
+    style.textContent = `@keyframes rocketLaunch { 0% { transform: translateY(0) scale(1); opacity: 1; } 100% { transform: translateY(-350px) scale(0.7); opacity: 0.6; } } @keyframes sparkFly { 0% { transform: translate(0,0) scale(1); opacity: 1; } 100% { transform: translate(var(--tx), var(--ty)) scale(0); opacity: 0; } }`;
     document.head.appendChild(style);
-
     function launchTripleFireworks() {
       const positions = [0.18 * window.innerWidth, 0.5 * window.innerWidth, 0.82 * window.innerWidth];
       const y = window.innerHeight * 0.25 + Math.random() * 100;
@@ -512,35 +708,22 @@
     setTimeout(launchTripleFireworks, 1200);
     setInterval(launchTripleFireworks, 5000 + Math.random() * 2000);
 
-    // ——— АНИМАЦИЯ КАМИНА ———
+    // ——— FIREPLACE MODAL ———
     const fireplaceModal = document.getElementById('fireplaceModal');
     const fireplaceTrigger = document.getElementById('fireplace-trigger');
     const closeFireplace = document.getElementById('closeFireplace');
-    fireplaceTrigger.addEventListener('click', () => {
-      fireplaceModal.classList.add('active');
-      document.body.style.overflow = 'hidden';
-    });
-    function closeFireplaceModal() {
-      fireplaceModal.classList.remove('active');
-      document.body.style.overflow = '';
-    }
+    fireplaceTrigger.addEventListener('click', () => { fireplaceModal.classList.add('active'); document.body.style.overflow = 'hidden'; });
+    function closeFireplaceModal() { fireplaceModal.classList.remove('active'); document.body.style.overflow = ''; }
     closeFireplace.onclick = closeFireplaceModal;
     fireplaceModal.onclick = e => e.target === fireplaceModal && closeFireplaceModal();
     document.onkeydown = e => e.key === 'Escape' && fireplaceModal.classList.contains('active') && closeFireplaceModal();
 
-    // ——— ИНИЦИАЛИЗАЦИЯ ———
+    // ——— INIT ———
     document.addEventListener('DOMContentLoaded', () => {
       fillPredictionTable();
-      
-      // Авто-расчёт при нажатии Enter в поле ввода
       const hoursInput = document.getElementById('studyHours');
-      if (hoursInput) {
-        hoursInput.addEventListener('keypress', (e) => {
-          if (e.key === 'Enter') calculatePrediction();
-        });
-      }
+      if (hoursInput) hoursInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') calculatePrediction(); });
     });
   </script>
 </body>
 </html>
-
