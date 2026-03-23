@@ -13,298 +13,141 @@
       margin: 25px 0;
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     }
-    .regression-prediction h2 {
-      color: #1a237e;
-      margin-top: 0;
-    }
+    .regression-prediction h2 { color: #1a237e; margin-top: 0; }
     .regression-prediction input[type="number"] {
-      flex: 1;
-      min-width: 120px;
-      padding: 10px;
-      font-size: 16px;
-      border: 2px solid #ddd;
-      border-radius: 6px;
-      transition: border-color 0.3s;
+      flex: 1; min-width: 120px; padding: 10px; font-size: 16px;
+      border: 2px solid #ddd; border-radius: 6px; transition: border-color 0.3s;
     }
-    .regression-prediction input[type="number"]:focus {
-      outline: none;
-      border-color: #0277bd;
-    }
+    .regression-prediction input[type="number"]:focus { outline: none; border-color: #0277bd; }
     .regression-prediction button {
-      background: #0277bd;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 6px;
-      font-size: 16px;
-      cursor: pointer;
-      transition: background 0.3s;
+      background: #0277bd; color: white; border: none; padding: 10px 20px;
+      border-radius: 6px; font-size: 16px; cursor: pointer; transition: background 0.3s;
     }
-    .regression-prediction button:hover {
-      background: #01579b;
-    }
+    .regression-prediction button:hover { background: #01579b; }
     .prediction-result {
-      display: none;
-      background: #e8f5e9;
-      padding: 15px;
-      border-radius: 8px;
-      margin-bottom: 15px;
-      text-align: center;
-      border-left: 4px solid #4caf50;
+      display: none; background: #e8f5e9; padding: 15px; border-radius: 8px;
+      margin-bottom: 15px; text-align: center; border-left: 4px solid #4caf50;
       animation: slideIn 0.3s ease-out;
     }
-    @keyframes slideIn {
-      from { opacity: 0; transform: translateY(-10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    .prediction-score {
-      font-size: 2em;
-      color: #2e7d32;
-      font-weight: bold;
-      display: block;
-      margin: 10px 0;
-    }
+    @keyframes slideIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+    .prediction-score { font-size: 2em; color: #2e7d32; font-weight: bold; display: block; margin: 10px 0; }
     .prediction-table {
-      width: 100%;
-      border-collapse: collapse;
-      background: white;
-      border-radius: 8px;
-      overflow: hidden;
+      width: 100%; border-collapse: collapse; background: white;
+      border-radius: 8px; overflow: hidden;
     }
-    .prediction-table thead {
-      background: #0277bd;
-      color: white;
+    .prediction-table thead { background: #0277bd; color: white; }
+    .prediction-table th, .prediction-table td {
+      padding: 12px; text-align: center; border-bottom: 1px solid #eee;
     }
-    .prediction-table th,
-    .prediction-table td {
-      padding: 12px;
-      text-align: center;
-      border-bottom: 1px solid #eee;
-    }
-    .prediction-table tbody tr:hover {
-      background: #f5f5f5;
-    }
-    .prediction-table td:last-child {
-      color: #0277bd;
-      font-weight: bold;
-    }
+    .prediction-table tbody tr:hover { background: #f5f5f5; }
+    .prediction-table td:last-child { color: #0277bd; font-weight: bold; }
     .formula-badge {
-      display: inline-block;
-      background: #fff9c4;
-      padding: 4px 10px;
-      border-radius: 4px;
-      font-family: monospace;
-      font-size: 0.9em;
-      color: #5d4037;
+      display: inline-block; background: #fff9c4; padding: 4px 10px;
+      border-radius: 4px; font-family: monospace; font-size: 0.9em; color: #5d4037;
     }
     
     /* ✅ Стили для блока моделей МЛ */
     .ml-section {
       background: linear-gradient(135deg, #fff8e1 0%, #e8f5e9 100%);
-      border-radius: 16px;
-      padding: 25px;
-      margin: 30px 0;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.12);
-      border: 2px solid #ffb74d;
+      border-radius: 16px; padding: 25px; margin: 30px 0;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.12); border: 2px solid #ffb74d;
     }
-    .ml-section h2 {
-      color: #e65100;
-      margin-top: 0;
-      text-align: center;
-    }
+    .ml-section h2 { color: #e65100; margin-top: 0; text-align: center; }
     .model-card {
-      background: white;
-      border-radius: 12px;
-      padding: 20px;
-      margin: 15px 0;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.08);
-      border-left: 5px solid;
+      background: white; border-radius: 12px; padding: 20px; margin: 15px 0;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.08); border-left: 5px solid;
     }
     .model-card.credit { border-left-color: #2196f3; }
     .model-card.kasko { border-left-color: #4caf50; }
-    .model-card h3 {
-      margin-top: 0;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
+    .model-card h3 { margin-top: 0; display: flex; align-items: center; gap: 10px; }
     .accuracy-badge {
-      display: inline-block;
-      background: linear-gradient(135deg, #4caf50, #2e7d32);
-      color: white;
-      padding: 8px 20px;
-      border-radius: 25px;
-      font-size: 1.3em;
-      font-weight: bold;
-      margin: 10px 0;
-      box-shadow: 0 4px 12px rgba(76, 175, 80, 0.4);
+      display: inline-block; background: linear-gradient(135deg, #4caf50, #2e7d32);
+      color: white; padding: 8px 20px; border-radius: 25px; font-size: 1.3em;
+      font-weight: bold; margin: 10px 0; box-shadow: 0 4px 12px rgba(76,175,80,0.4);
       animation: pulse 2s infinite;
     }
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.05); }
-    }
+    @keyframes pulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.05)} }
     .model-stats {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-      gap: 12px;
-      margin: 15px 0;
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 12px; margin: 15px 0;
     }
-    .stat-item {
-      background: #f5f5f5;
-      padding: 12px;
-      border-radius: 8px;
-      text-align: center;
-    }
-    .stat-value {
-      font-size: 1.4em;
-      font-weight: bold;
-      color: #1a237e;
-    }
-    .stat-label {
-      font-size: 0.9em;
-      color: #666;
-    }
+    .stat-item { background: #f5f5f5; padding: 12px; border-radius: 8px; text-align: center; }
+    .stat-value { font-size: 1.4em; font-weight: bold; color: #1a237e; }
+    .stat-label { font-size: 0.9em; color: #666; }
     .kasko-form {
-      background: #f1f8e9;
-      padding: 15px;
-      border-radius: 10px;
-      margin: 15px 0;
+      background: #f1f8e9; padding: 15px; border-radius: 10px; margin: 15px 0;
     }
-    .kasko-form label {
-      display: block;
-      margin: 10px 0 5px;
-      font-weight: 500;
-      color: #33691e;
-    }
+    .kasko-form label { display: block; margin: 10px 0 5px; font-weight: 500; color: #33691e; }
     .kasko-form input {
-      width: 100%;
-      padding: 10px;
-      border: 2px solid #c5e1a5;
-      border-radius: 6px;
-      font-size: 16px;
-      box-sizing: border-box;
+      width: 100%; padding: 10px; border: 2px solid #c5e1a5;
+      border-radius: 6px; font-size: 16px; box-sizing: border-box;
     }
-    .kasko-form input:focus {
-      outline: none;
-      border-color: #4caf50;
-    }
+    .kasko-form input:focus { outline: none; border-color: #4caf50; }
     .kasko-form button {
-      background: #4caf50;
-      color: white;
-      border: none;
-      padding: 12px 24px;
-      border-radius: 8px;
-      font-size: 16px;
-      cursor: pointer;
-      margin-top: 15px;
+      background: #4caf50; color: white; border: none; padding: 12px 24px;
+      border-radius: 8px; font-size: 16px; cursor: pointer; margin-top: 15px;
       transition: background 0.3s;
     }
-    .kasko-form button:hover {
-      background: #388e3c;
-    }
+    .kasko-form button:hover { background: #388e3c; }
     .kasko-result {
-      display: none;
-      background: #c8e6c9;
-      padding: 15px;
-      border-radius: 8px;
-      margin-top: 15px;
-      text-align: center;
-      border-left: 4px solid #4caf50;
+      display: none; background: #c8e6c9; padding: 15px; border-radius: 8px;
+      margin-top: 15px; text-align: center; border-left: 4px solid #4caf50;
       animation: slideIn 0.3s ease-out;
     }
-    .kasko-result.approved {
-      background: #e8f5e9;
-      border-left-color: #2e7d32;
-    }
-    .kasko-result.declined {
-      background: #ffebee;
-      border-left-color: #c62828;
-    }
-    .result-icon {
-      font-size: 2em;
-      margin-bottom: 5px;
-    }
+    .kasko-result.approved { background: #e8f5e9; border-left-color: #2e7d32; }
+    .kasko-result.declined { background: #ffebee; border-left-color: #c62828; }
+    .result-icon { font-size: 2em; margin-bottom: 5px; }
     .dataset-info {
-      background: #e3f2fd;
-      padding: 12px;
-      border-radius: 8px;
-      margin: 10px 0;
-      font-size: 0.95em;
+      background: #e3f2fd; padding: 12px; border-radius: 8px; margin: 10px 0; font-size: 0.95em;
     }
     .code-block {
-      background: #263238;
-      color: #aed581;
-      padding: 15px;
-      border-radius: 8px;
-      overflow-x: auto;
-      font-family: 'Courier New', monospace;
-      font-size: 0.9em;
-      margin: 10px 0;
+      background: #263238; color: #aed581; padding: 15px; border-radius: 8px;
+      overflow-x: auto; font-family: 'Courier New', monospace; font-size: 0.9em; margin: 10px 0;
     }
-    .tabs {
-      display: flex;
-      gap: 5px;
-      margin-bottom: 15px;
-      flex-wrap: wrap;
-    }
+    .tabs { display: flex; gap: 5px; margin-bottom: 15px; flex-wrap: wrap; }
     .tab-btn {
-      padding: 8px 16px;
-      background: #e0e0e0;
-      border: none;
-      border-radius: 20px;
-      cursor: pointer;
-      font-size: 0.9em;
-      transition: all 0.2s;
+      padding: 8px 16px; background: #e0e0e0; border: none;
+      border-radius: 20px; cursor: pointer; font-size: 0.9em; transition: all 0.2s;
     }
-    .tab-btn.active {
-      background: #0277bd;
-      color: white;
-    }
-    .tab-content {
-      display: none;
-    }
-    .tab-content.active {
-      display: block;
-    }
+    .tab-btn.active { background: #0277bd; color: white; }
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
   </style>
 </head>
 <body>
   <p class="quote">21.02.2026</p>
-
   <h2>21 Февраля, 2026</h2>
   
-  <!-- ✅ БЛОК: Ответ модели + Новый FAQ + Оценка бота -->
-  <article class="bot-analysis" style="background: #f8f9fa; border-left: 4px solid #0277bd; padding: 15px 20px; margin: 20px 0; border-radius: 0 8px 8px 0;">
-    <h3 style="margin-top: 0; color: #1a237e;">🤖 Анализ работы чат-бота</h3>
+  <!-- ✅ БЛОК: Анализ чат-бота -->
+  <article class="bot-analysis" style="background:#f8f9fa;border-left:4px solid #0277bd;padding:15px 20px;margin:20px 0;border-radius:0 8px 8px 0;">
+    <h3 style="margin-top:0;color:#1a237e;">🤖 Анализ работы чат-бота</h3>
     <p><strong>📅 Дата:</strong> 21.02.2026</p>
-    <div class="chat-log" style="background: white; padding: 12px; border-radius: 6px; margin: 10px 0;">
-      <p><strong>❓ Вопрос пользователя:</strong> Сколько ждать мой заказ?</p>
-      <p><strong>🔍 Найден FAQ-вопрос:</strong> Как быстро доставляется заказ? <em>(sim=0.706)</em></p>
-      <p><strong>💬 Ответ бот-FAQ:</strong> Наш стандартный срок доставки — 3–5 рабочих дней.</p>
+    <div class="chat-log" style="background:white;padding:12px;border-radius:6px;margin:10px 0;">
+      <p><strong>❓ Вопрос:</strong> Сколько ждать мой заказ?</p>
+      <p><strong>🔍 Найден FAQ:</strong> Как быстро доставляется заказ? <em>(sim=0.706)</em></p>
+      <p><strong>💬 Ответ:</strong> Наш стандартный срок доставки — 3–5 рабочих дней.</p>
     </div>
-    <p><strong>✅ Ответ модели:</strong><br>
-    Ваш заказ прибудет в течение <strong>3–5 рабочих дней</strong> — это наш стандартный срок доставки.</p>
-    <hr style="margin: 15px 0; border: none; border-top: 1px dashed #ccc;">
+    <p><strong>✅ Ответ модели:</strong><br>Ваш заказ прибудет в течение <strong>3–5 рабочих дней</strong>.</p>
+    <hr style="margin:15px 0;border:none;border-top:1px dashed #ccc;">
     <p><strong>➕ Новый вопрос для FAQ:</strong> <em>«Как оплатить заказ?»</em></p>
-    <div style="background: #e3f2fd; padding: 10px 15px; border-radius: 6px; margin: 8px 0;">
+    <div style="background:#e3f2fd;padding:10px 15px;border-radius:6px;margin:8px 0;">
       <strong>Рекомендуемый ответ:</strong>
-      <ul style="margin: 5px 0 0 20px; padding: 0;">
+      <ul style="margin:5px 0 0 20px;padding:0;">
         <li>Банковские карты (Visa, Mastercard, МИР)</li>
         <li>Электронные кошельки (ЮMoney, Qiwi)</li>
-        <li>Оплата при получении (наложенный платёж)</li>
+        <li>Оплата при получении</li>
         <li>Безналичный расчёт для юр. лиц</li>
       </ul>
     </div>
-    <p><strong>📊 Оценка работы бота:</strong> <span style="color: #2e7d32; font-weight: bold;">✅ Справился хорошо</span></p>
+    <p><strong>📊 Оценка:</strong> <span style="color:#2e7d32;font-weight:bold;">✅ Справился хорошо</span></p>
   </article>
 
-  <!-- ✅ Текущая дата и почта -->
-  <p style="text-align: center; font-size: 1.1em; color: #2c3e50; margin-bottom: 20px;">
+  <!-- ✅ Дата и почта -->
+  <p style="text-align:center;font-size:1.1em;color:#2c3e50;margin-bottom:20px;">
     <strong>Сегодня: суббота, 21 февраля 2026 г.</strong>
   </p>
-  <p style="text-align: center; margin-bottom: 20px;">
-    <a href="mailto:narekghazaryan2008@icloud.com" style="font-size: 1.2em; color: #0277bd; text-decoration: none;">✉️ Напишите мне</a>
+  <p style="text-align:center;margin-bottom:20px;">
+    <a href="mailto:narekghazaryan2008@icloud.com" style="font-size:1.2em;color:#0277bd;text-decoration:none;">✉️ Напишите мне</a>
   </p>
 
   <blockquote class="q">Путешествие в тысячу миль начинается с одного шага (Лао Цзы)</blockquote>
@@ -331,25 +174,25 @@
   <!-- ✅ Линейная регрессия -->
   <article class="regression-prediction">
     <h2>📊 Прогноз точности анализа</h2>
-    <p style="color: #555; margin-bottom: 15px;">
+    <p style="color:#555;margin-bottom:15px;">
       <strong>Модель:</strong> Линейная регрессия &nbsp;|&nbsp; 
       <strong>Формула:</strong> <span class="formula-badge">Точность = 4.533 × Часы + 53.792</span>
-      <br><small style="color: #666;">R² = 0.9893 — отличное качество модели!</small>
+      <br><small style="color:#666;">R² = 0.9893 — отличное качество модели!</small>
     </p>
-    <div style="background: white; padding: 15px; border-radius: 8px; margin-bottom: 15px;">
-      <label for="studyHours" style="font-weight: bold; color: #333; display: block; margin-bottom: 8px;">⏱️ Сколько часов вы занимались?</label>
-      <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+    <div style="background:white;padding:15px;border-radius:8px;margin-bottom:15px;">
+      <label for="studyHours" style="font-weight:bold;color:#333;display:block;margin-bottom:8px;">⏱️ Сколько часов вы занимались?</label>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;">
         <input type="number" id="studyHours" min="0" max="24" step="0.1" placeholder="Например: 5">
         <button type="button" onclick="calculatePrediction()">Рассчитать прогноз</button>
       </div>
     </div>
     <div id="predictionResult" class="prediction-result">
-      <p style="margin: 0; font-size: 1.1em;">
+      <p style="margin:0;font-size:1.1em;">
         Студент занимался <strong id="resultHours">5</strong> часов<br>
         <span class="prediction-score" id="resultScore">76.46</span> прогнозируемая точность (баллы)
       </p>
     </div>
-    <h3 style="color: #1a237e; margin: 20px 0 10px;">📋 Примеры прогнозов:</h3>
+    <h3 style="color:#1a237e;margin:20px 0 10px;">📋 Примеры прогнозов:</h3>
     <table class="prediction-table">
       <thead><tr><th>Часы подготовки</th><th>Прогноз баллов</th></tr></thead>
       <tbody id="predictionTable"></tbody>
@@ -359,7 +202,7 @@
   <!-- ✅ НОВЫЙ БЛОК: МОДЕЛИ МАШИННОГО ОБУЧЕНИЯ -->
   <article class="ml-section">
     <h2>🤖 Результаты моделей машинного обучения</h2>
-    <p style="text-align: center; color: #555; margin-bottom: 20px;">
+    <p style="text-align:center;color:#555;margin-bottom:20px;">
       <em>Модели обучены на реальных данных. Точность рассчитана на тестовой выборке (20% данных).</em>
     </p>
 
@@ -377,14 +220,14 @@
         <p><strong>Задача:</strong> Классификация — одобрение/отказ в кредите</p>
         <p><strong>Признаки:</strong> возраст, пол, зарплата</p>
         <p><strong>Алгоритм:</strong> Decision Tree (max_depth=5)</p>
-        <div style="text-align: center;">
-          <span class="accuracy-badge" id="creditAccuracy">81.25%</span>
-          <p style="color: #666; margin: 5px 0;">Точность на тестовой выборке</p>
+        <div style="text-align:center;">
+          <span class="accuracy-badge">69.00%</span>
+          <p style="color:#666;margin:5px 0;">Точность на тестовой выборке</p>
         </div>
         <div class="model-stats">
-          <div class="stat-item"><div class="stat-value">500</div><div class="stat-label">Записей</div></div>
+          <div class="stat-item"><div class="stat-value">1000</div><div class="stat-label">Записей</div></div>
           <div class="stat-item"><div class="stat-value">3</div><div class="stat-label">Признака</div></div>
-          <div class="stat-item"><div class="stat-value">0.82</div><div class="stat-label">F1-score</div></div>
+          <div class="stat-item"><div class="stat-value">0.2</div><div class="stat-label">Test size</div></div>
           <div class="stat-item"><div class="stat-value">5</div><div class="stat-label">Глубина дерева</div></div>
         </div>
         <div class="dataset-info">
@@ -401,14 +244,14 @@
         <p><strong>Задача:</strong> Классификация — одобрение/отказ в страховании</p>
         <p><strong>Признаки:</strong> возраст, стаж вождения, число ДТП</p>
         <p><strong>Алгоритм:</strong> Decision Tree (max_depth=4)</p>
-        <div style="text-align: center;">
-          <span class="accuracy-badge" id="kaskoAccuracy">95.00%</span>
-          <p style="color: #666; margin: 5px 0;">Точность на тестовой выборке</p>
+        <div style="text-align:center;">
+          <span class="accuracy-badge">95.00%</span>
+          <p style="color:#666;margin:5px 0;">Точность на тестовой выборке</p>
         </div>
         <div class="model-stats">
           <div class="stat-item"><div class="stat-value">500</div><div class="stat-label">Сгенерировано</div></div>
           <div class="stat-item"><div class="stat-value">3</div><div class="stat-label">Признака</div></div>
-          <div class="stat-item"><div class="stat-value">0.96</div><div class="stat-label">F1-score</div></div>
+          <div class="stat-item"><div class="stat-value">0.2</div><div class="stat-label">Test size</div></div>
           <div class="stat-item"><div class="stat-value">4</div><div class="stat-label">Глубина дерева</div></div>
         </div>
         <div class="dataset-info">
@@ -418,7 +261,7 @@
 
         <!-- Интерактивная форма -->
         <div class="kasko-form">
-          <h4 style="margin-top: 0; color: #33691e;">🔮 Проверить шансы на страхование</h4>
+          <h4 style="margin-top:0;color:#33691e;">🔮 Проверить шансы на страхование</h4>
           <label for="kaskoAge">Возраст (лет):</label>
           <input type="number" id="kaskoAge" min="18" max="65" value="30">
           <label for="kaskoExperience">Стаж вождения (лет):</label>
@@ -429,7 +272,7 @@
           <div id="kaskoResult" class="kasko-result">
             <div class="result-icon" id="kaskoIcon">✅</div>
             <strong id="kaskoText">Страховка одобрена!</strong>
-            <p style="margin: 5px 0 0; font-size: 0.9em; color: #555;" id="kaskoReason"></p>
+            <p style="margin:5px 0 0;font-size:0.9em;color:#555;" id="kaskoReason"></p>
           </div>
         </div>
       </div>
@@ -439,7 +282,7 @@
     <div id="code-tab" class="tab-content">
       <div class="model-card">
         <h3>💻 Исходный код на Python</h3>
-        <h4 style="color: #1a237e;">🏦 Модель кредита:</h4>
+        <h4 style="color:#1a237e;">🏦 Модель кредита:</h4>
         <div class="code-block">
 import pandas as pd
 from sklearn.tree import DecisionTreeClassifier
@@ -456,14 +299,14 @@ clf.fit(X_train, y_train)
 y_pred = clf.predict(X_test)
 print(f"Точность: {accuracy_score(y_test, y_pred)*100:.2f}%")
         </div>
-        <h4 style="color: #1a237e; margin-top: 20px;">🚗 Генерация датасета КАСКО:</h4>
+        <h4 style="color:#1a237e;margin-top:20px;">🚗 Генерация датасета КАСКО:</h4>
         <div class="code-block">
 import numpy as np, pandas as pd
 np.random.seed(42); n = 500
 age = np.random.randint(18, 66, n)
 exp = np.array([np.random.randint(0, min(40, a-17)+1) for a in age])
-acc = np.array([np.random.poisson(max(0, 3-exp[i]/5+(age[i]&lt;25)*2)) for i in range(n)])
-acc = np.clip(acc, 0, 10)
+acc = np.array([np.random.poisson(max(0.5, 3-exp[i]/5+(age[i]&lt;25)*2)) for i in range(n)])
+acc = np.clip(acc, 0, 10).astype(int)
 approved = np.array([1 if (acc[i]&lt;=2 and exp[i]&gt;=3) or (acc[i]&lt;=1 and age[i]&gt;=30) else 0 for i in range(n)])
 kasko_df = pd.DataFrame({'age':age,'driving_experience':exp,'accidents':acc,'insurance_approved':approved})
 kasko_df.to_csv('kasko_dataset.csv', index=False)
@@ -504,7 +347,7 @@ kasko_df.to_csv('kasko_dataset.csv', index=False)
   <p>GitHub Pages использует структуру: <code>ваш_логин.github.io</code>.</p>
 
   <h2>1 декабря 2025</h2>
-  <img src="Icons/newyear2026.png" alt="Новый год" style="max-width:100px; margin:10px 0;">
+  <img src="Icons/newyear2026.png" alt="Новый год" style="max-width:100px;margin:10px 0;">
   <p>Поздравление с Наступающим 2026 годом читайте <a href="Congratulations2026.html">здесь</a>.</p>
 
   <h2>15 октября 2025</h2>
@@ -557,7 +400,7 @@ kasko_df.to_csv('kasko_dataset.csv', index=False)
       <div class="bot-response">
         <span class="label">Найден FAQ-вопрос:</span>
         <div class="matched-info">"Как быстро доставляется заказ?" <span class="similarity-score">(sim=0.706)</span></div>
-        <span class="label" style="margin-top: 10px;">Ответ бот-FAQ:</span>
+        <span class="label" style="margin-top:10px;">Ответ бот-FAQ:</span>
         <p class="answer-text">Наш стандартный срок доставки — 3–5 рабочих дней.</p>
       </div>
     </div>
@@ -566,11 +409,11 @@ kasko_df.to_csv('kasko_dataset.csv', index=False)
   <script>
     // ——— AI PREDICTIONS ———
     const todayDate = "21.02.2026";
-    const predictionText = `<p style="color: #555; margin-bottom: 10px;"><strong>Дата анализа:</strong> ${todayDate}</p>
-      <h3>Топ-3 предсказания:</h3><ul style="list-style: none; padding: 0;">
-        <li style="margin-bottom: 5px; font-size: 1.1em;"><span style="color: #333; font-weight: bold;">1. running shoe:</span> <span style="color: #27ae60; font-weight: bold;">99.45%</span></li>
-        <li style="margin-bottom: 5px; font-size: 1.1em;"><span style="color: #333; font-weight: bold;">2. shoe store:</span> <span style="color: #7f8c8d; font-weight: bold;">0.27%</span></li>
-        <li style="margin-bottom: 5px; font-size: 1.1em;"><span style="color: #333; font-weight: bold;">3. clogs:</span> <span style="color: #7f8c8d; font-weight: bold;">0.15%</span></li>
+    const predictionText = `<p style="color:#555;margin-bottom:10px;"><strong>Дата анализа:</strong> ${todayDate}</p>
+      <h3>Топ-3 предсказания:</h3><ul style="list-style:none;padding:0;">
+        <li style="margin-bottom:5px;font-size:1.1em;"><span style="color:#333;font-weight:bold;">1. running shoe:</span> <span style="color:#27ae60;font-weight:bold;">99.45%</span></li>
+        <li style="margin-bottom:5px;font-size:1.1em;"><span style="color:#333;font-weight:bold;">2. shoe store:</span> <span style="color:#7f8c8d;font-weight:bold;">0.27%</span></li>
+        <li style="margin-bottom:5px;font-size:1.1em;"><span style="color:#333;font-weight:bold;">3. clogs:</span> <span style="color:#7f8c8d;font-weight:bold;">0.15%</span></li>
       </ul>`;
     const outputDiv = document.getElementById('ai-prediction-output');
     if (outputDiv) outputDiv.innerHTML = predictionText;
@@ -652,26 +495,26 @@ kasko_df.to_csv('kasko_dataset.csv', index=False)
       const hearts = ['💗', '💖', '💘', '💝', '❤️'], colors = ['#ff6b81', '#ff8fab', '#ff5252', '#ff4081', '#e91e63'];
       const size = 16 + Math.random() * 14, color = colors[Math.floor(Math.random() * colors.length)];
       heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
-      heart.style.cssText = `position: fixed; left: ${x - size/2}px; top: ${y}px; font-size: ${size}px; color: ${color}; opacity: ${0.7 + Math.random() * 0.3}; pointer-events: none; z-index: 995; text-shadow: 0 0 8px ${color}, 0 0 16px ${color};`;
+      heart.style.cssText = `position:fixed;left:${x-size/2}px;top:${y}px;font-size:${size}px;color:${color};opacity:${0.7+Math.random()*0.3};pointer-events:none;z-index:995;text-shadow:0 0 8px ${color},0 0 16px ${color};`;
       document.body.appendChild(heart);
       const duration = 2.5 + Math.random() * 1.5;
-      heart.animate([{ transform: 'translate(0, 0) rotate(0deg)', opacity: 1 },
-        { transform: `translate(${(Math.random() - 0.5) * 60}px, -${120 + Math.random() * 80}px) rotate(${(Math.random() > 0.5 ? 1 : -1) * 20}deg)`, opacity: 0 }],
-        { duration: duration * 1000, easing: 'cubic-bezier(0.2, 0.8, 0.3, 1)', fill: 'forwards' });
+      heart.animate([{transform:'translate(0,0) rotate(0deg)',opacity:1},
+        {transform:`translate(${(Math.random()-0.5)*60}px,-${120+Math.random()*80}px) rotate(${(Math.random()>0.5?1:-1)*20}deg)`,opacity:0}],
+        {duration:duration*1000,easing:'cubic-bezier(0.2,0.8,0.3,1)',fill:'forwards'});
       setTimeout(() => { if (heart.parentNode) heart.remove(); }, duration * 1000);
     }
     const fireworkColors = [['#FF0000','#FF5722','#FF9800'], ['#00BCD4','#2196F3','#3F51B5'], ['#E91E63','#FF4081','#FF80AB'], ['#4CAF50','#8BC34A','#CDDC39'], ['#FFEB3B','#FFC107','#FF9800'], ['#9C27B0','#E040FB','#FF4081'], ['#00E5FF','#1DE9B6','#69F0AE'], ['#FF1744','#FF4081','#FFD54F']];
     function launchFirework(x, y) {
       const rocket = document.createElement('div');
-      rocket.style.cssText = `position: fixed; left: ${x-3}px; bottom: 0; width: 5px; height: 16px; background: linear-gradient(to top, #111, #555, #aaa); border-radius: 2px; box-shadow: 0 0 12px 4px rgba(255, 215, 0, 0.9); z-index: 998; pointer-events: none; animation: rocketLaunch 1.0s cubic-bezier(0.2, 0.9, 0.4, 1) forwards;`;
+      rocket.style.cssText = `position:fixed;left:${x-3}px;bottom:0;width:5px;height:16px;background:linear-gradient(to top,#111,#555,#aaa);border-radius:2px;box-shadow:0 0 12px 4px rgba(255,215,0,0.9);z-index:998;pointer-events:none;animation:rocketLaunch 1.0s cubic-bezier(0.2,0.9,0.4,1) forwards;`;
       document.body.appendChild(rocket);
       setTimeout(() => {
         rocket.remove(); const burstX = x, burstY = y;
-        ['rgba(255,255,255,0.5)', 'rgba(255,100,0,0.3)'].forEach((color, i) => {
+        ['rgba(255,255,255,0.5)','rgba(255,100,0,0.3)'].forEach((color, i) => {
           const flash = document.createElement('div');
-          flash.style.cssText = `position: fixed; left: 0; top: 0; width: 100%; height: 100%; background: radial-gradient(circle at ${burstX}px ${burstY}px, ${color}, transparent 65%); pointer-events: none; z-index: 994; opacity: 1;`;
+          flash.style.cssText = `position:fixed;left:0;top:0;width:100%;height:100%;background:radial-gradient(circle at ${burstX}px ${burstY}px, ${color}, transparent 65%);pointer-events:none;z-index:994;opacity:1;`;
           document.body.appendChild(flash);
-          flash.animate({ opacity: [1, 0] }, { duration: 300 + i*100, easing: 'ease-out' });
+          flash.animate({opacity:[1,0]},{duration:300+i*100,easing:'ease-out'});
           setTimeout(() => flash.remove(), 400 + i*100);
         });
         const heartCount = 12 + Math.floor(Math.random() * 9);
@@ -685,20 +528,20 @@ kasko_df.to_csv('kasko_dataset.csv', index=False)
           const spark = document.createElement('div'), angle = Math.random() * Math.PI * 2, speed = 80 + Math.random() * 220;
           const tx = Math.cos(angle) * speed, ty = Math.sin(angle) * speed + 100;
           const c1 = palette[Math.floor(Math.random() * palette.length)], c2 = palette[Math.floor(Math.random() * palette.length)], size = 4 + Math.random() * 5;
-          spark.style.cssText = `position: fixed; left: ${burstX - size/2}px; top: ${burstY - size/2}px; width: ${size}px; height: ${size}px; background: linear-gradient(135deg, ${c1}, ${c2}); border-radius: 50%; box-shadow: 0 0 ${12 + Math.random() * 18}px ${c1}; pointer-events: none; z-index: 997; animation: sparkFly 1.3s cubic-bezier(0.1, 0.8, 0.2, 1) forwards;`;
+          spark.style.cssText = `position:fixed;left:${burstX-size/2}px;top:${burstY-size/2}px;width:${size}px;height:${size}px;background:linear-gradient(135deg, ${c1}, ${c2});border-radius:50%;box-shadow:0 0 ${12+Math.random()*18}px ${c1};pointer-events:none;z-index:997;animation:sparkFly 1.3s cubic-bezier(0.1,0.8,0.2,1) forwards;`;
           spark.style.setProperty('--tx', tx + 'px'); spark.style.setProperty('--ty', ty + 'px');
           document.body.appendChild(spark);
           setTimeout(() => spark.remove(), 1400);
         }
         const smoke = document.createElement('div');
-        smoke.style.cssText = `position: fixed; left: ${burstX - 40}px; top: ${burstY - 40}px; width: 80px; height: 80px; background: radial-gradient(circle, rgba(220,220,220,0.15), transparent 90%); border-radius: 50%; pointer-events: none; z-index: 993;`;
+        smoke.style.cssText = `position:fixed;left:${burstX-40}px;top:${burstY-40}px;width:80px;height:80px;background:radial-gradient(circle, rgba(220,220,220,0.15), transparent 90%);border-radius:50%;pointer-events:none;z-index:993;`;
         document.body.appendChild(smoke);
-        smoke.animate([{ transform: 'scale(1) translate(0,0)', opacity: 0.9 }, { transform: 'scale(3.5) translate(0,20px)', opacity: 0 }], { duration: 2400, easing: 'ease-out' });
+        smoke.animate([{transform:'scale(1) translate(0,0)',opacity:0.9},{transform:'scale(3.5) translate(0,20px)',opacity:0}],{duration:2400,easing:'ease-out'});
         setTimeout(() => smoke.remove(), 2400);
       }, 1000);
     }
     const style = document.createElement('style');
-    style.textContent = `@keyframes rocketLaunch { 0% { transform: translateY(0) scale(1); opacity: 1; } 100% { transform: translateY(-350px) scale(0.7); opacity: 0.6; } } @keyframes sparkFly { 0% { transform: translate(0,0) scale(1); opacity: 1; } 100% { transform: translate(var(--tx), var(--ty)) scale(0); opacity: 0; } }`;
+    style.textContent = `@keyframes rocketLaunch{0%{transform:translateY(0) scale(1);opacity:1}100%{transform:translateY(-350px) scale(0.7);opacity:0.6}}@keyframes sparkFly{0%{transform:translate(0,0) scale(1);opacity:1}100%{transform:translate(var(--tx),var(--ty)) scale(0);opacity:0}}`;
     document.head.appendChild(style);
     function launchTripleFireworks() {
       const positions = [0.18 * window.innerWidth, 0.5 * window.innerWidth, 0.82 * window.innerWidth];
