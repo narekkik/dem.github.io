@@ -112,6 +112,40 @@
     .tab-btn.active { background: #0277bd; color: white; }
     .tab-content { display: none; }
     .tab-content.active { display: block; }
+    
+    /* ✅ Стили для логов обучения */
+    .training-log-container {
+      background: white; border-radius: 10px; padding: 15px; margin-bottom: 15px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+    .log-entry {
+      padding: 3px 0; border-bottom: 1px dashed #eee; font-family: monospace; font-size: 0.85em;
+    }
+    .log-entry:last-child { border-bottom: none; }
+    .log-scroll {
+      max-height: 180px; overflow-y: auto; background: #f9f9f9;
+      border-radius: 8px; padding: 10px; margin-top: 10px;
+    }
+    .progress-bar {
+      background: #e0e0e0; border-radius: 20px; height: 12px; overflow: hidden; margin: 10px 0;
+    }
+    .progress-fill {
+      background: linear-gradient(90deg, #4caf50, #2e7d32);
+      height: 100%; width: 0%; transition: width 0.5s ease; border-radius: 20px;
+    }
+    .metrics-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 12px; margin-bottom: 20px;
+    }
+    .metric-card {
+      padding: 15px; border-radius: 10px; text-align: center;
+    }
+    .metric-card.train { background: linear-gradient(135deg, #e3f2fd, #bbdefb); }
+    .metric-card.test { background: linear-gradient(135deg, #e8f5e9, #c8e6c9); }
+    .metric-value { font-size: 1.8em; font-weight: bold; }
+    .metric-card.train .metric-value { color: #1a237e; }
+    .metric-card.test .metric-value { color: #2e7d32; }
+    .metric-label { color: #555; font-size: 0.95em; }
   </style>
 </head>
 <body>
@@ -196,6 +230,66 @@
     <table class="prediction-table">
       <thead><tr><th>Часы подготовки</th><th>Прогноз баллов</th></tr></thead>
       <tbody id="predictionTable"></tbody>
+    </table>
+
+    <!-- ✅ НОВЫЙ БЛОК: ЛОГ ОБУЧЕНИЯ МОДЕЛИ -->
+    <h3 style="color:#1a237e;margin:25px 0 15px;">📈 Лог обучения модели</h3>
+    
+    <!-- Прогресс обучения -->
+    <div class="training-log-container">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;flex-wrap:wrap;gap:10px;">
+        <strong style="color:#333;">🔄 Процесс обучения (1000 эпох)</strong>
+        <span class="formula-badge" style="background:#e8f5e9;color:#2e7d32;">✅ MSE ↓</span>
+      </div>
+      
+      <!-- Прогресс-бар -->
+      <div class="progress-bar">
+        <div id="trainingProgress" class="progress-fill"></div>
+      </div>
+      <div style="text-align:center;font-size:0.9em;color:#666;margin-bottom:10px;">
+        Прогресс: <span id="progressText">0%</span>
+      </div>
+      
+      <!-- Логи эпох -->
+      <div class="log-scroll">
+        <div class="log-entry"><span style="color:#1a237e;">Эпоха    0</span> | Ошибка (MSE): <span style="color:#d32f2f;font-weight:bold;">0.020353</span></div>
+        <div class="log-entry"><span style="color:#1a237e;">Эпоха  100</span> | Ошибка (MSE): <span style="color:#f57c00;">0.004909</span></div>
+        <div class="log-entry"><span style="color:#1a237e;">Эпоха  200</span> | Ошибка (MSE): <span style="color:#f57c00;">0.004158</span></div>
+        <div class="log-entry"><span style="color:#1a237e;">Эпоха  300</span> | Ошибка (MSE): <span style="color:#388e3c;">0.004035</span></div>
+        <div class="log-entry"><span style="color:#1a237e;">Эпоха  400</span> | Ошибка (MSE): <span style="color:#388e3c;">0.003986</span></div>
+        <div class="log-entry"><span style="color:#1a237e;">Эпоха  500</span> | Ошибка (MSE): <span style="color:#388e3c;">0.003956</span></div>
+        <div class="log-entry"><span style="color:#1a237e;">Эпоха  600</span> | Ошибка (MSE): <span style="color:#388e3c;">0.003937</span></div>
+        <div class="log-entry"><span style="color:#1a237e;">Эпоха  700</span> | Ошибка (MSE): <span style="color:#388e3c;">0.003923</span></div>
+        <div class="log-entry"><span style="color:#1a237e;">Эпоха  800</span> | Ошибка (MSE): <span style="color:#388e3c;">0.003912</span></div>
+        <div class="log-entry"><span style="color:#1a237e;">Эпоха  900</span> | Ошибка (MSE): <span style="color:#388e3c;">0.003904</span></div>
+      </div>
+    </div>
+    
+    <!-- Итоговые результаты -->
+    <div class="metrics-grid">
+      <div class="metric-card train">
+        <div class="metric-value">0.00390</div>
+        <div class="metric-label">MSE (train)</div>
+      </div>
+      <div class="metric-card test">
+        <div class="metric-value">0.00325</div>
+        <div class="metric-label">MSE (test) ✅</div>
+      </div>
+    </div>
+    
+    <!-- Примеры прогнозов -->
+    <h4 style="color:#1a237e;margin:20px 0 10px;">🎯 Примеры прогнозов (реальные оценки):</h4>
+    <table class="prediction-table">
+      <thead>
+        <tr>
+          <th>Фактическое значение</th>
+          <th>Прогноз модели</th>
+          <th>Отклонение</th>
+        </tr>
+      </thead>
+      <tbody id="predictionExamples">
+        <!-- Заполняется JS -->
+      </tbody>
     </table>
   </article>
 
@@ -471,6 +565,56 @@ kasko_df.to_csv('kasko_dataset.csv', index=False)
       resultDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
 
+    // ——— TRAINING LOG ANIMATION ———
+    function initTrainingLog() {
+      // Анимация прогресс-бара
+      setTimeout(() => {
+        const progress = document.getElementById('trainingProgress');
+        const progressText = document.getElementById('progressText');
+        if (!progress) return;
+        let width = 0;
+        const interval = setInterval(() => {
+          if (width >= 100) {
+            clearInterval(interval);
+            progressText.textContent = '100% — завершено!';
+          } else {
+            width += 2;
+            progress.style.width = width + '%';
+            progressText.textContent = width + '%';
+          }
+        }, 30);
+      }, 500);
+      
+      // Заполнение таблицы примеров прогнозов
+      const examples = [
+        { actual: 91.0, predicted: 77.06 },
+        { actual: 53.0, predicted: 61.98 },
+        { actual: 80.0, predicted: 78.96 },
+        { actual: 74.0, predicted: 76.32 },
+        { actual: 84.0, predicted: 80.47 }
+      ];
+      
+      const tbody = document.getElementById('predictionExamples');
+      if (tbody) {
+        examples.forEach(ex => {
+          const diff = Math.abs(ex.actual - ex.predicted).toFixed(2);
+          const row = document.createElement('tr');
+          row.innerHTML = `
+            <td style="font-weight:bold;color:#1a237e;">${ex.actual}</td>
+            <td style="color:#0277bd;font-weight:bold;">${ex.predicted}</td>
+            <td style="color:${diff < 5 ? '#2e7d32' : '#d32f2f'};font-weight:bold;">${diff}</td>
+          `;
+          tbody.appendChild(row);
+        });
+      }
+      
+      // Авто-скролл логов вниз
+      const logContainer = document.querySelector('.log-scroll');
+      if (logContainer) {
+        logContainer.scrollTop = logContainer.scrollHeight;
+      }
+    }
+
     // ——— SNOWFLAKES ———
     const snowflakesContainer = document.getElementById('snowflakes');
     const snowSymbols = ['❄', '❅', '❆'];
@@ -564,6 +708,7 @@ kasko_df.to_csv('kasko_dataset.csv', index=False)
     // ——— INIT ———
     document.addEventListener('DOMContentLoaded', () => {
       fillPredictionTable();
+      initTrainingLog();
       const hoursInput = document.getElementById('studyHours');
       if (hoursInput) hoursInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') calculatePrediction(); });
     });
