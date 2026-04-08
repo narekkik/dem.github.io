@@ -146,6 +146,169 @@
     .metric-card.train .metric-value { color: #1a237e; }
     .metric-card.test .metric-value { color: #2e7d32; }
     .metric-label { color: #555; font-size: 0.95em; }
+
+    /* ✅ Стили для медицинской схемы */
+    .medical-diagram {
+      background: linear-gradient(135deg, #fff5f5 0%, #fce4ec 100%);
+      border-radius: 16px;
+      padding: 25px;
+      margin: 30px 0;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+      border: 2px solid #f48fb1;
+    }
+    .medical-diagram h2 {
+      color: #880e4f;
+      margin-top: 0;
+      text-align: center;
+      border-bottom: 2px dashed #f06292;
+      padding-bottom: 15px;
+    }
+    .patient-header {
+      display: flex;
+      justify-content: center;
+      gap: 2px;
+      margin-bottom: 25px;
+      flex-wrap: wrap;
+    }
+    .patient-box {
+      background: white;
+      border: 2px solid #880e4f;
+      padding: 12px 25px;
+      border-radius: 8px;
+      text-align: center;
+      font-weight: 500;
+      min-width: 120px;
+      box-shadow: 0 2px 8px rgba(136,14,79,0.15);
+      transition: transform 0.2s;
+    }
+    .patient-box:hover { transform: translateY(-3px); }
+    .patient-box.id { background: #fce4ec; }
+    .patient-box.name { background: #f8bbd0; }
+    .patient-box.location { background: #f48fb1; color: white; }
+    
+    .connector-line {
+      width: 3px;
+      height: 35px;
+      background: linear-gradient(to bottom, #880e4f, #f06292);
+      margin: 0 auto 25px;
+      border-radius: 2px;
+      position: relative;
+    }
+    .connector-line::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+      border: 10px solid transparent;
+      border-top-color: #f06292;
+    }
+    
+    .surgery-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    }
+    .surgery-table thead {
+      background: linear-gradient(135deg, #880e4f, #c2185b);
+      color: white;
+    }
+    .surgery-table th,
+    .surgery-table td {
+      padding: 14px 12px;
+      text-align: center;
+      border-bottom: 1px solid #fce4ec;
+    }
+    .surgery-table th {
+      font-weight: 600;
+      text-transform: uppercase;
+      font-size: 0.85em;
+      letter-spacing: 0.5px;
+    }
+    .surgery-table tbody tr {
+      transition: background 0.2s;
+    }
+    .surgery-table tbody tr:hover {
+      background: linear-gradient(135deg, #fff5f7, #fce4ec);
+    }
+    .surgery-table tbody tr:last-child td {
+      border-bottom: none;
+    }
+    .surgery-table td:first-child {
+      font-weight: 600;
+      color: #880e4f;
+    }
+    .surgery-table td:nth-child(2) {
+      color: #c2185b;
+      font-weight: 500;
+    }
+    .surgery-table td:nth-child(6) {
+      color: #d32f2f;
+      font-weight: 500;
+    }
+    .badge {
+      display: inline-block;
+      background: #fce4ec;
+      color: #880e4f;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.85em;
+      font-weight: 600;
+    }
+    .add-row-btn {
+      display: block;
+      margin: 20px auto 0;
+      background: linear-gradient(135deg, #f06292, #ec407a);
+      color: white;
+      border: none;
+      padding: 10px 25px;
+      border-radius: 25px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.3s;
+      box-shadow: 0 4px 12px rgba(236,64,122,0.4);
+    }
+    .add-row-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(236,64,122,0.6);
+    }
+    
+    /* ✅ Стили для логов обучения */
+    .training-log-container {
+      background: white; border-radius: 10px; padding: 15px; margin-bottom: 15px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+    .log-entry {
+      padding: 3px 0; border-bottom: 1px dashed #eee; font-family: monospace; font-size: 0.85em;
+    }
+    .log-entry:last-child { border-bottom: none; }
+    .log-scroll {
+      max-height: 180px; overflow-y: auto; background: #f9f9f9;
+      border-radius: 8px; padding: 10px; margin-top: 10px;
+    }
+    .progress-bar {
+      background: #e0e0e0; border-radius: 20px; height: 12px; overflow: hidden; margin: 10px 0;
+    }
+    .progress-fill {
+      background: linear-gradient(90deg, #4caf50, #2e7d32);
+      height: 100%; width: 0%; transition: width 0.5s ease; border-radius: 20px;
+    }
+    .metrics-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 12px; margin-bottom: 20px;
+    }
+    .metric-card {
+      padding: 15px; border-radius: 10px; text-align: center;
+    }
+    .metric-card.train { background: linear-gradient(135deg, #e3f2fd, #bbdefb); }
+    .metric-card.test { background: linear-gradient(135deg, #e8f5e9, #c8e6c9); }
+    .metric-value { font-size: 1.8em; font-weight: bold; }
+    .metric-card.train .metric-value { color: #1a237e; }
+    .metric-card.test .metric-value { color: #2e7d32; }
+    .metric-label { color: #555; font-size: 0.95em; }
   </style>
 </head>
 <body>
@@ -415,6 +578,48 @@ kasko_df.to_csv('kasko_dataset.csv', index=False)
   </article>
   <!-- ✅ КОНЕЦ БЛОКА МОДЕЛЕЙ -->
 
+  <!-- ✅ НОВАЯ МЕДИЦИНСКАЯ СХЕМА -->
+  <article class="medical-diagram">
+    <h2>🏥 Медицинская карта пациента</h2>
+    
+    <!-- Верхний блок с информацией -->
+    <div class="patient-header">
+      <div class="patient-box id">№ 13</div>
+      <div class="patient-box name">К. Камилов</div>
+      <div class="patient-box location">г. Одинцово</div>
+    </div>
+    
+    <!-- Соединительная линия -->
+    <div class="connector-line"></div>
+    
+    <!-- Таблица операций -->
+    <table class="surgery-table">
+      <thead>
+        <tr>
+          <th>Дата операции</th>
+          <th>Операция</th>
+          <th>Хирург</th>
+          <th>Патент</th>
+          <th>Препарат</th>
+          <th>Побочный эффект</th>
+        </tr>
+      </thead>
+      <tbody id="medicalTableBody">
+        <tr>
+          <td>11.04.26</td>
+          <td>Ринопластика</td>
+          <td>Р. Фёдоров</td>
+          <td><span class="badge">№122432</span></td>
+          <td>Ринза®</td>
+          <td>Тошнота</td>
+        </tr>
+      </tbody>
+    </table>
+    
+    <button class="add-row-btn" onclick="addMedicalRow()">+ Добавить запись</button>
+  </article>
+  <!-- ✅ КОНЕЦ МЕДИЦИНСКОЙ СХЕМЫ -->
+
   <!-- ✅ Криптография -->
   <article>
     <h2>19 января 2026</h2>
@@ -618,6 +823,24 @@ kasko_df.to_csv('kasko_dataset.csv', index=False)
       if (logContainer) {
         logContainer.scrollTop = logContainer.scrollHeight;
       }
+    }
+
+    // ——— MEDICAL TABLE ———
+    function addMedicalRow() {
+      const tbody = document.getElementById('medicalTableBody');
+      const newRow = document.createElement('tr');
+      newRow.innerHTML = `
+        <td>${new Date().toLocaleDateString('ru-RU')}</td>
+        <td>Новая процедура</td>
+        <td>Др. Иванов</td>
+        <td><span class="badge">№000000</span></td>
+        <td>Препарат</td>
+        <td>Нет</td>
+      `;
+      tbody.appendChild(newRow);
+      newRow.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      newRow.style.background = 'linear-gradient(135deg, #fff3e0, #ffe0b2)';
+      setTimeout(() => { newRow.style.background = ''; }, 1500);
     }
 
     // ——— SNOWFLAKES ———
